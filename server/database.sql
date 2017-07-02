@@ -23,6 +23,6 @@ ALTER TABLE Dog_Episode ADD FOREIGN KEY (episode) REFERENCES Episode(code);
 ALTER TABLE Episode ADD FOREIGN KEY (type) REFERENCES Disease(icd_code);
 
 INSERT INTO Breed (name, origin) VALUES ('Akita', 'Japan'), ('Rottweiler', 'Germany'), ('Bolognese', 'Italy');
-INSERT INTO Costumer (name, lastname, phone) VALUES ('Agostino', 'Mascetti', '+3933333333');
+INSERT INTO Costumer (name, lastname, phone) VALUES ('Agostino', 'Neri', '+3933333333');
 INSERT INTO Veterinary (name, lastname, city) VALUES ('John', 'Smith', 'Split'), ('Mark', 'Rossi', 'Prague');
 INSERT INTO Disease (icd_code, name) VALUES (1, 'Rabies'), (2, 'Stomachache'), (3, 'Vomit');
