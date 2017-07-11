@@ -8,9 +8,9 @@ CREATE TABLE IF NOT EXISTS Breed   (name VARCHAR(64) PRIMARY KEY, origin VARCHAR
 CREATE TABLE IF NOT EXISTS Veterinary     (id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, name VARCHAR(64), lastname VARCHAR(64), city VARCHAR(64));
 
 CREATE TABLE IF NOT EXISTS Dog_Veterinary (dog INT UNSIGNED, veterinary INT UNSIGNED, PRIMARY KEY(dog, veterinary));
-CREATE TABLE IF NOT EXISTS Dog_Events 	  (dog INT UNSIGNED, episode INT UNSIGNED, PRIMARY KEY(dog, episode));
-CREATE TABLE IF NOT EXISTS Events_Veterinary (episode INT UNSIGNED, veterinary INT UNSIGNED, PRIMARY KEY(episode, veterinary));
-CREATE TABLE IF NOT EXISTS Events_Users 		(episode INT UNSIGNED, costumer INT UNSIGNED, detail TIMESTAMP DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY(episode, costumer));
+CREATE TABLE IF NOT EXISTS Dog_Events 	  (dog INT UNSIGNED, event INT UNSIGNED, PRIMARY KEY(dog, event));
+CREATE TABLE IF NOT EXISTS Events_Veterinary (event INT UNSIGNED, veterinary INT UNSIGNED, PRIMARY KEY(event, veterinary));
+CREATE TABLE IF NOT EXISTS Events_Users 		(event INT UNSIGNED, user INT UNSIGNED, detail TIMESTAMP DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY(event, user));
 
 /* Required by professor */
 CREATE TABLE `Sessions` (
@@ -26,10 +26,12 @@ ALTER TABLE Dog ADD FOREIGN KEY (own)  REFERENCES Users(user_id);
 ALTER TABLE Dog ADD FOREIGN KEY (type) REFERENCES Breed(name);
 ALTER TABLE Dog_Veterinary ADD FOREIGN KEY (dog) REFERENCES Dog(collar_id);
 ALTER TABLE Dog_Veterinary ADD FOREIGN KEY (veterinary) REFERENCES Veterinary(id);
-ALTER TABLE Events_Veterinary ADD FOREIGN KEY (episode) REFERENCES Events(code);
+ALTER TABLE Events_Veterinary ADD FOREIGN KEY (event) REFERENCES Events(code);
 ALTER TABLE Events_Veterinary ADD FOREIGN KEY (veterinary) REFERENCES Veterinary(id);
+ALTER TABLE Events_Users ADD FOREIGN KEY (event) REFERENCES Events(code);
+ALTER TABLE Events_Users ADD FOREIGN KEY (user) REFERENCES Users(user_id);
 ALTER TABLE Dog_Events ADD FOREIGN KEY (dog) REFERENCES Dog(collar_id);
-ALTER TABLE Dog_Events ADD FOREIGN KEY (episode) REFERENCES Events(code);
+ALTER TABLE Dog_Events ADD FOREIGN KEY (event) REFERENCES Events(code);
 ALTER TABLE Events ADD FOREIGN KEY (type) REFERENCES Disease(icd_code);
 
 INSERT INTO Breed (name, origin) VALUES ('Akita', 'Japan'), ('Rottweiler', 'Germany'), ('Bolognese', 'Italy');
