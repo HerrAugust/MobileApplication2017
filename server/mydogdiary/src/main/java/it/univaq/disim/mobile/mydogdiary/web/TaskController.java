@@ -1,7 +1,7 @@
 package it.univaq.disim.mobile.mydogdiary.web;
 
 import it.univaq.disim.mobile.mydogdiary.business.TodoListService;
-import it.univaq.disim.mobile.mydogdiary.business.domain.Task;
+import it.univaq.disim.mobile.mydogdiary.business.domain.Event;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +24,15 @@ public class TaskController {
     @PostMapping("/{token}")
     public Response createTask(@PathVariable(value = "token") String token, @RequestBody Task task) {
         service.createTask(token, task);
-        Response<Task> response = new Response<>(true, "task created!");
+        Response<Event> response = new Response<>(true, "task created!");
         response.setData(task);
         return response;
     }
 
     @GetMapping("/{token}")
     public Response findAllTasks(@PathVariable(value = "token") String token) {
-        List<Task> tasks = service.findAllTasks(token);
-        Response<List<Task>> response = new Response<>(true, "all tasks");
+        List<Event> tasks = service.findAllTasks(token);
+        Response<List<Event>> response = new Response<>(true, "all tasks");
         response.setData(tasks);
         return response;
     }
@@ -40,7 +40,7 @@ public class TaskController {
     @GetMapping("/{token}/{id}")
     public Response findTaskById(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) {
         Task task = service.findTaskById(token, id);
-        Response<Task> response = new Response<>(true, "task by id");
+        Response<Event> response = new Response<>(true, "task by id");
         response.setData(task);
         return response;
     }
@@ -49,7 +49,7 @@ public class TaskController {
     public Response updateTask(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id, @RequestBody Task task) {
         task.setId(id);
         Task newTask = service.updateTask(token, task);
-        Response<Task> response = new Response<>(true, "task updated");
+        Response<Event> response = new Response<>(true, "task updated");
         response.setData(newTask);
         return response;
     }
@@ -64,9 +64,9 @@ public class TaskController {
 
     @PostMapping("/{token}/order")
     public Response updateOrder(@PathVariable(value = "token") String token, @RequestBody Order[] orders) {
-        List<Task> tasks = new ArrayList<>();
+        List<Event> tasks = new ArrayList<>();
         for (Order order : orders) {
-            Task task = new Task();
+        	Event task = new Event();
             task.setId(order.getId());
             task.setPosition(order.getPosition());
             tasks.add(task);

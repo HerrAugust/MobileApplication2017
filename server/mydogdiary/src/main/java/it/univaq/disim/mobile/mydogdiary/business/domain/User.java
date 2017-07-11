@@ -39,7 +39,7 @@ public class User implements java.io.Serializable {
 
     @JsonIgnore
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Task> tasks = new HashSet<>();
+    private Set<Event> events = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -89,17 +89,17 @@ public class User implements java.io.Serializable {
         this.email = email;
     }
 
-    public Set<Task> getTasks() {
-        return tasks;
+    public Set<Event> getTasks() {
+        return events;
     }
 
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
+    public void setTasks(Set<Event> events) {
+        this.events = events;
     }
 
-    public void addTask(Task task) {
-        task.setUser(this);
-        tasks.add(task);
+    public void addTask(Event event) {
+        event.setUser(this);
+        events.add(event);
     }
     
 }
