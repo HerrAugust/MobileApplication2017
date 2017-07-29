@@ -1,9 +1,10 @@
-/.metadata/
+.metadata/
 RemoteSystemsTempFiles/
 client/TodoListApp/
 server/todo-list/
 server/RemoteSystemsTempFiles/
 server/.metadata/
+RemoteSystemsTempFiles/
 
 *.zip
 *.rar

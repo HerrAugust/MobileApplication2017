@@ -1,0 +1,10 @@
+.metadata/
+.recommenders/
+RemoteSystemTempFiles/
+todo-list/
+Servers/
+
+todolist.sql
+
+*.zip
+*.rar
