@@ -1,0 +1,37 @@
+page-home {
+
+    ion-list-header {
+        border-top: none !important;
+    }
+    
+    ion-item {
+        padding-left: 0 !important;
+        min-height: 60px !important;
+        
+        ion-label {
+            white-space: initial !important;
+        }
+    } 
+    
+    .activeAnimate {
+        .animate-task-bottom,
+        .animate-task-top {
+            animation-duration: $duration-task-animation;
+        }
+    }
+}
+
+.list-avatar-page {
+  span.actions {
+    float: right;
+
+    ion-icon {
+      margin-left: 10px;
+    }
+  }
+
+  ion-list-header {
+    margin-bottom: 0px;
+  }
+  
+}
