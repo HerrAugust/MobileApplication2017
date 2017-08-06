@@ -1,9 +1,10 @@
-Installare i pacchetti
+Start server (see /server folder)
+
+Install Ionic2 packages with:
 npm install
 
-Lanciare l'app 
+Launch app in browser with:
 ionic serve
 
-Per fare refresh della pagina digitare le seguenti istruzioni nella console di Chrome
-
+For refreshing page, give in browser's console:
 location.href = "http://localhost:8100/"; location.hash=""; location.reload();

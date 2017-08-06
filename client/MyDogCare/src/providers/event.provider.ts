@@ -37,7 +37,7 @@ export class EventProvider {
     }
 
     /**
-     * Recupera i Event dal server.
+     * Retrives Event from server.
      */
     getEvents(): Promise<Array<any>> {
         console.log("EventProvider.getEvents()");
@@ -74,11 +74,12 @@ export class EventProvider {
      * Ritorna il Event corrispondente all'id.
      */
     getEvent(code: number): Event {
+        console.log("EventProvider.getEvent(). code="+code);
         return this._Events.find(Event => Event.code === code);
     }
 
     /**
-     * Groups events in the way needed per date.
+     * Groups events per date (a date has events 1, 8, 9; another one events 2 and 3).
      */
     groupEvents() {
             console.log("EventProvider.groupEvents()");
@@ -88,10 +89,12 @@ export class EventProvider {
             var currentEvents = null;
             var currentDate : Date = null;
             var groupedEvents = [];
+            var now : Date = new Date();
+            var nextEventFound : boolean = false;
 
             for(var i = 0; i < this._Events.length; i++) {
-                var date = new Date(this._Events[i].detailtimestamp);
-                console.log(this._Events[i].detailtimestamp);
+                var date = new Date(this._Events[i].detailtimestamp_start);
+                console.log(this._Events[i].detailtimestamp_start);
                 if(currentDate === null || date.getMonth() != currentDate.getMonth() || date.getFullYear() != currentDate.getFullYear()) {
                     console.log("Going inside with date: " + date);
                     currentDate = date;
@@ -107,16 +110,25 @@ export class EventProvider {
                 }
  
                 var day = date.getDay() + " " + monthNames[date.getMonth()] + " " + date.getFullYear(); // 27 March 2017
-                var hour = date.getHours() + ":" + date.getMinutes(); // 8:30 AM
+                var hour = date.getHours() + ":" + date.getMinutes(); // 8:30
+                var date_end = new Date(this._Events[i].detailtimestamp_end);
+                hour = hour + "-" + date_end.getHours() + ":" + date_end.getMinutes();
                 console.log(this._Events[i])
                 if(this._Events[i]['vaccinevisit'] == 'visit') {
-                    this._Events[i]['vaccinevisit'] = 'assets/images/doctor70x.png';
+                    this._Events[i]['vaccinevisit_src'] = 'assets/images/doctor70x.png';
                 }
                 else {
-                    this._Events[i]['vaccinevisit'] = 'assets/images/syringe70x.png';
+                    this._Events[i]['vaccinevisit_src'] = 'assets/images/syringe70x.png';
                 }
                 this._Events[i]['day'] = day;
                 this._Events[i]['hour'] = hour;
+                // Selects only the next event of today (BEG sel next event)
+                console.log("date=" + date.toISOString() + "; now="+now.toISOString());
+                console.log("date day="+date.getDate() + "; now day="+now.getDate());
+                this._Events[i]['coloured'] = !nextEventFound && date.getFullYear() >= now.getFullYear() && date.getMonth() >= now.getMonth() && date.getDay() >= now.getDay() && date.getHours() >= now.getHours();
+                if(this._Events[i]['coloured'])
+                    nextEventFound = true;
+                // END sel next event
                 currentEvents.push(this._Events[i]);
             }
 

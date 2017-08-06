@@ -1,0 +1,21 @@
+page-event-detail {
+    ion-label.title {
+        font-size: 21px;
+        font-weight: bold;
+        margin-left: 4px;
+    }
+
+    ion-label.content {
+        font-size: 15px;
+        display: block;
+        margin-left: 4px;
+    }
+    
+    #item_vaccinevisit {
+        margin-left: -6px;
+    }
+
+    #item_vaccinevisit ion-label {
+        margin-left: 0px;
+    }
+}

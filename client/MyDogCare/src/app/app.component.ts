@@ -32,6 +32,8 @@ export class MyApp {
                 } else {
                     this.rootPage = 'LoginPage';
                 }
+                //TODO remove when HomePage works
+                this.rootPage = 'AgendaPage';
             });
 
             // Okay, so the platform is ready and our plugins are available.

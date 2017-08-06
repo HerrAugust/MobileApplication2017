@@ -1,39 +1,29 @@
 <ion-header>
     
     <ion-navbar color="secondary">
-        <ion-title>{{ 'AGENDAPAGE_TITLE' | dictionary }}</ion-title>
-        
-        <ion-buttons right>
-            <button ion-button clear icon-only (click)="addTask()">
-                <ion-icon name="add"></ion-icon>
-            </button>
-        </ion-buttons>
+        <ion-title>Agenda</ion-title>
     </ion-navbar>
     
 </ion-header>
 
 <ion-content class="list-avatar-page" [ngClass]="{'activeAnimate': bAnimate}" overflow-scroll="true">
 
-        <ion-item-group *ngFor="let group of events">
-            
-            <ion-item-divider light>{{ group.month }}</ion-item-divider>
-            <ion-item *ngFor="let event of group.events">
-                <div [ngClass]="{'currentEvent': event.coloured, '': !event.coloured}">
-                    <ion-avatar item-start>
-                        <img src="{{ event.vaccinevisit }}">
-                    </ion-avatar>
-                    
-                    <span class="actions">
-                        <ion-icon name="settings"></ion-icon>
-                        <ion-icon name="trash"></ion-icon>
-                        <ion-icon name="star-outline"></ion-icon>
-                    </span>
-                    <h2>{{ event.day }}</h2>
-                    <p>{{ event.hour }}</p>
-                </div>
-            </ion-item>
-        
-        </ion-item-group>
+    <ion-list *ngFor="let group of events">
+        <ion-list-header light>{{ group.month }}</ion-list-header>
+        <ion-item *ngFor="let event of group.events" [ngClass]="{'currentEvent': event.coloured, '': !event.coloured}" (click)="openDetails(event)">
+            <ion-avatar item-start> 
+                <img src="{{ event.vaccinevisit_src }}">
+            </ion-avatar>
+            <h2>{{ event.day }}</h2>
+            <p>{{ event.hour }}</p>
+
+            <span item-end>
+                <ion-icon name="md-create" (click)="addEvent($event)"></ion-icon>
+                <ion-icon name="trash"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+            </span>    
+    </ion-item>
+    </ion-list>
 
        <!-- <ion-item>
             <ion-avatar item-start>

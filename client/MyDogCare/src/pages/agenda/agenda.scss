@@ -1,4 +1,4 @@
-page-home {
+page-agenda {
 
     ion-list-header {
         border-top: none !important;
@@ -22,13 +22,10 @@ page-home {
 }
 
 .list-avatar-page {
-  span.actions {
+  /*span.actions {
     float: right;
-
-    ion-icon {
-      margin-left: 10px;
-    }
-  }
+    margin-top: -35px;
+  }*/
 
   ion-list-header {
     margin-bottom: 0px;
@@ -37,5 +34,18 @@ page-home {
   .currentEvent {
       background-color: #99ffff;
   }
+
+ /* .item {
+      margin-left: 10px;
+      align-self: flex-start;
+  }*/
+
+  /*p {
+      align-self: flex-start;
+  }*/
   
+}
+
+.hidden {
+    visibility: hidden;
 }

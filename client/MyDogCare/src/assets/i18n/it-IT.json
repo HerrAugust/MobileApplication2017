@@ -44,5 +44,8 @@
     "WARNING_SIGNUP_PASSWORD_EMPTY": "Inserisci la password.",
     
     "ERROR_LOGIN_USERNAME_PASSWORD": "Username o password errati.",
-    "ERROR_PROFILE_SAVE": "Non è stato possibile salvare il tuo profilo."
+    "ERROR_PROFILE_SAVE": "Non è stato possibile salvare il tuo profilo.",
+
+    "AGENDAPAGE_TITLE": "Agenda",
+    "EVENTDETAILPAGE_TITLE": "Dettagli Evento"
 } 

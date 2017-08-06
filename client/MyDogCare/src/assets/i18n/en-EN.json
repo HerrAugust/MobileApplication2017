@@ -44,5 +44,8 @@
     "WARNING_SIGNUP_PASSWORD_EMPTY": "Enter the password.",
     
     "ERROR_LOGIN_USERNAME_PASSWORD": "Incorrect username or passord",
-    "ERROR_PROFILE_SAVE": "You could not save your profile."
+    "ERROR_PROFILE_SAVE": "You could not save your profile.",
+
+    "AGENDAPAGE_TITLE": "Agenda",
+    "EVENTDETAILPAGE_TITLE": "Event Details"
 } 

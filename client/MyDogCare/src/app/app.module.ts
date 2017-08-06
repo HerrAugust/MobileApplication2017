@@ -20,9 +20,13 @@ import {UserPersistanceProvider} from '../providers/user-persistance.provider';
 import {TaskProvider} from '../providers/task.provider';
 import {EventProvider} from '../providers/event.provider';
 
+// Pages
+import {EventDetailPage} from '../pages/event-detail/event-detail';
+
 @NgModule({
     declarations: [
-        MyApp
+        MyApp,
+        EventDetailPage
     ],
     imports: [
         BrowserModule,
@@ -35,7 +39,8 @@ import {EventProvider} from '../providers/event.provider';
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp
+        MyApp,
+        EventDetailPage
     ],
     providers: [
         StatusBar,
