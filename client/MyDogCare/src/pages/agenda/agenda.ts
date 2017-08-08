@@ -83,8 +83,15 @@ export class AgendaPage {
     toggleStarEvent(e, event: Event) {
         console.log("AgendaPage.toggleStarEvent()");
         e.stopPropagation();
-        event.starred = !event.starred;
-        this.sEvent.toggleStar(event);
+        var eventcode = event.code;
+        console.log("eventcode="+eventcode);
+        this.sEvent.toggleStar(eventcode)
+            .then(res => {
+                console.log(res);
+                if(res === true) {
+                    event.starred = !event.starred;
+                }
+            });
     }
     
     deleteTask(e, event: Event, sliding: ItemSliding) {

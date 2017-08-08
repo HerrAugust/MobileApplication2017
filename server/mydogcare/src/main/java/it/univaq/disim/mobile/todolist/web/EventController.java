@@ -24,13 +24,14 @@ public class EventController {
     @Autowired
     private MyDogCareService service;
 
-    /*@PostMapping("/{token}")
-    public Response createTask(@PathVariable(value = "token") String token, @RequestBody Task task) {
-        service.createTask(token, task);
-        Response<Task> response = new Response<>(true, "task created!");
-        response.setData(task);
+    @PostMapping("/{token}")
+    public Response createEvent(@PathVariable(value = "token") String token, @RequestBody Event event) {
+    	System.out.println("event="+event.toString());
+        service.createEvent(token, event);
+        Response<Event> response = new Response<>(true, "event created!");
+        response.setData(event);
         return response;
-    }*/
+    }
     
     @GetMapping("/test")
     public Response test() {
@@ -75,8 +76,10 @@ public class EventController {
         return response;
     }
     
-    @PutMapping("/starred/{token}/{id}")
-    public Response toggleStar(@PathVariable(value="token") String token, @PathVariable(value="id") Long id, @RequestBody Event event) {
+    @GetMapping("/starred/{token}/{id}")
+    public Response toggleStar(@PathVariable(value="token") String token, @PathVariable(value="id") Long id) {
+    	System.out.println("toggleStart()");
+//    	System.out.println("toggleStart().event="+event.toString());
     	service.toggleStartEvent(token, id);
     	Response<Event> response = new Response<>(true, "toggle star event");
     	return response;

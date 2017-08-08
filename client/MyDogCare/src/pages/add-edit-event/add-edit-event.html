@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>AddEditEvent</ion-title>
   </ion-navbar>
 
@@ -40,7 +40,7 @@
       <ion-item>
         <ion-icon name="md-pin" item-start></ion-icon>
         <ion-label class="title" stacked>Place</ion-label>
-        <ion-input type="text" placeholder="Via Roma 4, Chieti" [value]="place"></ion-input>
+        <ion-input type="text" placeholder="Via Roma 4, Chieti" [(ngModel)]="place"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -55,7 +55,7 @@
       <ion-item text-wrap>
         <ion-icon name="md-chatboxes" item-start></ion-icon>
         <ion-label stacked>Comment</ion-label>
-        <ion-input type="text" placeholder="No comment" [value]="comment" item-end></ion-input>
+        <ion-input type="text" placeholder="No comment" [(ngModel)]="comment" item-end></ion-input>
       </ion-item>      
     </ion-list>
 

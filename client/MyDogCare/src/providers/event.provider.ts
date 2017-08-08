@@ -4,7 +4,7 @@ import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import {ReorderIndexes} from '../types';
+import {ReorderIndexes} from '../types'; 
 
 //Providers
 import {AccountProvider} from './account.provider';
@@ -174,17 +174,18 @@ export class EventProvider {
     /**
      * Toggles an event's star
      */
-    toggleStar(event: Event) : Promise<any> {
+    toggleStar(eventcode: number) : Promise<any> {
+        console.log("EventProvider.toggleStart()");
         return new Promise((resolve, reject) => {
-            let index = this._Events.indexOf(event);
-            if (index !== -1) {
-                this._http.post(URL_BASE + URL.EVENTS.TOGGLESTAR + this._sAccount.getUser().token + "/" + event.code, {})
+            if (eventcode !== -1) {
+                console.log(URL_BASE + URL.EVENTS.TOGGLESTAR + this._sAccount.getUser().token + "/" + eventcode);
+                this._http.get(URL_BASE + URL.EVENTS.TOGGLESTAR + this._sAccount.getUser().token + "/" + eventcode)
                     .toPromise()
                     .then((res: Response) => {
                         const json = res.json() as ResponseServer;
 
                         if (json.result) {
-                            resolve();
+                            resolve(true);
                         } else {
                             reject();
                         }
@@ -196,11 +197,12 @@ export class EventProvider {
     /* private functions */
 
     private _createEvent(newEvent: Event) {
+        console.log("EventProvider._createEvent(). newEvent="+JSON.stringify(newEvent));
         return new Promise((resolve, reject) => {
             this._http.post(URL_BASE + URL.EVENTS.CREATE + this._sAccount.getUser().token, {
                 note: newEvent.note,
                 starred: newEvent.starred,
-                detailtimestamp_start: newEvent.detailtimestamp_start,
+                detailtimestamp: newEvent.detailtimestamp_start,
                 detailtimestamp_end: newEvent.detailtimestamp_end,
                 vaccinevisit: newEvent.vaccinevisit,
                 place: newEvent.place

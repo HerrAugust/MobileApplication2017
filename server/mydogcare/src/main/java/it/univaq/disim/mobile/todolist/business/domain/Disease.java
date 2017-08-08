@@ -23,6 +23,9 @@ public class Disease implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "icdcode")
     private Long icdcode;
+    
+	@Column(name = "name", nullable = false, length = 4000)
+    private String name;
 
     public Long getIcdcode() {
 		return icdcode;
@@ -38,12 +41,7 @@ public class Disease implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Column(name = "name", nullable = false, length = 4000)
-    private String name;
-    
-    
+	}   
 
 
 }

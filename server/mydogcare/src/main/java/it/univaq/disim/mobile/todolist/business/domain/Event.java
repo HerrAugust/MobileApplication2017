@@ -52,6 +52,24 @@ public class Event implements java.io.Serializable {
     @ManyToOne /* A user has many events; an event belongs to one user. So, many events belong to one user */
     @JoinColumn(name="userid", nullable = false)
     private User user;
+    
+    @Override
+    public String toString() {
+    	String res = "{";
+    	res += "code:"+this.code;
+    	res += ", note:"+this.note;
+    	res += ", place:"+this.place;
+    	res += ", starred:"+this.starred;
+    	res += ", vaccinevisit:"+this.vaccinevisit;
+    	res += ", detailtimestamp_start"+this.detailtimestamp;
+    	res += ", detailtimestamp_end"+this.detailtimestamp_end;
+    	if(this.type != null)
+    		res += ", type:"+this.type.getName();
+    	if(this.user != null)
+    		res += ", user:"+this.user.getFirstname();
+    	res += "}";
+    	return res;
+    }
 
 	public Long getCode() {
 		return code;

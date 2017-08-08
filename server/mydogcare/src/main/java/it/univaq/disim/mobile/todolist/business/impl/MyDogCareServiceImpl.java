@@ -36,9 +36,14 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     }
     
     @Override
-	public Event createEvent(String token, Event Event) {
-		// TODO Auto-generated method stub
-		return null;
+	public Event createEvent(String token, Event event) {
+    	Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            event.setUser(session.getUser());
+            
+            return eventRepository.save(event);
+        }
+        return null;
 	}
 
 	@Override

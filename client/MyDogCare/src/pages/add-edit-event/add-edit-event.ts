@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 // Providers
-//import {EventProvider} from '../../providers/event.provider';
+import {EventProvider} from '../../providers/event.provider';
 
 // Models
-//import {Event} from '../../models/event.model';
+import {Event} from '../../models/Event.model';
 
 /**
  * Generated class for the AddEditEventPage page.
@@ -33,24 +33,28 @@ export class AddEditEventPage {
   starred : boolean = false;
   comment : string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams /*public sEvent : EventProvider*/) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public sEvent : EventProvider) {
     console.log("AddEditEventPage()");
 
-    var curdate = new Date();
-    var curyear = curdate.getFullYear();
-    var curmonth = curdate.getMonth().toString();
-    if(curmonth.length == 1)
-      curmonth = "0"+curmonth;
-    var curday = curdate.getDate().toString();
-    if(curday.length == 1)
-      curday = "0"+curday;
-    var month = `${curyear}-${curmonth}-${curday}`;
-    this.event.monthStarts = month;
-    this.event.monthEnds = month;
+    this.code = navParams.get("code");
 
-    var curtime = curdate.getHours()+1;
-    this.event.timeStarts = `${curtime}:00`;
-    this.event.timeEnds = `${curtime}:30`;
+    if(this.code == -1) {
+      var curdate = new Date();
+      var curyear = curdate.getFullYear();
+      var curmonth = curdate.getMonth().toString();
+      if(curmonth.length == 1)
+        curmonth = "0"+curmonth;
+      var curday = curdate.getDate().toString();
+      if(curday.length == 1)
+        curday = "0"+curday;
+      var month = `${curyear}-${curmonth}-${curday}`;
+      this.event.monthStarts = month;
+      this.event.monthEnds = month;
+
+      var curtime = curdate.getHours()+1;
+      this.event.timeStarts = `${curtime}:00`;
+      this.event.timeEnds = `${curtime}:30`;
+    }
 
     console.log("cur="+JSON.stringify(this.event));
   }
@@ -61,8 +65,13 @@ export class AddEditEventPage {
 
   saveEvent() {
     console.log("AddEditEventPage.saveEvent()");
-   /* var event : Event = new Event({code: this.code, note: this.comment, starred: false, place: this.place, vaccinevisit: this.event.vaccinevisit});
-    this.sEvent.saveEvent(event);*/
+
+    console.log(JSON.stringify(this.event));
+    var dt_end = this.event.monthEnds + " " + this.event.timeEnds + ":00";
+    var dt_start = this.event.monthStarts + " " + this.event.timeStarts + ":00";
+    var event : Event = new Event({code: this.code, detailtimestamp_end: dt_end, detailtimestamp: dt_start, note: this.comment, starred: this.starred, place: this.place, vaccinevisit: this.event.vaccinevisit});
+    console.log("saving event="+JSON.stringify(event));
+    this.sEvent.saveEvent(event);
     this.navCtrl.pop();
   }
 
