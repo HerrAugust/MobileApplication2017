@@ -7,6 +7,7 @@ import {EventProvider} from '../../providers/event.provider';
 // Models
 import {Event} from '../../models/event.model';
 
+
 /**
  * Generated class for the EventDetailPage page.
  *
@@ -38,6 +39,10 @@ export class EventDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventDetailPage');
+  }
+
+  editEvent() {
+   // this.navCtrl.push(AddEdit)
   }
 
 }

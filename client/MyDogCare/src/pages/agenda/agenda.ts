@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, AlertController, LoadingController, ItemSliding} from 'ionic-angular';
 
 import {EventDetailPage} from '../event-detail/event-detail';
+import {AddEditEventPage} from '../add-edit-event/add-edit-event';
 
 //Providers
 import {TaskProvider} from '../../providers/task.provider';
@@ -68,66 +69,41 @@ export class AgendaPage {
         console.log("AgendaPage.addEvent()");
         e.stopPropagation();
 
+        this.navCtrl.push(AddEditEventPage, {'code': -1});   
+    }
+    
+    editTask(e, event: Event) {
+        console.log("AgendaPage.editEvent()");
+        console.log("event code="+event.code);
+        e.stopPropagation();
+
+        this.navCtrl.push(AddEditEventPage, {'code': event.code});
+    }
+    
+    toggleStarEvent(e, event: Event) {
+        console.log("AgendaPage.toggleStarEvent()");
+        e.stopPropagation();
+        event.starred = !event.starred;
+        this.sEvent.toggleStar(event);
+    }
+    
+    deleteTask(e, event: Event, sliding: ItemSliding) {
+        e.stopPropagation();
+
         this.alertCtrl.create({
-            title: this.sDictionary.get("NEW_TASk"),
-            inputs: [{
-                name: "task",
-                type: "text"
-            }],
+            title: this.sDictionary.get("DELETE_EVENT"),
+            inputs: [],
             buttons: [{
                 text: this.sDictionary.get("CANCEL"),
                 role: "cancel"
             }, {
-                text: this.sDictionary.get("ADD"),
+                text: this.sDictionary.get("DELETE"), 
                 handler: (data) => {
-                    const task = new Task({ text: data.task });
-                    this.sTask.saveTask(task);
+                    sliding.close();
+                    this.sEvent.deleteEvent(event);
                 }
             }]
         }).present();
-    }
-    
-    editTask(task: Task, sliding: ItemSliding) {
-        sliding.close();
-        
-        this.alertCtrl.create({
-            title: this.sDictionary.get("EDIT_TASK"),
-            inputs: [{
-                name: "task",
-                type: "text",
-                value: task.text
-            }],
-            buttons: [{
-                text: this.sDictionary.get("CANCEL"),
-                role: "cancel"
-            }, {
-                text: this.sDictionary.get("EDIT"), 
-                handler: (data) => {
-                    task.text = data.task;
-                    this.sTask.saveTask(task);
-                }
-            }]
-        }).present();
-    }
-    
-    toggleStateTask(task: Task) {
-        task.completed = !task.completed;
-        this.sTask.saveTask(task);
-    }
-    
-    deleteTask(task: Task, sliding: ItemSliding) {
-        sliding.close();
-        
-        this.sTask.deleteTask(task);
-    }
-    
-    reorderEvents() {
-        this.bAnimate = false;
-        this.sEvent.groupEvents();
-        
-        setTimeout(() => {
-            this.bAnimate = true;
-        }, 300);
     }
 
 }

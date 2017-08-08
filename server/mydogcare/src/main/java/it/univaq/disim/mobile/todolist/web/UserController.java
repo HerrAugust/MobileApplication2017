@@ -1,10 +1,9 @@
 package it.univaq.disim.mobile.todolist.web;
 
-import it.univaq.disim.mobile.todolist.business.TodoListService;
+import it.univaq.disim.mobile.todolist.business.MyDogCareService;
 import it.univaq.disim.mobile.todolist.business.domain.Session;
 import it.univaq.disim.mobile.todolist.business.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private TodoListService service;
+    private MyDogCareService service;
 
     @PostMapping("/login")
     public Response login(@RequestBody User u) {

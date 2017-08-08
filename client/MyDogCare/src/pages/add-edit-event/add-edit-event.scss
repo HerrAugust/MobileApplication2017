@@ -1,3 +1,30 @@
 page-add-edit-event {
+    
+    /* Note: all this code is needed to make grid equal to list rendering */
+    ion-grid ion-icon {
+        margin-left: 8px;
+        margin-top: -12px;
+        margin-bottom: 8px;
+        margin-right: 16px;
+        min-height: 2.8rem;
+        font-size: 2.8rem;
+        line-height: 1;
+        display: inline-block;
+    }
+    
+    ion-grid .title {
+        margin-bottom: 4px;
+        font-size: 1.2rem;
+        margin-left: 50px;
+    }
+
+    ion-grid ion-datetime.hour {
+        float: right;
+    }
+
+    ion-grid ion-datetime.date {
+        padding-left: 0px;
+    }
+
 
 }

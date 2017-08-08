@@ -30,8 +30,17 @@ public class Event implements java.io.Serializable {
     @Column(name = "vaccinevisit", nullable = false)
     private String vaccinevisit;
     
-    @Column(name="detailtimestamp", nullable = false)
+    @Column(name="detailtimestamp_start", nullable = false)
     private String detailtimestamp;
+    
+    @Column(name="detailtimestamp_end", nullable = false)
+    private String detailtimestamp_end;
+    
+    @Column(name="place", nullable = false)
+    private String place;
+    
+    @Column(name="starred", nullable = false)
+    private Boolean starred;
 
     @JsonIgnore
     @ManyToOne(cascade = { CascadeType.PERSIST,
@@ -68,14 +77,6 @@ public class Event implements java.io.Serializable {
 		this.vaccinevisit = vaccinevisit;
 	}
 
-	public String getDetailtimestamp() {
-		return detailtimestamp;
-	}
-
-	public void setDetailtimestamp(String detailtimestamp) {
-		this.detailtimestamp = detailtimestamp;
-	}
-
 	public Disease getType() {
 		return type;
 	}
@@ -90,6 +91,38 @@ public class Event implements java.io.Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public Boolean getStarred() {
+		return starred;
+	}
+
+	public void setStarred(Boolean starred) {
+		this.starred = starred;
+	}
+
+	public String getDetailtimestamp_end() {
+		return detailtimestamp_end;
+	}
+
+	public void setDetailtimestamp_end(String detailtimestamp_end) {
+		this.detailtimestamp_end = detailtimestamp_end;
+	}
+
+	public String getDetailtimestamp() {
+		return detailtimestamp;
+	}
+
+	public void setDetailtimestamp(String detailtimestamp) {
+		this.detailtimestamp = detailtimestamp;
 	}
 
 

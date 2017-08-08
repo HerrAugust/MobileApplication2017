@@ -17,9 +17,7 @@ public interface MyDogCareService {
 
     Event createEvent(String token, Event Event);
 
-    List<Event> findAllEvents(String username);
-
-    Event findEventById(String token, Long id);
+    Event findEventByCode(String token, Long code);
 
     Event updateEvent(String token, Event Event);
 
@@ -28,5 +26,7 @@ public interface MyDogCareService {
     void updateOrderEvents(String token, List<Event> Events);
     
     List<Event> findEvents(String token);
+
+	void toggleStartEvent(String token, Long id);
 
 }

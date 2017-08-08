@@ -136,4 +136,118 @@ export class EventProvider {
             return groupedEvents;
 
         }
+
+    /**
+     * Saves an event into server
+     */
+    saveEvent(event : Event): Promise<any> {
+        if (event.code === -1) {
+            return this._createEvent(event);
+        } 
+        
+        return this._editEvent(event);
+    }
+
+    /**
+     * Deletes an event from server
+     */
+    deleteEvent(event : Event): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let index = this._Events.indexOf(event);
+            if (index !== -1) {
+                this._http.delete(URL_BASE + URL.EVENTS.EDIT + this._sAccount.getUser().token + "/" + event.code)
+                    .toPromise()
+                    .then((res: Response) => {
+                        const json = res.json() as ResponseServer;
+
+                        if (json.result) {
+                            this._Events.splice(this._Events.indexOf(event), 1);
+                            resolve();
+                        } else {
+                            reject();
+                        }
+                    });
+            }
+        });
+    }
+
+    /**
+     * Toggles an event's star
+     */
+    toggleStar(event: Event) : Promise<any> {
+        return new Promise((resolve, reject) => {
+            let index = this._Events.indexOf(event);
+            if (index !== -1) {
+                this._http.post(URL_BASE + URL.EVENTS.TOGGLESTAR + this._sAccount.getUser().token + "/" + event.code, {})
+                    .toPromise()
+                    .then((res: Response) => {
+                        const json = res.json() as ResponseServer;
+
+                        if (json.result) {
+                            resolve();
+                        } else {
+                            reject();
+                        }
+                    });
+            }
+        });
+    }
+
+    /* private functions */
+
+    private _createEvent(newEvent: Event) {
+        return new Promise((resolve, reject) => {
+            this._http.post(URL_BASE + URL.EVENTS.CREATE + this._sAccount.getUser().token, {
+                note: newEvent.note,
+                starred: newEvent.starred,
+                detailtimestamp_start: newEvent.detailtimestamp_start,
+                detailtimestamp_end: newEvent.detailtimestamp_end,
+                vaccinevisit: newEvent.vaccinevisit,
+                place: newEvent.place
+            })
+                .toPromise()
+                .then((res: Response) => {
+                    const json = res.json() as ResponseServer;
+
+                    if (json.result) {
+                        newEvent.code = json.data.code;
+                        this._Events.unshift(newEvent);
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                })
+                .catch(() => {
+                    reject();
+                });
+        });
+    }
+
+    private _editEvent(event: Event) {
+        return new Promise((resolve, reject) => {
+            this._http.put(URL_BASE + URL.EVENTS.EDIT + this._sAccount.getUser().token + "/" + event.code, {
+                note: event.note,
+                starred: event.starred,
+                detailtimestamp_start: event.detailtimestamp_start,
+                detailtimestamp_end: event.detailtimestamp_end,
+                vaccinevisit: event.vaccinevisit,
+                place: event.place
+            })
+                .toPromise()
+                .then((res: Response) => {
+                    const json = res.json() as ResponseServer;
+
+                    if (json.result) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                })
+                .catch(() => {
+                    reject();
+                });
+        });
+    }
+
+
     }

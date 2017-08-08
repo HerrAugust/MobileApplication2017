@@ -14,5 +14,53 @@
 
 
 <ion-content padding>
+    <ion-grid>
+
+      <ion-row>
+        <ion-label class="title">Begin</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-col col-2><ion-icon name="md-calendar" ></ion-icon></ion-col>
+        <ion-col col-5><ion-datetime class="date" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="event.monthStarts"></ion-datetime></ion-col>
+        <ion-col col-5><ion-datetime class="hour" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.timeStarts"></ion-datetime></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-label class="title">End</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-col col-2><ion-icon name="md-calendar"></ion-icon></ion-col>
+        <ion-col col-5><ion-datetime class="date" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="event.monthEnds"></ion-datetime></ion-col>
+        <ion-col col-5><ion-datetime class="hour" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.timeEnds"></ion-datetime></ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-list no-lines>
+      <ion-item>
+        <ion-icon name="md-pin" item-start></ion-icon>
+        <ion-label class="title" stacked>Place</ion-label>
+        <ion-input type="text" placeholder="Via Roma 4, Chieti" [value]="place"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Visit or vaccine</ion-label>
+        <ion-select [(ngModel)]="event.vaccinevisit">
+          <ion-option value="visit">Visit</ion-option>
+          <ion-option value="vaccine">Vaccine</ion-option>
+        </ion-select>
+        <ion-icon name="md-information-circle" item-start></ion-icon>
+      </ion-item>
+
+      <ion-item text-wrap>
+        <ion-icon name="md-chatboxes" item-start></ion-icon>
+        <ion-label stacked>Comment</ion-label>
+        <ion-input type="text" placeholder="No comment" [value]="comment" item-end></ion-input>
+      </ion-item>      
+    </ion-list>
+
+    <div padding>
+        <button ion-button color="primary" block (click)="saveEvent()">Save</button>
+    </div>
 
 </ion-content>

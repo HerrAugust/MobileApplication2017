@@ -19,8 +19,8 @@
 
             <span item-end>
                 <ion-icon name="md-create" (click)="addEvent($event)"></ion-icon>
-                <ion-icon name="trash"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="trash" (click)="deleteEvent($event, event)"></ion-icon>
+                <ion-icon name="star-outline" (click)="toggleStarEvent($event, event)"></ion-icon>
             </span>    
     </ion-item>
     </ion-list>
@@ -67,7 +67,7 @@
 -->
 
     <ion-fab right bottom>
-        <button ion-fab color="danger">+</button>
+        <button ion-fab color="danger" (click)="addEvent($event)">+</button>
     </ion-fab>
 
 </ion-content>

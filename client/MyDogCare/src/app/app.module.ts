@@ -22,11 +22,13 @@ import {EventProvider} from '../providers/event.provider';
 
 // Pages
 import {EventDetailPage} from '../pages/event-detail/event-detail';
+import {AddEditEventPage} from '../pages/add-edit-event/add-edit-event';
 
 @NgModule({
     declarations: [
         MyApp,
-        EventDetailPage
+        EventDetailPage,
+        AddEditEventPage
     ],
     imports: [
         BrowserModule,
@@ -40,7 +42,8 @@ import {EventDetailPage} from '../pages/event-detail/event-detail';
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
-        EventDetailPage
+        EventDetailPage,
+        AddEditEventPage
     ],
     providers: [
         StatusBar,

@@ -17,16 +17,17 @@ export const URL = {
         GET: "events/",
         EDIT: "events/",
         DELETE: "events/",
-        ORDER: "order/"
+        TOGGLESTAR: "events/starred/"
     },
 
     TASKS: {
-        CREATE: "tasks/",
-        GETALL: "tasks/",
-        GET: "tasks/",
-        EDIT: "tasks/",
-        DELETE: "tasks/",
-        ORDER: "order/"
+        TEST: "events/test",
+        CREATE: "events/",
+        GETALL: "events/",
+        GET: "events/",
+        EDIT: "events/",
+        DELETE: "events/",
+        ORDER: "events/starred/"
     }
 }
 

@@ -15,5 +15,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     //List<TopEventDTO> findByUserIdOrderByDetailtimestamp(@Param("userid") Long userid);
 	
 	// Client centered version:
-	List<Event> findByUserId(@Param("userid") Long userid);
+	List<Event> findByUserIdOrderByDetailtimestampAsc(@Param("userid") Long userid);
+	
+	Event findByCode(@Param("code") Long code);
 }

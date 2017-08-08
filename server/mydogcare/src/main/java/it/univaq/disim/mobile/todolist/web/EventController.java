@@ -51,36 +51,35 @@ public class EventController {
     	return response;
     }
     
-    /*public Response findAllTasks(@PathVariable(value = "token") String token) {
-        List<Task> tasks = service.findAllTasks(token);
-        Response<List<Task>> response = new Response<>(true, "all tasks");
-        response.setData(tasks);
-        return response;
-    }*/
-
-    /*@GetMapping("/{token}/{id}")
-    public Response findTaskById(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) {
-        Task task = service.findTaskById(token, id);
-        Response<Task> response = new Response<>(true, "task by id");
-        response.setData(task);
+    @GetMapping("/{token}/{code}")
+    public Response findEventByCode(@PathVariable(value = "token") String token, @PathVariable(value = "code") Long code) {
+        Event event = service.findEventByCode(token, code);
+        Response<Event> response = new Response<>(true, "event by code");
+        response.setData(event);
         return response;
     }
 
-    @PutMapping("/{token}/{id}")
+    /*@PutMapping("/{token}/{id}")
     public Response updateTask(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id, @RequestBody Task task) {
         task.setId(id);
         Task newTask = service.updateTask(token, task);
         Response<Task> response = new Response<>(true, "task updated");
         response.setData(newTask);
         return response;
-    }
+    }*/
 
     @DeleteMapping("/{token}/{id}")
-    public Response deleteTask(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) {
-        service.deleteTask(token, id);
-        Response<Object> response = new Response<>(true, "task deleted");
-
+    public Response deleteEvent(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) {
+        service.deleteEvent(token, id);
+        Response<Object> response = new Response<>(true, "event deleted");
         return response;
-    }*/
+    }
+    
+    @PutMapping("/starred/{token}/{id}")
+    public Response toggleStar(@PathVariable(value="token") String token, @PathVariable(value="id") Long id, @RequestBody Event event) {
+    	service.toggleStartEvent(token, id);
+    	Response<Event> response = new Response<>(true, "toggle star event");
+    	return response;
+    }
 
 }
