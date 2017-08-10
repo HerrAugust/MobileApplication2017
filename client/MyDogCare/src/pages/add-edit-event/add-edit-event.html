@@ -17,7 +17,7 @@
     <ion-grid>
 
       <ion-row>
-        <ion-label class="title">Begin</ion-label>
+        <ion-label class="title">Begin:</ion-label>
       </ion-row>
       <ion-row>
         <ion-col col-2><ion-icon name="md-calendar" ></ion-icon></ion-col>
@@ -26,7 +26,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-label class="title">End</ion-label>
+        <ion-label class="title">End:</ion-label>
       </ion-row>
       <ion-row>
         <ion-col col-2><ion-icon name="md-calendar"></ion-icon></ion-col>
@@ -39,22 +39,31 @@
     <ion-list no-lines>
       <ion-item>
         <ion-icon name="md-pin" item-start></ion-icon>
-        <ion-label class="title" stacked>Place</ion-label>
+        <ion-label class="title" stacked>Place:</ion-label>
         <ion-input type="text" placeholder="Via Roma 4, Chieti" [(ngModel)]="place"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label stacked>Visit or vaccine</ion-label>
-        <ion-select [(ngModel)]="event.vaccinevisit">
+        <ion-label stacked>Visit or vaccine:</ion-label>
+        <ion-select [(ngModel)]="event.vaccinevisit" (ngModelChange)="visitvaccine_changed($event)">
           <ion-option value="visit">Visit</ion-option>
           <ion-option value="vaccine">Vaccine</ion-option>
         </ion-select>
         <ion-icon name="md-information-circle" item-start></ion-icon>
       </ion-item>
 
+      <!-- apply the hidden class if disease_hidden == true -->
+      <ion-item [ngClass]="{ 'hidden' : diseases_hidden, '' : !diseases_hidden }">
+        <ion-label stacked>Disease name:</ion-label>
+        <ion-select [(ngModel)]="disease.name">
+          <ion-option *ngFor="let disease of diseases" [value]="disease">{{disease.name}}</ion-option>
+        </ion-select>
+        <ion-icon name="md-information-circle" item-start></ion-icon>
+      </ion-item>
+
       <ion-item text-wrap>
         <ion-icon name="md-chatboxes" item-start></ion-icon>
-        <ion-label stacked>Comment</ion-label>
+        <ion-label stacked>Comment:</ion-label>
         <ion-input type="text" placeholder="No comment" [(ngModel)]="comment" item-end></ion-input>
       </ion-item>      
     </ion-list>

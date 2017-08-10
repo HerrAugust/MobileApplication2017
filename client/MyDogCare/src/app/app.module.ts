@@ -19,6 +19,7 @@ import {AccountProvider} from '../providers/account.provider';
 import {UserPersistanceProvider} from '../providers/user-persistance.provider';
 import {TaskProvider} from '../providers/task.provider';
 import {EventProvider} from '../providers/event.provider';
+import {DiseaseProvider} from '../providers/disease.provider';
 
 // Pages
 import {EventDetailPage} from '../pages/event-detail/event-detail';
@@ -52,7 +53,8 @@ import {AddEditEventPage} from '../pages/add-edit-event/add-edit-event';
         AccountProvider,
         UserPersistanceProvider,
         TaskProvider,
-        EventProvider
+        EventProvider,
+        DiseaseProvider
     ]
 })
 export class AppModule {}

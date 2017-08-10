@@ -18,7 +18,7 @@
             <p>{{ event.hour }}</p>
 
             <span item-end>
-                <ion-icon name="md-create" (click)="addEvent($event)"></ion-icon>
+                <ion-icon name="md-create" (click)="editEvent($event, event)"></ion-icon>
                 <ion-icon name="trash" (click)="deleteEvent($event, event)"></ion-icon>
                 <ion-icon [name]="event.starred ? 'star' : 'star-outline'" (click)="toggleStarEvent($event, event)"></ion-icon>
             </span>    

@@ -20,6 +20,10 @@ export const URL = {
         TOGGLESTAR: "events/starred/"
     },
 
+    DISEASES: {
+        GETALL: "diseases/"
+    },
+
     TASKS: {
         TEST: "events/test",
         CREATE: "events/",

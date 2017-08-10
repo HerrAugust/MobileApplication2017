@@ -79,7 +79,6 @@ public class EventController {
     @GetMapping("/starred/{token}/{id}")
     public Response toggleStar(@PathVariable(value="token") String token, @PathVariable(value="id") Long id) {
     	System.out.println("toggleStart()");
-//    	System.out.println("toggleStart().event="+event.toString());
     	service.toggleStartEvent(token, id);
     	Response<Event> response = new Response<>(true, "toggle star event");
     	return response;

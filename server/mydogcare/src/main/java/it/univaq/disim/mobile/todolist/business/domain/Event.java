@@ -42,10 +42,9 @@ public class Event implements java.io.Serializable {
     @Column(name="starred", nullable = false)
     private Boolean starred;
 
-    @JsonIgnore
-    @ManyToOne(cascade = { CascadeType.PERSIST,
-    		CascadeType.MERGE })
-    @JoinColumn(name="type")
+    
+    @ManyToOne(cascade = { CascadeType.MERGE })
+    @JoinColumn(name="type", nullable = true)
     private Disease type;
     
     @JsonIgnore

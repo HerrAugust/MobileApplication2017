@@ -3,6 +3,7 @@ import {reorderArray} from 'ionic-angular';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { Events } from 'ionic-angular';
 
 import {ReorderIndexes} from '../types'; 
 
@@ -26,7 +27,8 @@ export class EventProvider {
 
     constructor(
         private _http: Http,
-        private _sAccount: AccountProvider
+        private _sAccount: AccountProvider,
+         public popevt: Events,
     ) {
         console.log('Hello Event Provider');
 
@@ -83,6 +85,7 @@ export class EventProvider {
      */
     groupEvents() {
             console.log("EventProvider.groupEvents()");
+
             var monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
             ];
@@ -109,10 +112,10 @@ export class EventProvider {
  
                 }
  
-                var day = date.getDay() + " " + monthNames[date.getMonth()] + " " + date.getFullYear(); // 27 March 2017
-                var hour = date.getHours() + ":" + date.getMinutes(); // 8:30
+                var day = (date.getDate().toString().length == 1 ? '0' : '') + date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear(); // 27 March 2017
+                var hour = (date.getHours().toString().length == 1 ? '0' : '') + date.getHours() + ":" + (date.getMinutes().toString().length == 1 ? '0' : '') + date.getMinutes(); // 8:30
                 var date_end = new Date(this._Events[i].detailtimestamp_end);
-                hour = hour + "-" + date_end.getHours() + ":" + date_end.getMinutes();
+                hour = hour + "-" + (date_end.getHours().toString().length == 1 ? '0' : '') + date_end.getHours() + ":" + (date_end.getMinutes().toString().length == 1 ? '0' : '') + date_end.getMinutes();
                 console.log(this._Events[i])
                 if(this._Events[i]['vaccinevisit'] == 'visit') {
                     this._Events[i]['vaccinevisit_src'] = 'assets/images/doctor70x.png';
@@ -205,7 +208,8 @@ export class EventProvider {
                 detailtimestamp: newEvent.detailtimestamp_start,
                 detailtimestamp_end: newEvent.detailtimestamp_end,
                 vaccinevisit: newEvent.vaccinevisit,
-                place: newEvent.place
+                place: newEvent.place,
+                type: newEvent.vaccinevisit == 'vaccine' ? newEvent.type : null
             })
                 .toPromise()
                 .then((res: Response) => {
@@ -213,7 +217,10 @@ export class EventProvider {
 
                     if (json.result) {
                         newEvent.code = json.data.code;
-                        this._Events.unshift(newEvent);
+                        console.log("this._Events has size: "+this._Events.length);
+                        this._Events.push(newEvent);
+                        console.log("this._Events has new size: "+this._Events.length);
+                        this.popevt.publish('event:created', null);
                         resolve();
                     } else {
                         reject();
@@ -233,7 +240,8 @@ export class EventProvider {
                 detailtimestamp_start: event.detailtimestamp_start,
                 detailtimestamp_end: event.detailtimestamp_end,
                 vaccinevisit: event.vaccinevisit,
-                place: event.place
+                place: event.place,
+                type: event.vaccinevisit == 'vaccine' ? event.type : null
             })
                 .toPromise()
                 .then((res: Response) => {

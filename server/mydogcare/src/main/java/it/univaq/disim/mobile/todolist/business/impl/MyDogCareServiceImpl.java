@@ -1,6 +1,7 @@
 package it.univaq.disim.mobile.todolist.business.impl;
 
 import it.univaq.disim.mobile.todolist.business.MyDogCareService;
+import it.univaq.disim.mobile.todolist.business.domain.Disease;
 import it.univaq.disim.mobile.todolist.business.domain.Event;
 import it.univaq.disim.mobile.todolist.business.domain.Session;
 import it.univaq.disim.mobile.todolist.business.domain.User;
@@ -16,6 +17,9 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     
     @Autowired
     private EventRepository eventRepository;
+    
+    @Autowired
+    private DiseaseRepository diseaseRepository;
 
     @Autowired
     private SessionRepository sessionRepository;
@@ -41,7 +45,8 @@ public class MyDogCareServiceImpl implements MyDogCareService {
         if (session != null) {
             event.setUser(session.getUser());
             
-            return eventRepository.save(event);
+            Event newevent = eventRepository.save(event);
+            return newevent;
         }
         return null;
 	}
@@ -130,6 +135,14 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 			boolean starred = event.getStarred();
 			event.setStarred(!starred);
 		}
+	}
+
+	// DISEASES
+	
+	@Override
+	public List<Disease> findDiseases() {
+		List<Disease> diseases = diseaseRepository.findAll();
+		return diseases;
 	}
 
 }

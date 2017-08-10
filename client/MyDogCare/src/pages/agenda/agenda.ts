@@ -16,9 +16,7 @@ import {Event} from '../../models/event.model';
 //Types
 import {ReorderIndexes} from '../../types';
 
-// Needed to select next event
-import { ViewChild } from "@angular/core";
-import { Content } from 'ionic-angular';
+import { Events } from 'ionic-angular'; // needed for pop from AddEditEventPage
 
 @IonicPage()
 @Component({
@@ -26,7 +24,6 @@ import { Content } from 'ionic-angular';
     templateUrl: 'agenda.html'
 })
 export class AgendaPage {
-    @ViewChild(Content) content: Content;
 
     events= []; // This is not precisely an Array<Event>, but an obj like [{"month": "July 2017", events:[{"code":"1", "note":"some note", "detailtimestamp":"2017-07-18 22:01:34.0"}]}], i.e. the events grouped by month
     public bAnimate: boolean = true;
@@ -35,6 +32,7 @@ export class AgendaPage {
         public navCtrl: NavController,
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
+        public popevt: Events,
         public sTask: TaskProvider,
         public sEvent: EventProvider,
         public sDictionary: DictionaryService
@@ -45,6 +43,13 @@ export class AgendaPage {
                 this.events = events;
                 console.log(this.events);
             });
+        popevt.subscribe('event:created', (eventData) => {
+            // eventData is an array of parameters, so grab our first and only arg
+            this._manageNewEvent(eventData);
+        });
+        popevt.subscribe('event:modified', (eventData) => {
+            this._manageEventModified(eventData);
+        });
     }
 
     // Selects the next event
@@ -52,9 +57,27 @@ export class AgendaPage {
         console.log("AgendaPage.ionViewDidLoad()");
         let element = document.getElementsByClassName('currentEvent')[0];
         console.log("element: "+element);
-        if(element)
-            this.content.scrollTo(0, element.scrollTop, 500);
+        //if(element)
+            //this.content.scrollTo(0, element.scrollTop, 500); TODO
     };
+
+    //called when you add an event. This adds it to the list
+    _manageNewEvent(nullvar : any) {
+        console.log("Agenda._manageNewEvent()");
+        // refresh this.events, since events have just been modified
+        this.events = [];
+        this.events = this.sEvent.groupEvents();
+        console.log("Agenda._manageNewEvent() END");
+    }
+
+    //called when you edit an event. This adds it to the list
+    _manageEventModified(nullvar : any) {
+        console.log("Agenda._manageEventModified()");
+        // refresh this.events, since events have just been modified
+        this.events = [];
+        this.events = this.sEvent.groupEvents();
+        console.log("Agenda._manageEventModified() END");
+    }
 
     openDetails(event) {
         console.log("AgendaPage.openDetails()");
@@ -69,15 +92,15 @@ export class AgendaPage {
         console.log("AgendaPage.addEvent()");
         e.stopPropagation();
 
-        this.navCtrl.push(AddEditEventPage, {'code': -1});   
+        this.navCtrl.push(AddEditEventPage, {'code': -1, 'actiontype': 'Save'});   
     }
     
-    editTask(e, event: Event) {
+    editEvent(e, event: Event) {
         console.log("AgendaPage.editEvent()");
         console.log("event code="+event.code);
         e.stopPropagation();
 
-        this.navCtrl.push(AddEditEventPage, {'code': event.code});
+        this.navCtrl.push(AddEditEventPage, {'code': event.code, 'actiontype': 'Modify'});
     }
     
     toggleStarEvent(e, event: Event) {

@@ -1,4 +1,4 @@
-
+import {Disease} from '../models/disease.model';
 
 
 export class Event {
@@ -10,6 +10,7 @@ export class Event {
     public detailtimestamp_end: string = "";
     public vaccinevisit: string = "";
     public place : string = "";
+    public type : Disease = null; // disease
     
     constructor(obj?: any) {
         this.set(obj);
@@ -24,6 +25,7 @@ export class Event {
             this.vaccinevisit = obj.vaccinevisit || this.vaccinevisit;
             this.starred = obj.starred || this.starred;
             this.place = obj.place || this.place;
+            this.type = obj.type || this.type;
         }
     }
     
