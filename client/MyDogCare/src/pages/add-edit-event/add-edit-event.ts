@@ -84,8 +84,10 @@ export class AddEditEventPage {
       this.event.timeStarts = `${curtime}:00`;
       this.event.timeEnds   = `${curtime}:30`;
       this.comment          = curevent.note;
-      if(this.event.vaccinevisit == 'vaccine')
+      if(this.event.vaccinevisit == 'vaccine') {
         this.disease          = curevent.type;
+        this.diseases_hidden  = false;
+      }
       this.place              = curevent.place;
       this.event.vaccinevisit = curevent.vaccinevisit;
     }
