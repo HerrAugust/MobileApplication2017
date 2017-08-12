@@ -97,7 +97,7 @@ export class EventProvider {
 
             for(var i = 0; i < this._Events.length; i++) {
                 var date = new Date(this._Events[i].detailtimestamp_start);
-                console.log(this._Events[i].detailtimestamp_start);
+                console.log("considering event: " + this._Events[i].detailtimestamp_start);
                 if(currentDate === null || date.getMonth() != currentDate.getMonth() || date.getFullYear() != currentDate.getFullYear()) {
                     console.log("Going inside with date: " + date);
                     currentDate = date;
@@ -144,6 +144,7 @@ export class EventProvider {
      * Saves an event into server
      */
     saveEvent(event : Event): Promise<any> {
+        console.log("EventProvider.saveEvent()");
         if (event.code === -1) {
             return this._createEvent(event);
         } 
@@ -165,6 +166,7 @@ export class EventProvider {
 
                         if (json.result) {
                             this._Events.splice(this._Events.indexOf(event), 1);
+                            this.popevt.publish('event:deleted', null);
                             resolve();
                         } else {
                             reject();
@@ -218,7 +220,14 @@ export class EventProvider {
                     if (json.result) {
                         newEvent.code = json.data.code;
                         console.log("this._Events has size: "+this._Events.length);
+                        // it is not sufficient to push the new event somewhere in this._Event, since it is ordered by datailtimestamp (_start)
                         this._Events.push(newEvent);
+                        var _sortByProperty = function (property) {
+                            return function (x, y) {
+                                return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+                            };
+                        };
+                        this._Events.sort(_sortByProperty('detailtimestamp_start'))
                         console.log("this._Events has new size: "+this._Events.length);
                         this.popevt.publish('event:created', null);
                         resolve();
@@ -233,11 +242,12 @@ export class EventProvider {
     }
 
     private _editEvent(event: Event) {
+        console.log("EventProvider._editEvent(). event="+JSON.stringify(event));
         return new Promise((resolve, reject) => {
             this._http.put(URL_BASE + URL.EVENTS.EDIT + this._sAccount.getUser().token + "/" + event.code, {
                 note: event.note,
                 starred: event.starred,
-                detailtimestamp_start: event.detailtimestamp_start,
+                detailtimestamp: event.detailtimestamp_start,
                 detailtimestamp_end: event.detailtimestamp_end,
                 vaccinevisit: event.vaccinevisit,
                 place: event.place,
@@ -248,6 +258,33 @@ export class EventProvider {
                     const json = res.json() as ResponseServer;
 
                     if (json.result) {
+                        event.code = json.data.code;
+                        console.log("this._Events has size: "+this._Events.length);
+                        // it is not sufficient to push the new event somewhere in this._Event, since it is ordered by datailtimestamp (_start). It could not be sufficient to substitute the deleted event with the modified one
+                        // Look for the index of the modified event
+                        var oldindex = -1;
+                        for(var i = 0; i < this._Events.length; i++) {
+                            if(this._Events[i].code == event.code) {
+                                oldindex = i;
+                                break;
+                            }
+                        }
+                        if(oldindex == -1)
+                            reject();
+                        // delete modified event
+                        this._Events.splice(oldindex,1);
+                        // add its substitute
+                        this._Events.push(event);
+                        // sort events by date (needed for EventProvider.groupEvents())
+                        var _sortByProperty = function (property) {
+                            return function (x, y) {
+                                return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+                            };
+                        };
+                        this._Events.sort(_sortByProperty('detailtimestamp_start'))
+                        console.log("this._Events has new size: "+this._Events.length);
+                        // state that an event has been modified
+                        this.popevt.publish('event:created', null);
                         resolve();
                     } else {
                         reject();

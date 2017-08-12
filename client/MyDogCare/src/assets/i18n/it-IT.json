@@ -1,5 +1,5 @@
 {
-    "APP_NAME": "Todo List",
+    "APP_NAME": "My Dog Care",
     
     "OK": "ok",
     "SI": "si",
@@ -46,6 +46,15 @@
     "ERROR_LOGIN_USERNAME_PASSWORD": "Username o password errati.",
     "ERROR_PROFILE_SAVE": "Non è stato possibile salvare il tuo profilo.",
 
+ 
+    
+    "EVENTDETAILPAGE_TITLE": "Dettagli Evento",
+
+    "ADDEDITEVENTPAGE_TITLE_NEWEVENT": "Crea Evento",
+    "ADDEDITEVENTPAGE_TITLE_EDITEVENT": "Modifica Evento",
+    "ADDEDITEVENTPAGE_DATE_ERROR_TITLE": "Errore date",
+    "ADDEDITEVENTPAGE_DATE_ERROR_SUB": "La data finale deve essere maggiore a quella iniziale",
+
     "AGENDAPAGE_TITLE": "Agenda",
-    "EVENTDETAILPAGE_TITLE": "Dettagli Evento"
+    "AGENDAPAGE_DELETE_EVENT": "Eliminare evento?"
 } 

@@ -44,7 +44,7 @@
         <img src="{{ imgsrc }}">
     </ion-avatar>
     <ion-label class="title" stacked>Typology</ion-label>
-    <ion-label class="content">{{ event.vaccinevisit }}</ion-label>
+    <ion-label class="content">{{ event.vaccinevisit }}{{ event.vaccinevisit == 'vaccine' ? ' (' + event.type.name + ')' : '' }}</ion-label>
   </ion-item>
 
   <ion-item text-wrap >

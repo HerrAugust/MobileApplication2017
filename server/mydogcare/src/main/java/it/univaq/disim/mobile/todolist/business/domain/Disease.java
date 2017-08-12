@@ -42,6 +42,11 @@ public class Disease implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}   
+	
+	@Override
+	public String toString() {
+		return "icdcode: "+this.getIcdcode() + "; name: " + this.getName();
+	}
 
 
 }

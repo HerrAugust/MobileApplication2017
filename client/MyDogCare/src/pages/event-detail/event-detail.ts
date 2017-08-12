@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import {AddEditEventPage} from '../add-edit-event/add-edit-event';
+
 // Providers
 import {EventProvider} from '../../providers/event.provider';
 
@@ -42,7 +44,7 @@ export class EventDetailPage {
   }
 
   editEvent() {
-   // this.navCtrl.push(AddEdit)
+    this.navCtrl.push(AddEditEventPage, {'code': this.event.code, 'actiontype': 'Modify'});
   }
 
 }

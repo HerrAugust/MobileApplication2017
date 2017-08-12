@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>AddEditEvent</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,7 +21,7 @@
       </ion-row>
       <ion-row>
         <ion-col col-2><ion-icon name="md-calendar" ></ion-icon></ion-col>
-        <ion-col col-5><ion-datetime class="date" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="event.monthStarts"></ion-datetime></ion-col>
+        <ion-col col-5><ion-datetime ng-change="datepicker1_changed()" class="date" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="event.monthStarts"></ion-datetime></ion-col>
         <ion-col col-5><ion-datetime class="hour" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="event.timeStarts"></ion-datetime></ion-col>
       </ion-row>
 
@@ -56,7 +56,7 @@
       <ion-item [ngClass]="{ 'hidden' : diseases_hidden, '' : !diseases_hidden }">
         <ion-label stacked>Disease name:</ion-label>
         <ion-select [(ngModel)]="disease.name">
-          <ion-option *ngFor="let disease of diseases" [value]="disease">{{disease.name}}</ion-option>
+          <ion-option *ngFor="let disease of diseases" [value]="disease.name">{{disease.name}}</ion-option>
         </ion-select>
         <ion-icon name="md-information-circle" item-start></ion-icon>
       </ion-item>

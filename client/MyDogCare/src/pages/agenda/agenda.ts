@@ -50,15 +50,14 @@ export class AgendaPage {
         popevt.subscribe('event:modified', (eventData) => {
             this._manageEventModified(eventData);
         });
+        popevt.subscribe('event:deleted', (eventData) => {
+            this._manageEventDeleted(eventData);
+        });
     }
 
     // Selects the next event
     ionViewDidLoad() {
         console.log("AgendaPage.ionViewDidLoad()");
-        let element = document.getElementsByClassName('currentEvent')[0];
-        console.log("element: "+element);
-        //if(element)
-            //this.content.scrollTo(0, element.scrollTop, 500); TODO
     };
 
     //called when you add an event. This adds it to the list
@@ -68,6 +67,15 @@ export class AgendaPage {
         this.events = [];
         this.events = this.sEvent.groupEvents();
         console.log("Agenda._manageNewEvent() END");
+    }
+
+    //called when you delete an event. This refreshes the list of events
+    _manageEventDeleted(nullvar : any) {
+        console.log("Agenda._manageEventDeleted()");
+        // refresh this.events, since events have just been modified
+        this.events = [];
+        this.events = this.sEvent.groupEvents();
+        console.log("Agenda._manageEventDeleted() END");
     }
 
     //called when you edit an event. This adds it to the list
@@ -117,11 +125,11 @@ export class AgendaPage {
             });
     }
     
-    deleteTask(e, event: Event, sliding: ItemSliding) {
+    deleteEvent(e, event: Event, sliding: ItemSliding) {
         e.stopPropagation();
 
         this.alertCtrl.create({
-            title: this.sDictionary.get("DELETE_EVENT"),
+            title: this.sDictionary.get("AGENDAPAGE_DELETE_EVENT"),
             inputs: [],
             buttons: [{
                 text: this.sDictionary.get("CANCEL"),
@@ -129,7 +137,7 @@ export class AgendaPage {
             }, {
                 text: this.sDictionary.get("DELETE"), 
                 handler: (data) => {
-                    sliding.close();
+                    //sliding.close();
                     this.sEvent.deleteEvent(event);
                 }
             }]

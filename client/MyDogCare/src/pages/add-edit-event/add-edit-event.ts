@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AlertController } from 'ionic-angular';
+
 // Providers
 import {EventProvider} from '../../providers/event.provider';
 import {DiseaseProvider} from '../../providers/disease.provider';
+import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 // Models
 import {Event} from '../../models/Event.model';
@@ -40,18 +43,18 @@ export class AddEditEventPage {
   diseases : Array<Disease> = [];
 
   actiontype : string = "Save";
+  title : string = "New Event";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public sEvent : EventProvider, public sDisease : DiseaseProvider) {
+  constructor(public navCtrl: NavController, public sDictionary: DictionaryService, public navParams: NavParams, public sEvent : EventProvider, public sDisease : DiseaseProvider, private alertCtrl: AlertController) {
     console.log("AddEditEventPage()");
 
     this.actiontype = navParams.get("actiontype");
-
     this.code = navParams.get("code");
 
     if(this.code == -1) { // add event clicked
       var curdate = new Date();
       var curyear = curdate.getFullYear();
-      var curmonth = curdate.getMonth().toString();
+      var curmonth = (curdate.getMonth()+1).toLocaleString();
       if(curmonth.length == 1)
         curmonth = "0"+curmonth;
       var curday = curdate.getDate().toString();
@@ -64,32 +67,48 @@ export class AddEditEventPage {
       var curtime = curdate.getHours()+1;
       this.event.timeStarts = `${curtime}:00`;
       this.event.timeEnds = `${curtime}:30`;
+
+      this.title = this.sDictionary.get('ADDEDITEVENTPAGE_TITLE_NEWEVENT');
     }
     else { //edit clicked
-      var curevent = sEvent.getEvent(this.code);
-      // TODO
-      var date = new Date(curevent.detailtimestamp_start);
-      var curyear = date.getFullYear();
-      var curmonth = date.getMonth().toString();
+      var curevent            = sEvent.getEvent(this.code);
+      var date                = new Date(curevent.detailtimestamp_start);
+      var date_end            = new Date(curevent.detailtimestamp_end);
+      var curyear             = date.getFullYear();
+      var curmonth            = (date.getMonth()+1).toString();
       if(curmonth.length == 1)
-        curmonth = "0"+curmonth;
-      var curday = date.getDate().toString();
+        curmonth              = "0"+curmonth;
+      var curday              = date.getDate().toString();
       if(curday.length == 1)
-        curday              = "0"+curday;
-      var month             = `${curyear}-${curmonth}-${curday}`;
-      this.event.monthStarts = month;
-      this.event.monthEnds  = month;
+        curday                = "0"+curday;
+      var month               = `${curyear}-${curmonth}-${curday}`;
+      this.event.monthStarts  = month;
+      this.event.monthEnds    = month;
 
-      var curtime           = date.getHours()+1;
-      this.event.timeStarts = `${curtime}:00`;
-      this.event.timeEnds   = `${curtime}:30`;
-      this.comment          = curevent.note;
-      if(this.event.vaccinevisit == 'vaccine') {
+      var curtime_start       = date.getHours().toString();
+      if(curtime_start.length == 1)
+        curtime_start         = "0"+curtime_start;
+      var curtime_end         = date_end.getHours().toString();
+      if(curtime_end.length == 1)
+        curtime_end           = "0"+curtime_end;
+      var curmin_start        = date.getMinutes().toString();
+      if(curmin_start.length == 1)
+        curmin_start          = "0"+curmin_start;
+      var curmin_end          = date_end.getMinutes().toString();
+      if(curmin_end.length == 1)
+        curmin_end            = "0"+curmin_end;
+      this.event.timeStarts   = `${curtime_start}:${curmin_start}`;
+      this.event.timeEnds     = `${curtime_end}:${curmin_end}`;
+      this.comment            = curevent.note;
+      console.log(JSON.stringify(curevent))
+      if(curevent.vaccinevisit == 'vaccine') {
         this.disease          = curevent.type;
         this.diseases_hidden  = false;
       }
       this.place              = curevent.place;
       this.event.vaccinevisit = curevent.vaccinevisit;
+
+      this.title = this.sDictionary.get('ADDEDITEVENTPAGE_TITLE_EDITEVENT');
     }
 
     console.log("cur="+JSON.stringify(this.event));
@@ -99,7 +118,9 @@ export class AddEditEventPage {
             .then(diseases => {
               this.diseases = diseases;
               console.log("diseases:"+JSON.stringify(this.diseases));
-              this.disease = this.diseases[0];
+              if(this.code == -1) // for edit event, it is already set
+                this.disease = this.diseases[0];
+              console.log("disease: "+JSON.stringify(this.disease));
             });
   }
 
@@ -109,6 +130,22 @@ export class AddEditEventPage {
 
   saveEvent() {
     console.log("AddEditEventPage.saveEvent()");
+
+    let temp = this.event.monthStarts.split('-');
+    let temp2 = this.event.timeStarts.split(':');
+    let date_start =  new Date(parseInt(temp[0]), parseInt(temp[1]), parseInt(temp[2]), parseInt(temp2[0]), parseInt(temp2[1]));
+    temp = this.event.monthEnds.split('-');
+    temp2 = this.event.timeEnds.split(':');
+    let date_end = new Date(parseInt(temp[0]), parseInt(temp[1]), parseInt(temp[2]), parseInt(temp2[0]), parseInt(temp2[1]));
+    console.log("date_start & date_end: "+date_start +"; "+date_end + "; <=:"+(date_end <= date_start) );
+    if(date_end <= date_start) {
+      this.alertCtrl.create({
+        title: this.sDictionary.get("ADDEDITEVENTPAGE_DATE_ERROR_TITLE"),
+        subTitle: this.sDictionary.get("ADDEDITEVENTPAGE_DATE_ERROR_SUB"),
+        buttons: ['0K']
+      }).present();
+      return;
+    }
 
     console.log(JSON.stringify(this.event));
     var dt_end = this.event.monthEnds + " " + this.event.timeEnds + ":00";

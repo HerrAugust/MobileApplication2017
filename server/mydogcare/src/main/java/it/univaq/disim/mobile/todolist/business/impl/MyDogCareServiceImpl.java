@@ -4,6 +4,7 @@ import it.univaq.disim.mobile.todolist.business.MyDogCareService;
 import it.univaq.disim.mobile.todolist.business.domain.Disease;
 import it.univaq.disim.mobile.todolist.business.domain.Event;
 import it.univaq.disim.mobile.todolist.business.domain.Session;
+import it.univaq.disim.mobile.todolist.business.domain.Task;
 import it.univaq.disim.mobile.todolist.business.domain.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,9 +63,22 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 	}
 
 	@Override
-	public Event updateEvent(String token, Event Event) {
-		// TODO Auto-generated method stub
-		return null;
+	public Event updateEvent(String token, Event newEvent) {
+		Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            Event event = eventRepository.findOne(newEvent.getCode());
+            if (event != null && event.getUser().getId() == session.getUser().getId()) {
+                event.setDetailtimestamp(newEvent.getDetailtimestamp());
+                event.setDetailtimestamp_end(newEvent.getDetailtimestamp_end());
+                event.setNote(newEvent.getNote());
+                event.setPlace(newEvent.getPlace());
+                event.setStarred(newEvent.getStarred());
+                event.setType(newEvent.getType());
+                event.setVaccinevisit(newEvent.getVaccinevisit());
+                return event;
+            }
+        }
+        return null;
 	}
 
 	@Override
@@ -142,6 +156,7 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 	@Override
 	public List<Disease> findDiseases() {
 		List<Disease> diseases = diseaseRepository.findAll();
+		diseases.forEach(System.out::println);
 		return diseases;
 	}
 

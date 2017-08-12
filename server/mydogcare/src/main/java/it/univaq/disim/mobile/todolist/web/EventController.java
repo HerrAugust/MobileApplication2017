@@ -60,14 +60,14 @@ public class EventController {
         return response;
     }
 
-    /*@PutMapping("/{token}/{id}")
-    public Response updateTask(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id, @RequestBody Task task) {
-        task.setId(id);
-        Task newTask = service.updateTask(token, task);
-        Response<Task> response = new Response<>(true, "task updated");
-        response.setData(newTask);
+    @PutMapping("/{token}/{id}")
+    public Response updateEvent(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id, @RequestBody Event event) {
+        event.setCode(id);
+        Event newEvent = service.updateEvent(token, event);
+        Response<Event> response = new Response<>(true, "event updated");
+        response.setData(newEvent);
         return response;
-    }*/
+    }
 
     @DeleteMapping("/{token}/{id}")
     public Response deleteEvent(@PathVariable(value = "token") String token, @PathVariable(value = "id") Long id) {
