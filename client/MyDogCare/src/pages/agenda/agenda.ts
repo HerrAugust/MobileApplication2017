@@ -5,16 +5,11 @@ import {EventDetailPage} from '../event-detail/event-detail';
 import {AddEditEventPage} from '../add-edit-event/add-edit-event';
 
 //Providers
-import {TaskProvider} from '../../providers/task.provider';
 import {EventProvider} from '../../providers/event.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 //Models
-import {Task} from '../../models/task.model';
 import {Event} from '../../models/event.model';
-
-//Types
-import {ReorderIndexes} from '../../types';
 
 import { Events } from 'ionic-angular'; // needed for pop from AddEditEventPage
 
@@ -33,7 +28,6 @@ export class AgendaPage {
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
         public popevt: Events,
-        public sTask: TaskProvider,
         public sEvent: EventProvider,
         public sDictionary: DictionaryService
     ) {
@@ -53,6 +47,8 @@ export class AgendaPage {
         popevt.subscribe('event:deleted', (eventData) => {
             this._manageEventDeleted(eventData);
         });
+
+        sDictionary.setPreferredLanguage('it-IT');
     }
 
     // Selects the next event
@@ -137,7 +133,6 @@ export class AgendaPage {
             }, {
                 text: this.sDictionary.get("DELETE"), 
                 handler: (data) => {
-                    //sliding.close();
                     this.sEvent.deleteEvent(event);
                 }
             }]

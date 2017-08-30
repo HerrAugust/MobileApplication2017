@@ -47,12 +47,29 @@
     "ERROR_PROFILE_SAVE": "Non è stato possibile salvare il tuo profilo.",
 
  
-    
-    "EVENTDETAILPAGE_TITLE": "Dettagli Evento",
+    "DONE": "Fatto",
+    "CALENDAR": "Calendario",
+    "VACCINE": "Vaccino",
+    "VISIT": "Visita",
 
-    "ADDEDITEVENTPAGE_TITLE_NEWEVENT": "Crea Evento",
+    "EVENTDETAILPAGE_TITLE": "Dettagli Evento",
+    "EVENTDETAILPAGE_COMMENT": "Commento:",
+    "EVENTDETAILPAGE_PLACE": "Luogo:",
+    "EVENTDETAILPAGE_TYPOLOGY": "Tipologia:",
+    "EVENTDETAILPAGE_TIME": "Ora:",
+    "EVENTDETAILPAGE_DATE": "Data:",
+
+    "ADDEDITEVENTPAGE_BEGIN": "Inizio evento:",
+    "ADDEDITEVENTPAGE_END": "Fine evento:",
+    "ADDEDITEVENTPAGE_COMMENT": "Commento:",
+    "ADDEDITEVENTPAGE_DISEASENAME": "Nome malattia:",
+    "ADDEDITEVENTPAGE_PLACE": "Luogo:",
+    "ADDEDITEVENTPAGE_VV": "Visita o Vaccino:",
+    "ADDEDITEVENTPAGE_SAVE": "Salva",
+    "ADDEDITEVENTPAGE_MODIFY": "Modifica",
+    "ADDEDITEVENTPAGE_TITLE_NEWEVENT": "Nuovo Evento",
     "ADDEDITEVENTPAGE_TITLE_EDITEVENT": "Modifica Evento",
-    "ADDEDITEVENTPAGE_DATE_ERROR_TITLE": "Errore date",
+    "ADDEDITEVENTPAGE_DATE_ERROR_TITLE": "Errore nella date",
     "ADDEDITEVENTPAGE_DATE_ERROR_SUB": "La data finale deve essere maggiore a quella iniziale",
 
     "AGENDAPAGE_TITLE": "Agenda",

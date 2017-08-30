@@ -1,10 +1,9 @@
 <ion-header>
-    
-    <ion-navbar color="primary">
-        <ion-title>Agenda</ion-title>
-    </ion-navbar>
-    
+  <ion-navbar color="primary">
+    <ion-title>Agenda</ion-title>
+  </ion-navbar>
 </ion-header>
+
 
 <ion-content class="list-avatar-page" [ngClass]="{'activeAnimate': bAnimate}" overflow-scroll="true">
 
@@ -22,7 +21,7 @@
                 <ion-icon name="trash" (click)="deleteEvent($event, event)"></ion-icon>
                 <ion-icon [name]="event.starred ? 'star' : 'star-outline'" (click)="toggleStarEvent($event, event)"></ion-icon>
             </span>    
-    </ion-item>
+        </ion-item>
     </ion-list>
 
        <!-- <ion-item>

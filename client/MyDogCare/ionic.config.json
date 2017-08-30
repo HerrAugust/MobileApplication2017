@@ -1,11 +1,14 @@
 {
-    "name": "TodoListLezione",
-    "app_id": "",
-    "type": "ionic-angular",
-    "proxies": [
-        {
-            "path": "/api",
-            "proxyUrl": "http://localhost:8080/mydogcare/api"
-        }
-    ]
+  "name": "MyDogCare",
+  "app_id": "",
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:8080/mydogcare/api"
+    }
+  ],
+  "integrations": {
+    "cordova": {}
+  }
 }

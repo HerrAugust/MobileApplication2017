@@ -24,6 +24,7 @@ import {DiseaseProvider} from '../providers/disease.provider';
 // Pages
 import {EventDetailPage} from '../pages/event-detail/event-detail';
 import {AddEditEventPage} from '../pages/add-edit-event/add-edit-event';
+import {CalendarPage} from '../pages/calendar/calendar';
 
 @NgModule({
     declarations: [

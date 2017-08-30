@@ -30,6 +30,7 @@ export class UserPersistanceProvider implements UserPersistanceInterface {
     }
     
     get(): Promise<User> {
+        console.log('UserPersistanceProvider.get()');
         return new Promise((resolve, reject) => {
             this._storage.get(STORAGE_KEYS.USER)
                 .then((user) => {

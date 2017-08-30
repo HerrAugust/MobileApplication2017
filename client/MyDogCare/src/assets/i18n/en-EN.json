@@ -47,13 +47,29 @@
     "ERROR_PROFILE_SAVE": "You could not save your profile.",
 
 
+    "DONE": "Done",
+    "CALENDAR": "Calendar",
+    "VACCINE": "Vaccine",
+    "VISIT": "Visit",
 
     "EVENTDETAILPAGE_TITLE": "Event Details",
+    "EVENTDETAILPAGE_COMMENT": "Comment:",
+    "EVENTDETAILPAGE_PLACE": "Place:",
+    "EVENTDETAILPAGE_TYPOLOGY": "Typology:",
+    "EVENTDETAILPAGE_TIME": "Time:",
+    "EVENTDETAILPAGE_DATE": "Date:",
 
-
-    "ADDEDITEVENTPAGE_TITLE_NEWEVENT": "Create Event",
+    "ADDEDITEVENTPAGE_BEGIN": "Event's begin:",
+    "ADDEDITEVENTPAGE_END": "Event's end:",
+    "ADDEDITEVENTPAGE_COMMENT": "Comment:",
+    "ADDEDITEVENTPAGE_DISEASENAME": "Disease name:",
+    "ADDEDITEVENTPAGE_PLACE": "Place:",
+    "ADDEDITEVENTPAGE_VV": "Visit or Vaccine:",
+    "ADDEDITEVENTPAGE_SAVE": "Save",
+    "ADDEDITEVENTPAGE_MODIFY": "Modify",
+    "ADDEDITEVENTPAGE_TITLE_NEWEVENT": "New Event",
     "ADDEDITEVENTPAGE_TITLE_EDITEVENT": "Edit Event",
-    "ADDEDITEVENTPAGE_DATE_ERROR_TITLE": "Date error",
+    "ADDEDITEVENTPAGE_DATE_ERROR_TITLE": "Dates error",
     "ADDEDITEVENTPAGE_DATE_ERROR_SUB": "Ending date must be grater than starting date",
 
     "AGENDAPAGE_TITLE": "Agenda",

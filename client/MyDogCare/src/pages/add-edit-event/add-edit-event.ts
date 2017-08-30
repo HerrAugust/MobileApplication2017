@@ -48,8 +48,18 @@ export class AddEditEventPage {
   constructor(public navCtrl: NavController, public sDictionary: DictionaryService, public navParams: NavParams, public sEvent : EventProvider, public sDisease : DiseaseProvider, private alertCtrl: AlertController) {
     console.log("AddEditEventPage()");
 
-    this.actiontype = navParams.get("actiontype");
+    this.actiontype = sDictionary.get("ADDEDITEVENTPAGE_" + (<string> navParams.get("actiontype")).toUpperCase());
     this.code = navParams.get("code");
+
+    // Getting diseases
+    this.sDisease.getDiseases()
+    .then(diseases => {
+      this.diseases = diseases;
+      console.log("diseases:"+JSON.stringify(this.diseases));
+      if(this.code == -1) // for edit event, it is already set
+        this.disease = this.diseases[0];
+      console.log("disease: "+JSON.stringify(this.disease));
+    });
 
     if(this.code == -1) { // add event clicked
       var curdate = new Date();
@@ -112,16 +122,6 @@ export class AddEditEventPage {
     }
 
     console.log("cur="+JSON.stringify(this.event));
-
-    // Getting diseases
-    this.sDisease.getDiseases()
-            .then(diseases => {
-              this.diseases = diseases;
-              console.log("diseases:"+JSON.stringify(this.diseases));
-              if(this.code == -1) // for edit event, it is already set
-                this.disease = this.diseases[0];
-              console.log("disease: "+JSON.stringify(this.disease));
-            });
   }
 
   ionViewDidLoad() {
@@ -160,7 +160,7 @@ export class AddEditEventPage {
 
   visitvaccine_changed(evt) {
     console.log("AddEditEventPage.visitvaccine_changed(). evt="+evt);
-    if(evt == 'vaccine')
+    if(evt == this.sDictionary.get('VACCINE').toLowerCase())
       this.diseases_hidden = false;
     else
       this.diseases_hidden = true;

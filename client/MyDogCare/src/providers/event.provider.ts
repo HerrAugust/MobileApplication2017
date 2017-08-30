@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
-import {reorderArray} from 'ionic-angular';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Events } from 'ionic-angular';
-
-import {ReorderIndexes} from '../types'; 
 
 //Providers
 import {AccountProvider} from './account.provider';
@@ -137,7 +134,6 @@ export class EventProvider {
 
             console.log("result: " + JSON.stringify(groupedEvents));
             return groupedEvents;
-
         }
 
     /**

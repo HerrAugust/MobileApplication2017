@@ -47,4 +47,10 @@ export class EventDetailPage {
     this.navCtrl.push(AddEditEventPage, {'code': this.event.code, 'actiontype': 'Modify'});
   }
 
+  // user clicks on aside menu. see https://www.raymondcamden.com/2017/01/05/an-example-of-the-ionic-2-menu-component
+  openPage(p) {
+    console.log("EventDetailsPage.openPage().p="+p);
+    // TODO
+  }
+
 }

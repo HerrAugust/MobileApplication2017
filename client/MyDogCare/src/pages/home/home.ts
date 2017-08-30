@@ -8,10 +8,6 @@ import {DictionaryService} from '../../modules/dictionary/providers/dictionary.s
 
 //Models
 import {Task} from '../../models/task.model';
-import {Event} from '../../models/event.model';
-
-//Types
-import {ReorderIndexes} from '../../types';
 
 // Needed to select next event
 import { ViewChild } from "@angular/core";
