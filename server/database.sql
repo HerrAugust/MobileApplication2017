@@ -35,7 +35,7 @@ ALTER TABLE Events ADD FOREIGN KEY (userid) REFERENCES Users(userid);
 INSERT INTO Breed (name, origin) VALUES ('Akita', 'Japan'), ('Rottweiler', 'Germany'), ('Bolognese', 'Italy');
 INSERT INTO Users (username, password, firstname, lastname, phone, email) VALUES ('agoneri', 'agoneri', 'Agostino', 'Neri', '+3933333333', 'agostino.neri@email.org');
 INSERT INTO Veterinary (name, lastname, city) VALUES ('John', 'Smith', 'Split'), ('Mark', 'Rossi', 'Prague');
-INSERT INTO Disease (icdcode, name) VALUES (1, 'Rabies'), (2, 'Stomachache'), (3, 'Vomit');
+INSERT INTO Disease (icdcode, name) VALUES (1, 'Rabies'), (2, 'Typhus fever'), (3, 'Other');
 
 /* To test calendar part */
 INSERT INTO Events (note, type, userid, detailtimestamp) VALUES ('Dr.Strange, bring with a new collar', 1, 1, '2017-07-18 22:01:34');
