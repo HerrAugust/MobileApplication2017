@@ -1,12 +1,15 @@
-Start server (see /server folder)
+Start the server (see /server folder)
 
-Open Terminal/Prompt and cd to the directory MobileApplication2017/client/MyDogCare on your computer
+Change directory:
+Open Terminal/Prompt
+cd to the directory MobileApplication2017/client/MyDogCare on your computer
 
 Install Ionic2 packages with:
 npm install
 
 Install dependencies:
 npm install ionic2-calendar --save
+npm install --save intl
 
 Launch app in browser with:
 ionic serve --lab
