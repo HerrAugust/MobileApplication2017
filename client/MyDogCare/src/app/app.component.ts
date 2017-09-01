@@ -41,13 +41,13 @@ export class MyApp {
             promises.push(sAccount.initialize());
 
             Promise.all(promises).then(() => {
-                /*if (sAccount.isLogged()) {
+                if (sAccount.isLogged()) {
                     this.rootPage = 'HomePage';
                 } else {
                     this.rootPage = 'LoginPage';
-                }*/
+                }
+                //this.rootPage = 'LoginPage';
                 //TODO remove when HomePage works
-                this.rootPage = 'AgendaPage'; 
             });
 
             // Okay, so the platform is ready and our plugins are available.
