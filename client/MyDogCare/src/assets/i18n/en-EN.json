@@ -9,6 +9,7 @@
     "PROFILE": "Profile",
     "USERNAME": "Username",
     "PASSWORD": "Password",
+    "PASSWORD2": "Repeat Password",
     "EMAIL": "Email",
     "FIRSTNAME": "Firstname",
     "LASTNAME": "Lastname",
