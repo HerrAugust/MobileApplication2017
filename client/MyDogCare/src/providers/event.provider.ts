@@ -36,6 +36,44 @@ export class EventProvider {
     }
 
     /**
+     * Retrieves Events in the form required by the Calendar Module
+     */
+    getEvents_calendar() : Promise<Array<Event>> {
+        console.log("EventProvider.getEvents_calendar()");
+        return new Promise((resolve) => {
+            // Set events in general
+            this.getEvents();
+            // Adjust events as required by the Calendar Module
+            resolve(this._groupEventsCalendar()); 
+        });
+    }
+
+    /**
+     * Groups events for the Calendar Module.
+     * An array that contains JSON objects with at least title: string, startTime: Date, endTime: Date, allDay: bool is required.
+     */
+    _groupEventsCalendar() {
+        console.log("EventProvider._groupEventsCalendar()");
+        var groupedEvents = [];
+        var now : Date = new Date();
+
+        if(this._Events == null)
+            return [];
+
+        for(let event of this._Events) {
+            groupedEvents.push(
+                {
+                title: event.type.name + ';' + event.note,
+                startTime: new Date(event.detailtimestamp_start),
+                endTime: new Date(event.detailtimestamp_end),
+                allDay: false
+                });
+        }
+
+        return groupedEvents;
+    }
+
+    /**
      * Retrives Event from server.
      */
     getEvents(): Promise<Array<any>> {
@@ -70,7 +108,7 @@ export class EventProvider {
     }
 
     /**
-     * Ritorna il Event corrispondente all'id.
+     * Returns the Event corresponding to the id.
      */
     getEvent(code: number): Event {
         console.log("EventProvider.getEvent(). code="+code);

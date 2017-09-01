@@ -2,8 +2,14 @@
 // For installation and guide please refer to that page.
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, AlertController, MenuController  } from 'ionic-angular';
 //import * as moment from 'moment';
+
+//Pages
+import {AgendaPage} from '../agenda/agenda';
+
+//Providers
+import {EventProvider} from '../../providers/event.provider';
 
 @IonicPage()
 @Component({
@@ -12,7 +18,7 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController }
 })
 export class CalendarPage {
   
-  eventSource;
+  eventSource; // It is an array that contains JSON objects with at least title: string, startTime: Date, endTime: Date, allDay: bool
   viewTitle;
 
   isToday:boolean;
@@ -47,15 +53,27 @@ export class CalendarPage {
       }
   };
 
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController)
-  { }
+  constructor(
+      public navCtrl: NavController,
+      private modalCtrl: ModalController,
+      private alertCtrl: AlertController,
+      private sEvent: EventProvider,
+      public menuCtrl: MenuController
+    )
+  {
+    this.loadEvents();
+  }
  
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarPage');
   }
 
   loadEvents() {
-      this.eventSource = this.createRandomEvents();
+      //this.eventSource = this.createRandomEvents();
+      this.sEvent.getEvents_calendar()
+      .then(events => {
+          this.eventSource = events;
+      });
   }
 
   onViewTitleChanged(title) {
@@ -80,12 +98,17 @@ export class CalendarPage {
   }
 
   onCurrentDateChanged(event:Date) {
-      var today = new Date();
+      /*var today = new Date();
       today.setHours(0, 0, 0, 0);
       event.setHours(0, 0, 0, 0);
-      this.isToday = today.getTime() === event.getTime();
+      this.isToday = today.getTime() === event.getTime();*/
+
+    if(!this.menuCtrl.isOpen) {
+        this.navCtrl.push(AgendaPage, { 'from': 'CalendarPage', 'date': event });
+    }
   }
 
+  // debug function
   createRandomEvents() {
       var events = [];
       for (var i = 0; i < 50; i += 1) {

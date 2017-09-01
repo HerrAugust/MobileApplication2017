@@ -1,18 +1,31 @@
 <ion-header>
     <ion-navbar color="primary">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
       <ion-title>
-        Calendar
+          {{ 'CALENDAR' | dictionary }}
       </ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="addEvent()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-buttons>
     </ion-navbar>
   </ion-header>
    
   <ion-content>
-      <calendar [eventSource]="eventSource"
+
+      <template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+        <!-- default and original: <h4 class="selectedEventDate">selectedDate.date</h4>
+        <h5 class="noEvents" *ngIf="selectedDate.events.length == 0">No Events</h5>
+        <ion-list>
+          <ion-item (click)="onEventSelected(event)" *ngFor="let event of selectedDate.events">
+            <h2>{{event.title}}</h2>
+            <p>Start: {{event.startTime | friendlydatetime}}</p>
+            <p>end: {{event.endTime | friendlydatetime}}</p>
+          </ion-item>
+        </ion-list>-->
+      </template>
+
+      <calendar
+      [monthviewEventDetailTemplate]="template"
+      [eventSource]="eventSource"
       [calendarMode]="calendar.mode"
       [currentDate]="calendar.currentDate"
       (onCurrentDateChanged)="onCurrentDateChanged($event)"

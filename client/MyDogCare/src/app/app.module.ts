@@ -48,10 +48,7 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp,
-        //AgendaPage, // Menu
-        //HomePage, // menu
-        //CalendarPage, //menu
+        MyApp
     ],
     providers: [
         StatusBar,
