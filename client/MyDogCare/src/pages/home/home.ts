@@ -3,7 +3,7 @@ import {IonicPage, NavController, AlertController, LoadingController, ItemSlidin
 
 //Providers
 import {TaskProvider} from '../../providers/task.provider';
-import {DogProvider} from '../../providers/dog.provider';
+//import {DogProvider} from '../../providers/dog.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 //Models
@@ -32,15 +32,15 @@ export class HomePage {
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
         public sTask: TaskProvider,
-        public sDog: DogProvider,
+        //public sDog: DogProvider,
         public sDictionary: DictionaryService
     ) {
         console.log("Home()");
-        this.sDog.getDogs()
+        /*this.sDog.getDogs()
         .then(events => {
             this.events = events;
             console.log(this.events);
-        });
+        });*/
     }
 
     ionViewDidLoad() {
