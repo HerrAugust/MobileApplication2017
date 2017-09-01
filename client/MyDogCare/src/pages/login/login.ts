@@ -45,10 +45,11 @@ export class LoginPage {
                     console.log("logged: ", user);
 
                     loading.dismiss().then(() => {
-                        this.navCtrl.setRoot('TabsPage');
+                        this.navCtrl.setRoot('HomePage');
                     });
                 })
                 .catch((msg) => {
+                    msg = this.sDictionary.get("ERROR_LOGIN_USERNAME_PASSWORD");
                     console.log("errore login: non mi sono riuscito a loggare");
 
                     loading.dismiss().then(() => {

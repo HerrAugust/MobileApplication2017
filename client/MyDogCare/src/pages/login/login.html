@@ -1,3 +1,10 @@
+<ion-header no-border>
+        <ion-navbar color="primary">
+            <ion-title>
+                {{ 'LOGIN' | dictionary }}
+            </ion-title>
+        </ion-navbar>
+    </ion-header>
 
 <ion-content padding>
     
@@ -7,20 +14,25 @@
             <div class="logo-container">
                 <img src="assets/images/icon.png" alt=""/>
             </div>
+
+            <div class="app-name">
+                <h3> My Dog Care (da modificare) </h3>
+            </div>
             
             <ion-list no-lines> 
-                <ion-item>
-                    <ion-input type="text" placeholder="{{ 'USERNAME' | dictionary }}" [(ngModel)]="username"></ion-input>
-                </ion-item>
+                    <ion-item>
+                        <ion-input type="text" placeholder="{{ 'USERNAME' | dictionary }}" [(ngModel)]="username"></ion-input>
+                    </ion-item>
 
-                <ion-item>
-                    <ion-input type="password" placeholder="{{ 'PASSWORD' | dictionary }}" [(ngModel)]="password"></ion-input>
-                </ion-item>
+                    <ion-item>
+                            <ion-input type="password" placeholder="{{ 'PASSWORD' | dictionary }}" [(ngModel)]="password"></ion-input>
+                    </ion-item>
             </ion-list>
             
             <div class="buttons-container">
-                <button ion-button block round color="dark" (click)="login()">{{ 'LOGIN' | dictionary }}</button>
-                
+                <button ion-button block round color="primary" (click)="login()">{{ 'LOGIN' | dictionary }}</button>
+            </div>
+            <div class="button-signup">
                 <button ion-button block clear (click)="goSignup()">{{ 'TEXT_NEW_ACCOUNT' | dictionary }}</button>
             </div>
         </div>
