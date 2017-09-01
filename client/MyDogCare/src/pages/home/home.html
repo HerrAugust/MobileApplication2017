@@ -1,80 +1,62 @@
 <ion-header>
     
-    <ion-navbar color="secondary">
-        <ion-title>{{ 'AGENDAPAGE_TITLE' | dictionary }}</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>{{ 'HOMEPAGE_TITLE' | dictionary }}</ion-title>
         
-        <ion-buttons right>
-            <button ion-button clear icon-only (click)="addTask()">
-                <ion-icon name="add"></ion-icon>
-            </button>
-        </ion-buttons>
     </ion-navbar>
     
 </ion-header>
 
 <ion-content class="list-avatar-page" [ngClass]="{'activeAnimate': bAnimate}" overflow-scroll="true">
 
-        <ion-item-group *ngFor="let group of events">
-            
-            <ion-item-divider light>{{ group.month }}</ion-item-divider>
-            <ion-item *ngFor="let event of group.events">
-                <div [ngClass]="{'currentEvent': event.coloured, '': !event.coloured}">
-                    <ion-avatar item-start>
-                        <img src="{{ event.vaccinevisit }}">
-                    </ion-avatar>
-                    
-                    <span class="actions">
-                        <ion-icon name="settings"></ion-icon>
-                        <ion-icon name="trash"></ion-icon>
-                        <ion-icon name="star-outline"></ion-icon>
-                    </span>
-                    <h2>{{ event.day }}</h2>
-                    <p>{{ event.hour }}</p>
-                </div>
-            </ion-item>
+    <div class = "main-title">
+        <h3>hoooome</h3>
+    </div>
+
+    <div class = "main-element">
+    
+        <div class = "portrait">
         
-        </ion-item-group>
+            <img src="assets/images/icon.png" alt=""/>
+        
+        </div>
 
-       <!-- <ion-item>
-            <ion-avatar item-start>
-            <img src="assets/img/syringe70x.png">
-            </ion-avatar>
-            <span class="actions">
-                <ion-icon name="settings"></ion-icon>
-                <ion-icon name="trash"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
-            </span>
-            <h2>18:30-19:45</h2>
-        </ion-item>
+        <div class = "buttons">
 
-        <ion-list-header>March 2017</ion-list-header>
+            <div class = "button-row">
+                <div class = "icon">
+                    <img src="assets/images/syringe70x.png" alt="" />
+                </div>
+                <div class ="text">
+                    <h5> Find him! </h5>
+                </div>
+            </div>
+            
+            <div class = "button-row">
+                <div class = "icon">
+                        <img src="assets/images/syringe70x.png" alt="" />
+                </div>
+                <div class ="text">
+                    <h5> Profile </h5>
+                </div>
+            </div>
 
-        <ion-item>
-            <ion-avatar item-start>
-            <img src="assets/images/syringe70x.png">
-            </ion-avatar>
-            <span class="actions">
-                <ion-icon name="settings"></ion-icon>
-                <ion-icon name="trash"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
-            </span>
-            <h2>27th March</h2>
-            <p>18:30-19:45</p>
-        </ion-item>
+            <div class = "button-row">
+                <div class = "icon" (click)="goAgenda()">
+                        <img src="assets/images/syringe70x.png" alt="" />
+                </div>
+                <div class ="text">
+                        <button ion-button block clear (click)="goAgenda()">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
+                </div>
+            </div>
 
-        <ion-item>
-            <ion-avatar item-start>
-            <img src="assets/images/doctor70x.png">
-            </ion-avatar>
-            <span class="actions">
-                <ion-icon name="settings"></ion-icon>
-                <ion-icon name="trash"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
-            </span>
-            <h2>27th March</h2> 
-            <p>17:30-19:45</p>
-        </ion-item>
--->
+        </div>
+
+    </div>
+
+    <div class = "name">
+        
+    </div>
 
     <ion-fab right bottom>
         <button ion-fab color="danger">+</button>

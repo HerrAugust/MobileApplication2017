@@ -9,7 +9,9 @@ export const URL = {
         LOGOUT: "logout/",
         UPDATE: "users/"
     },
-    
+    DOGS: {
+        ALL: "dogs/all/",
+    },
     EVENTS: {
         TEST: "events/test",
         CREATE: "events/",

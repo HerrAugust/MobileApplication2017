@@ -28,6 +28,7 @@ export class SignupPage {
         this.user = {
             username: "",
             password: "",
+            password2: "",
             firstname: "",
             lastname: "",
             email: ""
@@ -78,10 +79,14 @@ export class SignupPage {
             
             if (this.user.username.trim() === "") {
                 msg = this.sDictionary.get("WARNING_SIGNUP_USERNAME_EMPTY");
-            } else if (this.user.email.trim() === "") {
-                msg = this.sDictionary.get("WARNING_SIGNUP_EMAIL_EMPTY");
             } else if (this.user.password.trim() === "") {
                 msg = this.sDictionary.get("WARNING_SIGNUP_PASSWORD_EMPTY");
+            } else if (this.user.password2.trim() === "") {
+                msg = this.sDictionary.get("WARNING_SIGNUP_PASSWORD_EMPTY");
+            }
+
+            if(this.user.password != this.user.password2){
+                msg = this.sDictionary.get("WARNING_SIGNUP_PASSWORD_WRONG");
             }
             
             if (msg !== "") {
