@@ -1,7 +1,19 @@
 page-signup {
     
     ion-content {
-        background-color: map-get($colors, secondary) !important;
+        background-color: white !important;
+    }
+
+    .logo-container {
+        text-align: center;
+        img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+        }
+    }
+    .app-name{
+        text-align: center;
     }
     
 }
