@@ -3,11 +3,15 @@ import {IonicPage, NavController, AlertController, LoadingController, ItemSlidin
 
 //Providers
 import {TaskProvider} from '../../providers/task.provider';
-import {EventProvider} from '../../providers/event.provider';
+import {DogProvider} from '../../providers/dog.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 //Models
 import {Task} from '../../models/task.model';
+import {Event} from '../../models/event.model';
+
+//Types
+import {ReorderIndexes} from '../../types';
 
 // Needed to select next event
 import { ViewChild } from "@angular/core";
@@ -19,11 +23,8 @@ import { Content } from 'ionic-angular';
     templateUrl: 'home.html'
 })
 export class HomePage {
-    @ViewChild(Content) content: Content;
 
-    
-    tasks: Array<Task> = [];
-    events= []; // This is not precisely an Array<Event>, but an obj like [{"month": "July 2017", events:[{"code":"1", "note":"some note", "detailtimestamp":"2017-07-18 22:01:34.0"}]}], i.e. the events grouped by month
+    events=[];
     public bAnimate: boolean = true;
     
     constructor(
@@ -31,85 +32,22 @@ export class HomePage {
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
         public sTask: TaskProvider,
-        public sEvent: EventProvider,
+        public sDog: DogProvider,
         public sDictionary: DictionaryService
     ) {
         console.log("Home()");
-        this.sEvent.getEvents()
-            .then(events => {
-                this.events = events;
-                console.log(this.events);
-            });
+        this.sDog.getDogs()
+        .then(events => {
+            this.events = events;
+            console.log(this.events);
+        });
     }
 
-    // Selects the next event
     ionViewDidLoad() {
-        let element = document.getElementsByClassName('currentEvent')[0];
-        if(element)
-            this.content.scrollTo(0, element.scrollTop, 500);
     };
-    
-    addTask() {
-        this.alertCtrl.create({
-            title: this.sDictionary.get("NEW_TASk"),
-            inputs: [{
-                name: "task",
-                type: "text"
-            }],
-            buttons: [{
-                text: this.sDictionary.get("CANCEL"),
-                role: "cancel"
-            }, {
-                text: this.sDictionary.get("ADD"),
-                handler: (data) => {
-                    const task = new Task({ text: data.task });
-                    this.sTask.saveTask(task);
-                }
-            }]
-        }).present();
-    }
-    
-    editTask(task: Task, sliding: ItemSliding) {
-        sliding.close();
-        
-        this.alertCtrl.create({
-            title: this.sDictionary.get("EDIT_TASK"),
-            inputs: [{
-                name: "task",
-                type: "text",
-                value: task.text
-            }],
-            buttons: [{
-                text: this.sDictionary.get("CANCEL"),
-                role: "cancel"
-            }, {
-                text: this.sDictionary.get("EDIT"), 
-                handler: (data) => {
-                    task.text = data.task;
-                    this.sTask.saveTask(task);
-                }
-            }]
-        }).present();
-    }
-    
-    toggleStateTask(task: Task) {
-        task.completed = !task.completed;
-        this.sTask.saveTask(task);
-    }
-    
-    deleteTask(task: Task, sliding: ItemSliding) {
-        sliding.close();
-        
-        this.sTask.deleteTask(task);
-    }
-    
-    reorderEvents() {
-        this.bAnimate = false;
-        this.sEvent.groupEvents();
-        
-        setTimeout(() => {
-            this.bAnimate = true;
-        }, 300);
+
+    goAgenda() {
+        this.navCtrl.push('AgendaPage');
     }
 
 }

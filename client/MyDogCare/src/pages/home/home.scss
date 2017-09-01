@@ -19,23 +19,46 @@ page-home {
             animation-duration: $duration-task-animation;
         }
     }
-}
 
-.list-avatar-page {
-  span.actions {
-    float: right;
-
-    ion-icon {
-      margin-left: 10px;
+    .main-title{
+        text-align: center;
     }
-  }
 
-  ion-list-header {
-    margin-bottom: 0px;
-  }
+    .main-element{
+        padding-left: 10px;
+    }
 
-  .currentEvent {
-      background-color: #99ffff;
-  }
-  
+    .portrait {
+        float: left;
+        img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+        }
+    }
+
+    .buttons{
+        vertical-align: top;
+    }
+
+    .icon{
+        float: left;
+        img {
+            width: 100%;
+            max-width: 50px;
+            height: auto;
+        }
+    }
+
+    .text{
+        float: left;
+    }
+
+    .button-row{
+        display: inline-block;
+    }
+
 }
+
+
+  
