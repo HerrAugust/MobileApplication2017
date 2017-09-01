@@ -3,7 +3,7 @@
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
-import * as moment from 'moment';
+//import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -12,13 +12,6 @@ import * as moment from 'moment';
 })
 export class CalendarPage {
   
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController)
-  { }
- 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarPage');
-  }
-
   eventSource;
   viewTitle;
 
@@ -53,6 +46,13 @@ export class CalendarPage {
           }
       }
   };
+
+  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController)
+  { }
+ 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad CalendarPage');
+  }
 
   loadEvents() {
       this.eventSource = this.createRandomEvents();

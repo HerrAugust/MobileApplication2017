@@ -24,13 +24,15 @@ import {DiseaseProvider} from '../providers/disease.provider';
 // Pages
 import {EventDetailPage} from '../pages/event-detail/event-detail';
 import {AddEditEventPage} from '../pages/add-edit-event/add-edit-event';
-import {CalendarPage} from '../pages/calendar/calendar';
+import {CalendarPageModule} from '../pages/calendar/calendar.module';
+import {HomeModule} from '../pages/home/home.module';
+import {AgendaPageModule} from '../pages/agenda/agenda.module';
 
 @NgModule({
     declarations: [
         MyApp,
         EventDetailPage,
-        AddEditEventPage
+        AddEditEventPage,
     ],
     imports: [
         BrowserModule,
@@ -39,13 +41,17 @@ import {CalendarPage} from '../pages/calendar/calendar';
         IonicStorageModule.forRoot({
             name: '__todo_list_lezione',
         }),
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        AgendaPageModule,
+        HomeModule,
+        CalendarPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
-        EventDetailPage,
-        AddEditEventPage
+        //AgendaPage, // Menu
+        //HomePage, // menu
+        //CalendarPage, //menu
     ],
     providers: [
         StatusBar,
