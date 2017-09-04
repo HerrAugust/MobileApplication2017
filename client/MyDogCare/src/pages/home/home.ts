@@ -3,7 +3,7 @@ import {IonicPage, NavController, AlertController, LoadingController, ItemSlidin
 
 //Providers
 import {TaskProvider} from '../../providers/task.provider';
-//import {DogProvider} from '../../providers/dog.provider';
+import {DogProvider} from '../../providers/dog.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 //Models
