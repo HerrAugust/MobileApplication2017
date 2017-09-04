@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.todolist.business.impl;
 
 import it.univaq.disim.mobile.todolist.business.MyDogCareService;
 import it.univaq.disim.mobile.todolist.business.domain.Disease;
+import it.univaq.disim.mobile.todolist.business.domain.Dog;
 import it.univaq.disim.mobile.todolist.business.domain.Event;
 import it.univaq.disim.mobile.todolist.business.domain.Session;
 import it.univaq.disim.mobile.todolist.business.domain.Task;
@@ -27,6 +28,9 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private DogRepository dogRepository;
     
     // EVENTS
     
@@ -158,6 +162,16 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 		List<Disease> diseases = diseaseRepository.findAll();
 		diseases.forEach(System.out::println);
 		return diseases;
+	}
+
+	//rick dogs
+
+	@Override
+	public List<Dog> findDogs(String token) {
+		Session session = sessionRepository.findByToken(token);
+		List<Dog> dogs = dogRepository.findByUserId(session.getUser().getId());
+		dogs.forEach(System.out::println);
+		return dogs;
 	}
 
 }

@@ -40,8 +40,20 @@ public class User implements java.io.Serializable {
     @JsonIgnore
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Event> events = new HashSet<>();
+    
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Dog> dogs = new HashSet<>();
 
-    public Long getId() {
+    public Set<Dog> getDogs() {
+		return dogs;
+	}
+
+	public void setDogs(Set<Dog> dogs) {
+		this.dogs = dogs;
+	}
+
+	public Long getId() {
         return id;
     }
 
