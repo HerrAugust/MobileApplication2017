@@ -8,58 +8,51 @@
 </ion-header>
 
 <ion-content class="list-avatar-page" [ngClass]="{'activeAnimate': bAnimate}" overflow-scroll="true">
+    <ion-item *ngFor="let dog of dogs">
 
-    <div class = "main-title">
-        <h3>hoooome</h3>
-    </div>
+        <div class = "main-element">
 
-    <div class = "main-element">
-    
-        <div class = "portrait">
-        
-            <img src="assets/images/icon.png" alt=""/>
-        
-        </div>
-
-        <div class = "buttons">
-
-            <div class = "button-row">
-                <div class = "icon">
-                    <img src="assets/images/syringe70x.png" alt="" />
-                </div>
-                <div class ="text">
-                    <h5> Find him! </h5>
-                </div>
+            <div class = "name">
+                     <h2>{{ dog.name }}</h2>
             </div>
+
+            <div class = "portrait">
             
-            <div class = "button-row">
-                <div class = "icon">
-                        <img src="assets/images/syringe70x.png" alt="" />
-                </div>
-                <div class ="text">
-                    <h5> Profile </h5>
-                </div>
+                <img src="assets/images/icon.png" alt=""/>
+            
             </div>
 
-            <div class = "button-row">
-                <div class = "icon" (click)="goAgenda()">
+            <div class = "buttons">
+
+                <div class = "button-row">
+                    <div class = "icon">
                         <img src="assets/images/syringe70x.png" alt="" />
+                    </div>
+                    <div class ="text">
+                        <h5> Find him! </h5>
+                    </div>
                 </div>
-                <div class ="text">
-                        <button ion-button block clear (click)="goAgenda()">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
+                
+                <div class = "button-row">
+                    <div class = "icon">
+                            <img src="assets/images/syringe70x.png" alt="" />
+                    </div>
+                    <div class ="text">
+                        <h5> Profile </h5>
+                    </div>
                 </div>
+
+                <div class = "button-row">
+                    <div class = "icon" (click)="goAgenda()">
+                            <img src="assets/images/syringe70x.png" alt="" />
+                    </div>
+                    <div class ="text">
+                            <button ion-button block clear (click)="goAgenda()">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
+                    </div>
+                </div>
+
             </div>
 
         </div>
 
-    </div>
-
-    <div class = "name">
-        
-    </div>
-
-    <ion-fab right bottom>
-        <button ion-fab color="danger">+</button>
-    </ion-fab>
-
-</ion-content>
+    </ion-item>

@@ -24,7 +24,7 @@ import { Content } from 'ionic-angular';
 })
 export class HomePage {
 
-    events=[];
+    dogs=[];
     public bAnimate: boolean = true;
     
     constructor(
@@ -32,16 +32,16 @@ export class HomePage {
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
         public sTask: TaskProvider,
-        //public sDog: DogProvider,
+        public sDog: DogProvider,
         public sDictionary: DictionaryService
     ) {
         console.log("Home()");
-        /*this.sDog.getDogs()
-        .then(events => {
-            this.events = events;
-            console.log(this.events);
-        });*/
-    }
+        this.sDog.getDogs().then(dogs => {this.dogs = dogs;
+                                            console.log("qui");
+                                          console.log(this.dogs);
+                                         }
+                                );
+      }
 
     ionViewDidLoad() {
     };
