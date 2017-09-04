@@ -46,6 +46,9 @@ export class HomePage {
     ionViewDidLoad() {
     };
 
+    goDogProfile() {
+        this.navCtrl.push('DogProfilePage');
+    }
     goAgenda() {
         this.navCtrl.push('AgendaPage');
     }
