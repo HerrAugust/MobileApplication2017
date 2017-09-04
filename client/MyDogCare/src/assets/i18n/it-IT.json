@@ -74,6 +74,6 @@
     "ADDEDITEVENTPAGE_DATE_ERROR_SUB": "La data finale deve essere maggiore a quella iniziale",
 
     "AGENDAPAGE_TITLE": "Agenda",
-    "AGENDAPAGE_DELETE_EVENT": "Eliminare evento?"
-	"HOMEPAGE_TITLE": "Home"
+    "AGENDAPAGE_DELETE_EVENT": "Eliminare evento?",
+    "HOMEPAGE_TITLE": "Home"
 } 

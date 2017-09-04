@@ -74,6 +74,6 @@
     "ADDEDITEVENTPAGE_DATE_ERROR_SUB": "Ending date must be grater than starting date",
 
     "AGENDAPAGE_TITLE": "Agenda",
-    "AGENDAPAGE_DELETE_EVENT": "Delete event?"
-	"HOMEPAGE_TITLE": "Home"
+    "AGENDAPAGE_DELETE_EVENT": "Delete event?",
+    "HOMEPAGE_TITLE": "Home"
 } 

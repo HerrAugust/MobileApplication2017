@@ -15,6 +15,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 
 //Providers
+import {DogProvider} from '../providers/dog.provider';
 import {AccountProvider} from '../providers/account.provider';
 import {UserPersistanceProvider} from '../providers/user-persistance.provider';
 import {TaskProvider} from '../providers/task.provider';
@@ -58,7 +59,8 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
         UserPersistanceProvider,
         TaskProvider,
         EventProvider,
-        DiseaseProvider
+        DiseaseProvider,
+        DogProvider
     ]
 })
 export class AppModule {}
