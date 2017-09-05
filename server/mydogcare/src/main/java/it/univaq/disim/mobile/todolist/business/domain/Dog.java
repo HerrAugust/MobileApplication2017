@@ -18,6 +18,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import java.util.Date;
 
 @Entity
