@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS mydogcare;
 
 CREATE TABLE IF NOT EXISTS Users    (userid INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, username VARCHAR(255), password VARCHAR(255), firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), phone VARCHAR(255) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
-CREATE TABLE IF NOT EXISTS Dog     (collarid INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, age INT, name VARCHAR(32), gender VARCHAR(1), own INT UNSIGNED, breedid INT UNSIGNED, date_birth DATE DEFAULT CURRENT_DATE, src VARCHAR(255));
+CREATE TABLE IF NOT EXISTS Dog     (collarid INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, age INT, name VARCHAR(32), gender VARCHAR(1), own INT UNSIGNED, breedid INT UNSIGNED, date_birth DATE DEFAULT "0000-00-00", src VARCHAR(255));
 CREATE TABLE IF NOT EXISTS Events   (code INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, note VARCHAR(256) DEFAULT '', vaccinevisit VARCHAR(8) NOT NULL DEFAULT "visit", starred BOOLEAN DEFAULT false, type INT UNSIGNED, userid INT UNSIGNED NOT NULL, detailtimestamp_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP, detailtimestamp_end TIMESTAMP DEFAULT CURRENT_TIMESTAMP, place VARCHAR(256) DEFAULT "");
 CREATE TABLE IF NOT EXISTS Disease (icdcode INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, name VARCHAR(64));
 CREATE TABLE IF NOT EXISTS Breed   (id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, name VARCHAR(64), origin VARCHAR(64));
@@ -38,5 +38,5 @@ INSERT INTO Veterinary (name, lastname, city) VALUES ('John', 'Smith', 'Split'),
 INSERT INTO Disease (icdcode, name) VALUES (1, 'Rabies'), (2, 'Typhus fever'), (3, 'Other');
 
 /* To test calendar part */
-INSERT INTO Events (note, type, userid, detailtimestamp) VALUES ('Dr.Strange, bring with a new collar', 1, 1, '2017-07-18 22:01:34');
+INSERT INTO Events (note, type, userid, detailtimestamp_start, detailtimestamp_end) VALUES ('Dr.Strange, bring with a new collar', 1, 1, '2017-07-18 22:01:34', '2017-07-18 22:01:34')
 
