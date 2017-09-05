@@ -16,6 +16,8 @@ export const URL = {
         TEST: "events/test",
         CREATE: "events/",
         GETALL: "events/",
+        GETALL_BYDOG: "events/dog/",
+        GETALL_BYDATE: "events/date/",
         GET: "events/",
         EDIT: "events/",
         DELETE: "events/",

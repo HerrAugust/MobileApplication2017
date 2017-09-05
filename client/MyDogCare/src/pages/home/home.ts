@@ -7,7 +7,7 @@ import {DogProvider} from '../../providers/dog.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 //Models
-import {Task} from '../../models/task.model';
+import {Dog} from '../../models/dog.model';
 import {Event} from '../../models/event.model';
 import {Dog} from '../../models/dog.model';
 
@@ -37,21 +37,23 @@ export class HomePage {
         public sDictionary: DictionaryService
     ) {
         console.log("Home()");
-        this.sDog.getDogs().then(dogs => {this.dogs = dogs;
-                                            console.log("qui");
-                                          console.log(this.dogs);
-                                         }
-                                );
+        this.sDog.getDogs().then(dogs =>
+            {
+                this.dogs = dogs;
+                console.log("got the following dogs:");
+                console.log(this.dogs);
+            });
       }
 
     ionViewDidLoad() {
     };
 
-    goDogProfile(dog: Dog) {
+    goDogProfile($event, dog: Dog) {
         this.navCtrl.push('DogProfilePage', {'dog':dog});
     }
-    goAgenda() {
-        this.navCtrl.push('AgendaPage');
+    goAgenda($event, dog: Dog) {
+        console.log(dog)
+        this.navCtrl.push('AgendaPage', { 'from': 'home', 'collarid': dog.collarid });
     }
 
 }

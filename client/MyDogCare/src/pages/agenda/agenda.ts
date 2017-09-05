@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, AlertController, LoadingController, ItemSliding} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, LoadingController, ItemSliding} from 'ionic-angular';
 
 import {EventDetailPage} from '../event-detail/event-detail';
 import {AddEditEventPage} from '../add-edit-event/add-edit-event';
@@ -25,6 +25,7 @@ export class AgendaPage {
     
     constructor(
         public navCtrl: NavController,
+        public navParam: NavParams,
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
         public popevt: Events,
@@ -32,11 +33,22 @@ export class AgendaPage {
         public sDictionary: DictionaryService
     ) {
         console.log("AgendaPage()");
-        this.sEvent.getEvents()
+        console.log(this.navParam.data)
+        let from : string = this.navParam.get("from");
+        console.log(from)
+        let collarid  = this.navParam.get("collarid");
+        console.log(collarid)
+        let date = this.navParam.get("date");
+        if(!date) date = null;
+        console.log(date)
+        let userid = this.navParam.get("userid");
+
+        this.sEvent.getEvents(from, collarid, date, userid)
             .then(events => {
                 this.events = events;
                 console.log(this.events);
             });
+
         popevt.subscribe('event:created', (eventData) => {
             // eventData is an array of parameters, so grab our first and only arg
             this._manageNewEvent(eventData);
@@ -47,8 +59,6 @@ export class AgendaPage {
         popevt.subscribe('event:deleted', (eventData) => {
             this._manageEventDeleted(eventData);
         });
-
-        sDictionary.setPreferredLanguage('it-IT');
     }
 
     // Selects the next event

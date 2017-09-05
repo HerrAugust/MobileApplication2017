@@ -1,6 +1,10 @@
 package it.univaq.disim.mobile.todolist.business.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -30,6 +34,9 @@ public class Dog implements java.io.Serializable {
 
     @Column(name = "gender", nullable = false, length = 1)
     private String gender;
+	
+	@Column(name = "src", nullable = false, length = 255)
+    private String src;
     
     @Column(name = "date_birth", nullable = false)
     private String date_birth;
@@ -80,6 +87,34 @@ public class Dog implements java.io.Serializable {
     public void setGender(String gender) {
         this.gender = gender;
     }
+	
+    public String getSrc() {
+    	File f =  new File(src);
+        String encodstring = encodeFileToBase64Binary(f);
+    	return encodstring;}
+   
+    private static String encodeFileToBase64Binary(File file){
+    	String encodedfile = null;
+    
+         try {
+             FileInputStream fileInputStreamReader = new FileInputStream(file);
+             byte[] bytes = new byte[(int)file.length()];
+             fileInputStreamReader.read(bytes);
+             encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+         } catch (FileNotFoundException e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+         } catch (IOException e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+         }
 
+         System.out.println(encodedfile);
+         return encodedfile;
+	}
+
+	public void setSrc(String src) {
+		this.src = src;
+	}
 
 }

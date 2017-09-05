@@ -9,6 +9,7 @@ export class Dog {
     public gender: string = "";
     public breed: Breed = null;
     public date_birth: string = null;
+    public src: string = "";
     
     
     constructor(obj?: any) {
@@ -25,6 +26,7 @@ export class Dog {
             this.gender = obj.gender || this.gender;
             this.breed = obj.breed || this.breed;
             this.date_birth = obj.date_birth || this.date_birth;
+            this.src = obj.src || this.src;
         }
     }
     
