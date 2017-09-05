@@ -48,7 +48,7 @@ export class DogProvider {
                 this._Dogs = [];
 
                 //console.log(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token)
-                this._http.get(URL_BASE + URL.DOGS.ALL + /*this._sAccount.getUser().token*/123456).toPromise()
+                this._http.get(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token).toPromise()
                     .then((res: Response) => 
                     {
                         const json = res.json() as ResponseServer;
