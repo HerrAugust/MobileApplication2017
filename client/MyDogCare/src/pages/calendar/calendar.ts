@@ -2,7 +2,7 @@
 // For installation and guide please refer to that page.
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, AlertController, MenuController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, MenuController  } from 'ionic-angular';
 //import * as moment from 'moment';
 
 //Pages
@@ -55,22 +55,24 @@ export class CalendarPage {
 
   constructor(
       public navCtrl: NavController,
+      public navParams: NavParams,
       private modalCtrl: ModalController,
       private alertCtrl: AlertController,
       private sEvent: EventProvider,
       public menuCtrl: MenuController
     )
   {
-    this.loadEvents();
+        let userid = this.navParams.get("userid");
+        this.loadEvents(userid);
   }
  
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarPage');
   }
 
-  loadEvents() {
+  loadEvents(userid: number) {
       //this.eventSource = this.createRandomEvents();
-      this.sEvent.getEvents_calendar()
+      this.sEvent.getEvents_calendar(userid)
       .then(events => {
           this.eventSource = events;
       });

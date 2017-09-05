@@ -1,5 +1,5 @@
 import {Component, ViewChild } from '@angular/core';
-import {Platform, Nav} from 'ionic-angular';
+import {Platform, Nav, LoadingController, AlertController, App} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
@@ -26,8 +26,11 @@ export class MyApp {
         platform: Platform,
         statusBar: StatusBar,
         splashScreen: SplashScreen,
-        sAccount: AccountProvider,
-        sDictionary: DictionaryService
+        public sAccount: AccountProvider,
+        public sDictionary: DictionaryService,
+        public loadingCtrl: LoadingController,
+        public alertCtrl: AlertController,
+        protected app: App
     ) {
         this.pages = [
             { title: 'Homepage', component: HomePage },
@@ -46,7 +49,7 @@ export class MyApp {
                 } else {
                     this.rootPage = 'LoginPage';
                 }
-                //this.rootPage = 'LoginPage';
+                //this.rootPage = 'Page';
                 //TODO remove when HomePage works
             });
 
@@ -61,7 +64,32 @@ export class MyApp {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
-      }
+    }
+
+    logout() {
+        const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
+        loading.present();
+        this.sAccount.logout()
+        .then(() => {
+            console.log("logout");
+
+            loading.dismiss().then(() => {
+                this.app.getRootNav().setRoot('LoginPage');
+            });
+        })
+        .catch((msg) => {
+            msg = this.sDictionary.get("ERROR_LOGOUT");
+            console.log("errore logout");
+
+            loading.dismiss().then(() => {
+                this.alertCtrl.create({
+                    title: this.sDictionary.get("APP_NAME"),
+                    message: msg,
+                    buttons: [this.sDictionary.get("OK")]
+                }).present();
+            });
+        });
+    }
 
 }
 

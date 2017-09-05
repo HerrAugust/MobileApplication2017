@@ -44,10 +44,18 @@ public class EventController {
     	return response;
     }
 
+    @GetMapping("/dog/{token}/{collarid}")
+    public Response findAllEventsByDog(@PathVariable(value = "token") String token, @PathVariable(value = "collarid") Long collarid) {
+    	List<Event> events = service.findEventsByDog(token, collarid);
+        Response<List<Event>> response = new Response<>(true, "all events grouped by dog");
+        response.setData(events);
+    	return response;
+    }
+    
     @GetMapping("/{token}")
-    public Response findAllEvents(@PathVariable(value = "token") String token) {
-    	List<Event> events = service.findEvents(token);
-        Response<List<Event>> response = new Response<>(true, "all events grouped");
+    public Response findAllEventsByUser(@PathVariable(value = "token") String token) {
+    	List<Event> events = service.findEventsByUser(token);
+        Response<List<Event>> response = new Response<>(true, "all events grouped by user");
         response.setData(events);
     	return response;
     }

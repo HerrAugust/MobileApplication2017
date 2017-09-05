@@ -32,6 +32,8 @@
     
     
     "LOADING_WAITING": "Attendere...",
+
+    "ERROR_LOGOUT": "Errore logout",
     
     "CONFIRM_LOGUOT": "Sei sicuro di voler effettuare il logout?",
     

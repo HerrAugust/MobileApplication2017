@@ -2,7 +2,9 @@
     
     <ion-navbar color="primary">
         <ion-title>{{ 'HOMEPAGE_TITLE' | dictionary }}</ion-title>
-        
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
     </ion-navbar>
     
 </ion-header>
@@ -33,7 +35,7 @@
                         <img src="assets/images/syringe70x.png" alt="" />
                     </div>
                     <div class ="text">
-                        <h5> Find him! </h5>
+                        <h5> Find it! </h5>
                     </div>
                 </div>
                 
@@ -42,7 +44,7 @@
                             <img src="assets/images/syringe70x.png" alt="" />
                     </div>
                     <div class ="text">
-                        <button ion-button block clear (click)="goDogProfile()">{{ 'PROFILE' | dictionary }}</button>
+                        <button ion-button block clear (click)="goDogProfile($event, dog)">{{ 'PROFILE' | dictionary }}</button>
                 </div>
                 </div>
 
@@ -51,7 +53,7 @@
                             <img src="assets/images/syringe70x.png" alt="" />
                     </div>
                     <div class ="text">
-                            <button ion-button block clear (click)="goAgenda()">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
+                            <button ion-button block clear (click)="goAgenda($event, dog)">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
                     </div>
                 </div>
 

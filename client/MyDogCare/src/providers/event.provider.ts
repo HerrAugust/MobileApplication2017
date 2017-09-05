@@ -38,11 +38,11 @@ export class EventProvider {
     /**
      * Retrieves Events in the form required by the Calendar Module
      */
-    getEvents_calendar() : Promise<Array<Event>> {
+    getEvents_calendar(userid: number) : Promise<Array<Event>> {
         console.log("EventProvider.getEvents_calendar()");
         return new Promise((resolve) => {
             // Set events in general
-            this.getEvents();
+            this.getEvents('all', -1, null, userid);
             // Adjust events as required by the Calendar Module
             resolve(this._groupEventsCalendar()); 
         });
@@ -75,35 +75,56 @@ export class EventProvider {
 
     /**
      * Retrives Event from server.
+     * If by_what = 'by date' => get events by the clicked date (the date is used in this case);
+     * if by_what = 'by dog' => get events by the chosen dog (its collarid is used in this case);
+     * if by_what = 'all'   => get all events for the user (the userid is used in this case).
      */
-    getEvents(): Promise<Array<any>> {
+    getEvents(by_what: string, collarid: number = -1, date: Date = null, userid: number = -1): Promise<Array<any>> {
         console.log("EventProvider.getEvents()");
+        console.log("collarid = "+collarid + "; userid = "+userid + "; date = " + (date ? date.toDateString() : "null"));
+
+        let url = "";
+        if(by_what == "by date") {
+            // it is more convenient to show select them client-side
+            url = URL_BASE + URL.EVENTS.GETALL_BYDATE + '7272719208635713611';
+        }
+        else if(by_what == 'all') {
+            url = URL_BASE + URL.EVENTS.GETALL + '7272719208635713611';
+        }
+        else { // by dog
+            url = URL_BASE + URL.EVENTS.GETALL_BYDOG + '7272719208635713611/' + collarid;
+        }
+
         return new Promise((resolve) => {
+            // Every time, all events are reloaded
             if (this._Events === null) {
                 this._Events = [];
-
-                // TODO rimettere commentato
-                console.log(URL_BASE + URL.EVENTS.GETALL + '7272719208635713611' /*+ this._sAccount.getUser().token*/)
-                this._http.get(URL_BASE + URL.EVENTS.GETALL  + '7272719208635713611' /*+ this._sAccount.getUser().token*/).toPromise()
-                    .then((res: Response) => {
-                        const json = res.json() as ResponseServer;
-
-                        if (json.result) {
-                            const Events = json.data;
-                            for (let event of Events) {
-                                console.log(event);
-                                this._Events.push(new Event(event));
-                            }
-                            this._GroupedEvents = this.groupEvents();
-                            resolve(this._GroupedEvents);
-                        } else {
-                            resolve(this._GroupedEvents);
-                        }
-                    })
-                    .catch(() => resolve(this._GroupedEvents));
-            } else {
-                resolve(this._GroupedEvents);
             }
+
+            // TODO rimettere commentato
+            console.log(url /*+ this._sAccount.getUser().token*/)
+            this._http.get(url /*+ this._sAccount.getUser().token*/).toPromise()
+                .then((res: Response) => {
+                    const json = res.json() as ResponseServer;
+
+                    if (json.result) {
+                        const Events = json.data;
+                        for (let event of Events) {
+                            console.log(event);
+                            this._Events.push(new Event(event));
+                            // if you want events by date (i.e., you come from calendar) then remove all events that do not match the desired date
+                            if(by_what == 'by date' && this._Events[this._Events.length].detailtimestamp_start != date.toString()) {
+                                this._Events.pop();
+                                continue;
+                            }
+                        }
+                        this._GroupedEvents = this.groupEvents();
+                        resolve(this._GroupedEvents);
+                    } else {
+                        resolve(this._GroupedEvents);
+                    }
+                })
+                .catch(() => resolve(this._GroupedEvents));
         });
     }
 

@@ -34,7 +34,17 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     
     // EVENTS
     
-    public List<Event> findEvents(String token) {
+    public List<Event> findEventsByDog(String token, Long collarid) {
+    	Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            return eventRepository.findByDogOrderByDetailtimestampAsc(collarid);
+            
+        } else {
+            return new ArrayList<>();
+        }
+    }
+    
+    public List<Event> findEventsByUser(String token) {
     	Session session = sessionRepository.findByToken(token);
         if (session != null) {
             return eventRepository.findByUserIdOrderByDetailtimestampAsc(session.getUser().getId());
