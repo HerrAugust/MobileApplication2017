@@ -36,6 +36,8 @@ INSERT INTO Breed (name, origin) VALUES ('Akita', 'Japan'), ('Rottweiler', 'Germ
 INSERT INTO Users (username, password, firstname, lastname, phone, email) VALUES ('agoneri', 'agoneri', 'Agostino', 'Neri', '+3933333333', 'agostino.neri@email.org');
 INSERT INTO Veterinary (name, lastname, city) VALUES ('John', 'Smith', 'Split'), ('Mark', 'Rossi', 'Prague');
 INSERT INTO Disease (icdcode, name) VALUES (1, 'Rabies'), (2, 'Typhus fever'), (3, 'Other');
+INSERT INTO Dog (collarid, age, name, gender, own, breedid, date_birth, src) VALUES (123, 1, 'Ariel', 'F', 1, 2, '1980-01-01', NULL);
+INSERT INTO Dog (collarid, age, name, gender, own, breedid, date_birth, src) VALUES (124, 1, 'Pippo', 'M', 1, 3, '1980-01-01', NULL);
 
 /* To test calendar part */
 INSERT INTO Events (note, type, userid, detailtimestamp_start, detailtimestamp_end) VALUES ('Dr.Strange, bring with a new collar', 1, 1, '2017-07-18 22:01:34', '2017-07-18 22:01:34')
