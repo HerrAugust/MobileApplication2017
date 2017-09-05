@@ -11,7 +11,7 @@ import {ReorderIndexes} from '../types';
 import {AccountProvider} from './account.provider';
 
 //Models 
-import {Dog} from '../models/Dog.model';
+import {Dog} from '../models/dog.model';
 
 //Constants
 import {URL_BASE, URL} from '../constants';
@@ -41,15 +41,15 @@ export class DogProvider {
      * Retrives Dogs from server.
      */
     
-    getDogs(): Promise<Array<any>> {
+    getDogs(): Promise<Array<Dog>> {
         console.log("DogProvider.getDogs()");
         return new Promise((resolve) => {
             if (this._Dogs === null) {
                 this._Dogs = [];
 
                 // TODO rimettere commentato
-                console.log(URL_BASE + URL.DOGS.ALL + 5855056480420134121 /*this._sAccount.getUser().token*/)
-                this._http.get(URL_BASE + URL.DOGS.ALL + 123456 /*this._sAccount.getUser().token*/).toPromise()
+                console.log(URL_BASE + URL.DOGS.ALL + 5855056480420134 /*this._sAccount.getUser().token*/)
+                this._http.get(URL_BASE + URL.DOGS.ALL + 5855056480420134 /*this._sAccount.getUser().token*/).toPromise()
                     .then((res: Response) => 
                     {
                         const json = res.json() as ResponseServer;
@@ -57,11 +57,15 @@ export class DogProvider {
                         if (json.result) 
                         {
                             const Dogs = json.data;
+                            console.log("SJDOIASJDOIA");
+                            console.log(Dogs)
                             for (let dog of Dogs) 
                             {
                                 console.log(dog);
                                 this._Dogs.push(new Dog(dog));
                             }
+                            console.log("sda")
+                            console.log(this._Dogs);
                             resolve(this._Dogs);
                         } 
                         else 

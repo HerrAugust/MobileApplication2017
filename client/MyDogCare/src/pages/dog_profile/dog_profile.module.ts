@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
-import {DogProfilePage} from './dog-profile';
+import {DogProfilePage} from './dog_profile';
 
 import {DictionaryModule} from '../../modules/dictionary/dictionary.module';
 
@@ -16,4 +16,4 @@ import {DictionaryModule} from '../../modules/dictionary/dictionary.module';
         DogProfilePage
     ]
 })
-export class DogProfileModule {}
+export class ProfileModule {}

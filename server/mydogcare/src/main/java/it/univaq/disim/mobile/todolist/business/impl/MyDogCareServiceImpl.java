@@ -164,8 +164,6 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 		return diseases;
 	}
 
-	//rick dogs
-
 	@Override
 	public List<Dog> findDogs(String token) {
 		Session session = sessionRepository.findByToken(token);

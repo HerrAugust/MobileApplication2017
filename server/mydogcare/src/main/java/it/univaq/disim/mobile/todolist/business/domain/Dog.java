@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "dog")
@@ -30,7 +31,18 @@ public class Dog implements java.io.Serializable {
     @Column(name = "gender", nullable = false, length = 1)
     private String gender;
     
-    @JsonIgnore
+    @Column(name = "date_birth", nullable = false)
+    private String date_birth;
+    
+    public String getDate_birth() {
+		return date_birth;
+	}
+
+	public void setDate_birth(String date_birth) {
+		this.date_birth = date_birth;
+	}
+
+	@JsonIgnore
     @ManyToOne /* A user has many dogs; an event belongs to one user. So, many events belong to one user */
     @JoinColumn(name="own", nullable = false)
     private User user;
@@ -51,7 +63,9 @@ public class Dog implements java.io.Serializable {
         this.collarId = id;
     }
 
-    public String getName() {
+    
+
+	public String getName() {
         return name;
     }
 

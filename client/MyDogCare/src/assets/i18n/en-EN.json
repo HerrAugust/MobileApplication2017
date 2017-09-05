@@ -15,6 +15,12 @@
     "LASTNAME": "Lastname",
     "LANGUAGE": "Language",
     
+    "DOG_PROFILE": "Dog Profile",
+    "NAME": "Name",
+    "COLLARID": "Collarid",
+    "GENDER": "Gender",
+    "DATE_BIRTH": "Date of birth",
+
     "DELETE": "Delete",
     "EDIT": "Edit",
     "CANCEL": "Cancel",
@@ -75,5 +81,7 @@
 
     "AGENDAPAGE_TITLE": "Agenda",
     "AGENDAPAGE_DELETE_EVENT": "Delete event?",
-    "HOMEPAGE_TITLE": "Home"
+    "HOMEPAGE_TITLE": "Home",
+    "DOG_PROFILE": "Dog Profile",
+    "DOG_BIRTH": "Date birth"
 } 

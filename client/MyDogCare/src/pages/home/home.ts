@@ -9,6 +9,7 @@ import {DictionaryService} from '../../modules/dictionary/providers/dictionary.s
 //Models
 import {Task} from '../../models/task.model';
 import {Event} from '../../models/event.model';
+import {Dog} from '../../models/dog.model';
 
 //Types
 import {ReorderIndexes} from '../../types';
@@ -46,8 +47,8 @@ export class HomePage {
     ionViewDidLoad() {
     };
 
-    goDogProfile() {
-        this.navCtrl.push('DogProfilePage');
+    goDogProfile(dog: Dog) {
+        this.navCtrl.push('DogProfilePage', {'dog':dog});
     }
     goAgenda() {
         this.navCtrl.push('AgendaPage');

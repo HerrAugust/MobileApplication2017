@@ -4,9 +4,11 @@ import {IonicPage, App, NavController, NavParams, AlertController, LoadingContro
 //Providers
 import {AccountProvider} from '../../providers/account.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
+import {DogProvider} from '../../providers/dog.provider'
 
 //Models
 import {User} from '../../models/user.model';
+import {Dog} from '../../models/dog.model';
 
 
 import {Language} from '../../modules/dictionary/types';
@@ -14,25 +16,30 @@ import {Language} from '../../modules/dictionary/types';
 @IonicPage()
 @Component({
     selector: 'page-profile',
-    templateUrl: 'dog-profile.html',
+    templateUrl: 'dog_profile.html',
 })
 export class DogProfilePage {
 
     user: User;
+    dog: Dog;
+    dogss = [];    
     editable: boolean = false;
     languages: Language[] = [];
     preferredLanguage: string = "";
     
-    constructor(
+    constructor(    
         public app: App,
         public navCtrl: NavController,
         public navParams: NavParams,
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
         public sAccount: AccountProvider,
-        public sDictionary: DictionaryService
+        public sDictionary: DictionaryService,
+        public sDog: DogProvider
     ) {
         this.user = this.sAccount.getUser();
+        let dog = this.navParams.get("dog");
+        this.dog = dog;
         
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();
