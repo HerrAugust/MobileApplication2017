@@ -51,11 +51,17 @@ export class HomePage {
         this.navCtrl.push('AgendaPage', { 'from': 'home', 'collarid': dog.collarid });
     }
 
+
     addDog() {
         console.log("Home.addDog()");
 
         this.navCtrl.push(DogRegistrationPage);   
     }
     
+
+    goDogSearch($event, dog: Dog) {
+        this.navCtrl.push('DogSearchPage', {'dog':dog});
+    }
+
 
 }

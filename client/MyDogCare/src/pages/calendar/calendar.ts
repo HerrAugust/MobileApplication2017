@@ -107,7 +107,6 @@ export class CalendarPage {
       this.isToday = today.getTime() === event.getTime();*/
     
     if(!this.menuCtrl.isOpen()) {
-        console.log("AIhui")
         this.navCtrl.push(AgendaPage, { 'from': 'CalendarPage', 'date': event });
     }
   }
