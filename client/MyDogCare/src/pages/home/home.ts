@@ -49,4 +49,8 @@ export class HomePage {
         this.navCtrl.push('AgendaPage', { 'from': 'home', 'collarid': dog.collarid });
     }
 
+    goDogSearch($event, dog: Dog) {
+        this.navCtrl.push('DogSearchPage', {'dog':dog});
+    }
+
 }

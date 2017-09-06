@@ -13,6 +13,7 @@ import {DictionaryModule} from '../modules/dictionary/dictionary.module'
 //Native Plugins
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
+import {GoogleMaps} from '@ionic-native/google-maps';
 
 //Providers
 import {DogProvider} from '../providers/dog.provider';
@@ -53,6 +54,7 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
     providers: [
         StatusBar,
         SplashScreen,
+        GoogleMaps,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AccountProvider,
         UserPersistanceProvider,
