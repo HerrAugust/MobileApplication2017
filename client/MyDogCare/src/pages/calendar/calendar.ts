@@ -100,12 +100,14 @@ export class CalendarPage {
   }
 
   onCurrentDateChanged(event:Date) {
+    console.log("CalendarPage.onCurrentDateChanged()");
       /*var today = new Date();
       today.setHours(0, 0, 0, 0);
       event.setHours(0, 0, 0, 0);
       this.isToday = today.getTime() === event.getTime();*/
-
-    if(!this.menuCtrl.isOpen) {
+    
+    if(!this.menuCtrl.isOpen()) {
+        console.log("AIhui")
         this.navCtrl.push(AgendaPage, { 'from': 'CalendarPage', 'date': event });
     }
   }
