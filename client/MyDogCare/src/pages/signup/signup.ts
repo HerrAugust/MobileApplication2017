@@ -76,13 +76,15 @@ export class SignupPage {
     private _validate() {
         return new Promise((resolve, reject) => {
             let msg = "";
-            
+            let MESSAGE = "WARNING_SIGNUP_FIELD_EMPTY";
             if (this.user.username.trim() === "") {
-                msg = this.sDictionary.get("WARNING_SIGNUP_USERNAME_EMPTY");
-            } else if (this.user.password.trim() === "") {
-                msg = this.sDictionary.get("WARNING_SIGNUP_PASSWORD_EMPTY");
-            } else if (this.user.password2.trim() === "") {
-                msg = this.sDictionary.get("WARNING_SIGNUP_PASSWORD_EMPTY");
+                msg = this.sDictionary.get(MESSAGE);
+            } 
+            if (this.user.password.trim() === "") {
+                msg = this.sDictionary.get(MESSAGE);
+            } 
+            if (this.user.password2.trim() === "") {
+                msg = this.sDictionary.get(MESSAGE);
             }
 
             if(this.user.password != this.user.password2){
