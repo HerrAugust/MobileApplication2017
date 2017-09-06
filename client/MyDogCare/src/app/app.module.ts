@@ -18,13 +18,12 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {DogProvider} from '../providers/dog.provider';
 import {AccountProvider} from '../providers/account.provider';
 import {UserPersistanceProvider} from '../providers/user-persistance.provider';
-import {TaskProvider} from '../providers/task.provider';
 import {EventProvider} from '../providers/event.provider';
 import {DiseaseProvider} from '../providers/disease.provider';
 
 // Pages
 import {EventDetailPage} from '../pages/event-detail/event-detail';
-import {AddEditEventPage} from '../pages/add-edit-event/add-edit-event';
+import {AddEditEventPageModule} from '../pages/add-edit-event/add-edit-event.module';
 import {CalendarPageModule} from '../pages/calendar/calendar.module';
 import {HomeModule} from '../pages/home/home.module';
 import {AgendaPageModule} from '../pages/agenda/agenda.module';
@@ -33,19 +32,19 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
     declarations: [
         MyApp,
         EventDetailPage,
-        AddEditEventPage,
     ],
     imports: [
         BrowserModule,
         HttpModule,
         DictionaryModule,
         IonicStorageModule.forRoot({
-            name: '__todo_list_lezione',
+            name: '__mydogcare',
         }),
         IonicModule.forRoot(MyApp),
         AgendaPageModule,
         HomeModule,
-        CalendarPageModule
+        CalendarPageModule,
+        AddEditEventPageModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -57,7 +56,6 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AccountProvider,
         UserPersistanceProvider,
-        TaskProvider,
         EventProvider,
         DiseaseProvider,
         DogProvider

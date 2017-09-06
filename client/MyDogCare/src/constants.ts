@@ -40,5 +40,5 @@ export const URL = {
 }
 
 export const STORAGE_KEYS = {
-    USER: "todolist_user"
+    USER: "mydogcare_user"
 }

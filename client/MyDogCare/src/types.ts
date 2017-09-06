@@ -11,8 +11,3 @@ export type ResponseServer = {
     data: any;
     message: string;
 }
-
-export type OrderTask = {
-    id: number,
-    position: number
-}

@@ -3,9 +3,6 @@ import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-//Providers
-import {AccountProvider} from './account.provider';
-
 //Models 
 import {Disease} from '../models/disease.model';
 

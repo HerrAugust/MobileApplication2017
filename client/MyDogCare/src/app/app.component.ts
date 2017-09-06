@@ -50,7 +50,6 @@ export class MyApp {
                     this.rootPage = 'LoginPage';
                 }
                 //this.rootPage = 'Page';
-                //TODO remove when HomePage works
             });
 
             // Okay, so the platform is ready and our plugins are available.

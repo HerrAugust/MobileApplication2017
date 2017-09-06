@@ -1,17 +1,12 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, AlertController, LoadingController, ItemSliding} from 'ionic-angular';
+import {IonicPage, NavController, AlertController, LoadingController} from 'ionic-angular';
 
 //Providers
-import {TaskProvider} from '../../providers/task.provider';
 import {DogProvider} from '../../providers/dog.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 //Models
 import {Dog} from '../../models/dog.model';
-import {Event} from '../../models/event.model';
-
-//Types
-import {ReorderIndexes} from '../../types';
 
 // Needed to select next event
 import { ViewChild } from "@angular/core";
@@ -31,7 +26,6 @@ export class HomePage {
         public navCtrl: NavController,
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
-        public sTask: TaskProvider,
         public sDog: DogProvider,
         public sDictionary: DictionaryService
     ) {

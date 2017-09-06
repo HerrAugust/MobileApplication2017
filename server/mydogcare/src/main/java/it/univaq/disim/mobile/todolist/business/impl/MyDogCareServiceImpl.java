@@ -173,13 +173,18 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 		diseases.forEach(System.out::println);
 		return diseases;
 	}
+	
+	// DOGS
 
 	@Override
 	public List<Dog> findDogs(String token) {
 		Session session = sessionRepository.findByToken(token);
-		List<Dog> dogs = dogRepository.findByUserId(session.getUser().getId());
-		dogs.forEach(System.out::println);
-		return dogs;
+		if (session != null) {
+			List<Dog> dogs = dogRepository.findByUserId(session.getUser().getId());
+			dogs.forEach(System.out::println);
+			return dogs;
+		}
+		return new ArrayList<>();
 	}
 
 }
