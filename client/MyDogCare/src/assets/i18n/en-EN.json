@@ -83,6 +83,8 @@
     "AGENDAPAGE_TITLE": "Agenda",
     "AGENDAPAGE_DELETE_EVENT": "Delete event?",
     "HOMEPAGE_TITLE": "Home",
-    "DOG_PROFILE": "Dog Profile",
-    "DOG_BIRTH": "Date birth"
+    "DOG_BIRTH": "Date birth",
+    "DOG_REGISTRATION": "Dog Registration",
+    "DOG_BIRTH_ENTRY": "Dog Birth"
+    
 } 

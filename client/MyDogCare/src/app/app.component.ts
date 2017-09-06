@@ -2,6 +2,8 @@ import {Component, ViewChild } from '@angular/core';
 import {Platform, Nav, LoadingController, AlertController, App} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import { Pipe, PipeTransform } from '@angular/core'
+import * as moment from 'moment'
 
 //Providers
 import {AccountProvider} from '../providers/account.provider';
@@ -91,4 +93,3 @@ export class MyApp {
     }
 
 }
-

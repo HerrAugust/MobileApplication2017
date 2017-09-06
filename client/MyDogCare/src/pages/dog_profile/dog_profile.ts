@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, App, NavController, NavParams, AlertController, LoadingController} from 'ionic-angular';
+import * as moment from 'moment';
 
 //Providers
 import {AccountProvider} from '../../providers/account.provider';
@@ -40,6 +41,8 @@ export class DogProfilePage {
         this.user = this.sAccount.getUser();
         let dog = this.navParams.get("dog");
         this.dog = dog;
+
+        this.dog.date_birth = this._formatdate();
         
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();
@@ -47,6 +50,15 @@ export class DogProfilePage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad Settings');
+    }
+
+    _formatdate(){
+        if(this.dog == null)
+        {
+            return;
+        }
+        let d = new Date(this.dog.date_birth);
+        return moment(d).format('DD-MM-YYYY');
     }
 
     onChangeLanguage() {

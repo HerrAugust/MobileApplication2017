@@ -21,6 +21,7 @@
             <div class = "name">
                      <h2>{{ dog.name }}</h2>
             </div>
+            <br>
 
             <div class = "portrait">
             
@@ -30,6 +31,7 @@
 
             <div class = "buttons">
 
+                
                 <div class = "button-row">
                     <div class = "icon">
                         <img src="assets/images/syringe70x.png" alt="" />
@@ -45,7 +47,7 @@
                     </div>
                     <div class ="text">
                         <button ion-button block clear (click)="goDogProfile($event, dog)">{{ 'PROFILE' | dictionary }}</button>
-                </div>
+                    </div>
                 </div>
 
                 <div class = "button-row">
@@ -65,7 +67,7 @@
 
 
     <ion-fab right bottom>
-        <button ion-fab color="danger">+</button>
+        <button ion-fab color="primary" (click)="addDog()">+</button>
     </ion-fab>
 
 </ion-content>

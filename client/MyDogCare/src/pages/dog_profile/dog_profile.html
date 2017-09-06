@@ -12,16 +12,25 @@
 
         <ion-list>
 
-            <ion-img style="width: 100%; margin: auto; height: 150px;" src="..."></ion-img>    
+            <ion-title text-center>
+                <ion-img width="180" height="180" src="data:image/jpeg;base64,{{ dog.src }}"></ion-img>    
+            </ion-title>    
 
             <ion-item>
                 <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>
                 <ion-input type="text" disabled="true" [(ngModel)]="dog.name"></ion-input>
             </ion-item>
 
+            <!--    
             <ion-item>
                 <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
                 <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.monthEnds"></ion-datetime>
+            </ion-item>
+            -->
+
+            <ion-item>
+                <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
+                <ion-input type="text" disabled="true" [(ngModel)]="dog.date_birth"></ion-input>
             </ion-item>
 
             <!--    

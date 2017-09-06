@@ -20,6 +20,8 @@
     "COLLARID": "Collarid",
     "GENDER": "Gender",
     "DATE_BIRTH": "Data del compleanno",
+    "DOG_REGISTRATION": "Registrazione Cane",
+    
 
 
     
@@ -85,7 +87,7 @@
     "AGENDAPAGE_TITLE": "Agenda",
     "AGENDAPAGE_DELETE_EVENT": "Eliminare evento?",
     "HOMEPAGE_TITLE": "Home",
-    "DOG_PROFILE": "Dog Profile",
-    "DOG_BIRTH": "Data compleanno"
+    "DOG_BIRTH": "Data compleanno",
+    "DOG_BIRTH_ENTRY": "Dog Birth"
 
 } 

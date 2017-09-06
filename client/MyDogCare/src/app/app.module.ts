@@ -27,6 +27,8 @@ import {AddEditEventPageModule} from '../pages/add-edit-event/add-edit-event.mod
 import {CalendarPageModule} from '../pages/calendar/calendar.module';
 import {HomeModule} from '../pages/home/home.module';
 import {AgendaPageModule} from '../pages/agenda/agenda.module';
+import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registration.module';
+
 
 @NgModule({
     declarations: [
@@ -45,6 +47,7 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
         HomeModule,
         CalendarPageModule,
         AddEditEventPageModule,
+        DogRegistrationPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
