@@ -48,9 +48,8 @@
     
     "WARNING_LOGIN_USERNAME_EMPTY": "Enter the username of your TodoList account.",
     "WARNING_LOGIN_PASSWORD_EMPTY": "Enter the password.",
-    "WARNING_SIGNUP_USERNAME_EMPTY": "Enter the username.",
-    "WARNING_SIGNUP_EMAIL_EMPTY": "Enter the email.",
-    "WARNING_SIGNUP_PASSWORD_EMPTY": "Enter the password.",
+    "WARNING_SIGNUP_FIELD_EMPTY" : "Please enter all fields.",
+    "WARNING_SIGNUP_PASSWORD_WRONG": "The two passwords are incorrect.",
     
     "ERROR_LOGIN_USERNAME_PASSWORD": "Incorrect username or passord",
     "ERROR_PROFILE_SAVE": "You could not save your profile.",
