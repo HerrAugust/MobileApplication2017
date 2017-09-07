@@ -41,8 +41,9 @@ export class DogProfilePage {
         this.user = this.sAccount.getUser();
         let dog = this.navParams.get("dog");
         this.dog = dog;
+        let splitted = this.dog.date_birth.split('-');
+        this.dog.date_birth = splitted[2] + '-' + splitted[1] + '-' + splitted[0];
 
-        this.dog.date_birth = this._formatdate();
         
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();
@@ -52,13 +53,12 @@ export class DogProfilePage {
         console.log('ionViewDidLoad Settings');
     }
 
-    _formatdate(){
-        if(this.dog == null)
-        {
-            return;
-        }
-        let d = new Date(this.dog.date_birth);
-        return moment(d).format('DD-MM-YYYY');
+    editDog() {
+        this.editable = !this.editable;
+    }
+
+    saveDog() {
+
     }
 
     onChangeLanguage() {
