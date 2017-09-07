@@ -11,9 +11,6 @@ import {DogProvider} from '../../providers/dog.provider'
 import {User} from '../../models/user.model';
 import {Dog} from '../../models/dog.model';
 
-//interfaces
-import {DogRegistrationInterface} from '../../interfaces/dog-registration.interface';
-
 import {Language} from '../../modules/dictionary/types';
 
 @IonicPage()

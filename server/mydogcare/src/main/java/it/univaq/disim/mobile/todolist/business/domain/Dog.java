@@ -73,8 +73,6 @@ public class Dog implements java.io.Serializable {
         this.collarId = id;
     }
 
-    
-
 	public String getName() {
         return name;
     }
