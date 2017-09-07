@@ -11,6 +11,8 @@ import {DogProvider} from '../../providers/dog.provider'
 import {User} from '../../models/user.model';
 import {Dog} from '../../models/dog.model';
 
+//interfaces
+import {DogRegistrationInterface} from '../../interfaces/dog-registration.interface';
 
 import {Language} from '../../modules/dictionary/types';
 
@@ -27,7 +29,9 @@ export class DogRegistrationPage {
     editable: boolean = false;
     languages: Language[] = [];
     preferredLanguage: string = "";
-    
+
+    gender : string = "M";
+
     constructor(    
         public app: App,
         public navCtrl: NavController,
@@ -45,7 +49,7 @@ export class DogRegistrationPage {
         //this.dog.date_birth = this._formatdate();
         
         this.languages = this.sDictionary.getLanguages();
-        this.preferredLanguage = this.sDictionary.getPreferredLanguage();
+        this.preferredLanguage = this.sDictionary.getPreferredLanguage();    
     }
 
     ionViewDidLoad() {
@@ -56,66 +60,44 @@ export class DogRegistrationPage {
         let d = new Date(this.dog.date_birth);
         return moment(d).format('DD-MM-YYYY');
     }
-
-    onChangeLanguage() {
-        const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-        loading.present();
-        
-        this.sDictionary.setPreferredLanguage(this.preferredLanguage)
-            .then(() => {
-                loading.dismiss().then(() => {
-                    this.app.getRootNav().setRoot('TabsPage');
-                });
-            })
-            .catch(() => {
-                console.log("Errore nel caricamento del dizionario");
-                loading.dismiss();
-            });
-    }
     
-    save() {
-        const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-        loading.present();
+    
 
-        this.sAccount.update()
-            .then(() => {
-                loading.dismiss().then(() => {
-                    this.editable = false;
-                });
-            })
-            .catch((msg) => {
-                loading.dismiss().then(() => {
+
+    dog_registration() {
+        console.log("alfonsino");
+        
+        
+            const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+            loading.present();
+
+            this.dog = new Dog({'gender': this.gender});
+            
+            this.sDog.sendDog(this.dog)
+                .then(() => {
+                    loading.dismiss().then(() => {
+                        const alert = this.alertCtrl.create({
+                            title: this.sDictionary.get("APP_NAME"),
+                            message: this.sDictionary.get("TEXT_SIGNUP_SUCCESS"),
+                            buttons: [this.sDictionary.get("OK")]
+                        });
+                        alert.present();
+                        alert.onDidDismiss(() => {
+                            this.navCtrl.pop();
+                        });
+                    });
+                })
+                .catch(msg => {
+                    loading.dismiss();
                     this.alertCtrl.create({
                         title: this.sDictionary.get("APP_NAME"),
                         message: msg,
-                        buttons: [this.sDictionary.get("OK")] 
+                        buttons: [this.sDictionary.get("OK")]
                     }).present();
                 });
-            });
+        
     }
-
-    logout() {
-        this.alertCtrl.create({
-            title: this.sDictionary.get("APP_NAME"),
-            message: this.sDictionary.get("CONFIRM_LOGUOT"),
-            buttons: [this.sDictionary.get("NO"), {
-                text: this.sDictionary.get("SI"),
-                handler: () => {
-                    const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
-                    loading.present();
-
-                    this.sAccount.logout()
-                        .then(() => {
-                            loading.dismiss().then(() => {
-                                this.app.getRootNav().setRoot('LoginPage');
-                            });
-                        })
-                        .catch(() => {
-
-                        });
-                }
-            }]
-        }).present();
-    }
+    
+   
 
 }

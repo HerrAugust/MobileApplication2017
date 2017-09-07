@@ -29,6 +29,13 @@
       </ion-item>
 
       <ion-item>
+        <ion-label stacked>{{ 'DOG_AGE' | dictionary }}</ion-label> 
+        <ion-icon name="md-time" item-start></ion-icon>
+        <ion-label class="title" stacked></ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
         <ion-label stacked>{{ 'GENDER' | dictionary }}</ion-label>
         <ion-select [(ngModel)]="gender">
             <ion-option value="M">Male</ion-option>
@@ -64,7 +71,7 @@
     -->      
 
     <div padding>
-        <button ion-button color="primary" block (click)="saveEvent()">ADD</button>
+        <button ion-button color="primary" block (click)="dog_registration()">ADD</button>
     </div>
 
 

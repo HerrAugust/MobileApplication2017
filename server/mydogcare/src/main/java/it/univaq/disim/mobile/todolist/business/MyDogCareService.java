@@ -35,6 +35,9 @@ public interface MyDogCareService {
 
 	List<Disease> findDiseases();
 
+	boolean createDog(Dog dog);
+	
 	List<Dog> findDogs(String token);
+	
 
 }

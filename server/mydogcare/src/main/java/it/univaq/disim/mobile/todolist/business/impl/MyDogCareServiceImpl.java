@@ -186,5 +186,15 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 		}
 		return new ArrayList<>();
 	}
+	
+	@Override
+    public boolean createDog(Dog dog) {
+//		 Dog d = dogRepository.(dog);
+//	        if (u != null) {
+//	            return false;
+//	        }
+	        dogRepository.save(dog);
+	        return true;
+    }
 
 }

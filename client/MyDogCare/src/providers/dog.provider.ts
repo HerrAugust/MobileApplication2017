@@ -3,6 +3,9 @@ import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+//Interfaces
+import {DogRegistrationInterface} from '../interfaces/dog-registration.interface';
+
 //Providers
 import {AccountProvider} from './account.provider';
 
@@ -28,8 +31,28 @@ export class DogProvider {
         console.log('Hello Dog Provider'); 
     }
 
+
     /**
-     * Retrives Dogs from server.
+     * Send data of dog towards the server.
+     */
+    sendDog(dog: Dog): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this._http.post(URL_BASE + URL.DOGS.DOGREGISTRATION, dog).toPromise()
+                .then((res: Response) => {
+                    const json = res.json() as ResponseServer;
+                    
+                    if (json.result) {
+                        resolve();
+                    } else {
+                        reject(json.message);
+                    }
+                })
+                .catch((err: Response) => reject(`Errore status: ${err.status}`));
+        });
+    }
+
+    /**
+     * Retrieves Dogs from server.
      */
     
     getDogs(): Promise<Array<Dog>> {
