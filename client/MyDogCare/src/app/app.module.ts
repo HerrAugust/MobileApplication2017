@@ -14,6 +14,7 @@ import {DictionaryModule} from '../modules/dictionary/dictionary.module'
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {GoogleMaps} from '@ionic-native/google-maps';
+import {Geolocation} from '@ionic-native/geolocation';
 
 //Providers
 import {DogProvider} from '../providers/dog.provider';
@@ -58,6 +59,7 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
         StatusBar,
         SplashScreen,
         GoogleMaps,
+        Geolocation,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AccountProvider,
         UserPersistanceProvider,
