@@ -1,0 +1,72 @@
+<ion-header>
+    
+    <ion-navbar color="primary">
+        <ion-title>{{ 'DOG_REGISTRATION' | dictionary }}</ion-title>
+        
+    </ion-navbar>
+    
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+
+      <ion-list no-lines>
+    
+      
+      <ion-item>
+        <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>  
+        <ion-icon name="contact" item-start></ion-icon>
+        <ion-label class="title" stacked></ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{ 'COLLARID' | dictionary }}</ion-label> 
+        <ion-icon name="create" item-start></ion-icon>
+        <ion-label class="title" stacked></ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{ 'GENDER' | dictionary }}</ion-label>
+        <ion-select [(ngModel)]="gender">
+            <ion-option value="M">Male</ion-option>
+            <ion-option value="F">Female</ion-option>
+        </ion-select>
+        <ion-icon name="md-information-circle" item-start></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="title" stacked>{{ 'DOG_BIRTH_ENTRY' | dictionary }}</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+        <ion-icon name="md-calendar" item-start></ion-icon>
+      </ion-item>     
+            
+    </ion-list>  
+
+    <!--
+      <ion-row>
+        <ion-label class="title">{{ 'DOG_BIRTH_ENTRY' | dictionary }}</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-col col-2><ion-icon name="md-calendar" ></ion-icon></ion-col>
+        <ion-col col-5><ion-datetime ng-change="datepicker1_changed()" class="date" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY"></ion-datetime></ion-col>
+        <ion-col col-5><ion-datetime class="hour" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime></ion-col>
+      </ion-row>
+    -->  
+
+    </ion-grid>
+
+    <!--
+    <ion-label>Profile Picture</ion-label>
+    <input type="file" accept="image/*" id="upload" />
+    -->      
+
+    <div padding>
+        <button ion-button color="primary" block (click)="saveEvent()">ADD</button>
+    </div>
+
+
+</ion-content>
+  

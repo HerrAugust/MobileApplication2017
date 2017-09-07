@@ -17,9 +17,9 @@ import {Language} from '../../modules/dictionary/types';
 @IonicPage()
 @Component({
     selector: 'page-profile',
-    templateUrl: 'dog_profile.html',
+    templateUrl: 'dog_registration.html',
 })
-export class DogProfilePage {
+export class DogRegistrationPage {
 
     user: User;
     dog: Dog;
@@ -42,7 +42,7 @@ export class DogProfilePage {
         let dog = this.navParams.get("dog");
         this.dog = dog;
 
-        this.dog.date_birth = this._formatdate();
+        //this.dog.date_birth = this._formatdate();
         
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();
@@ -53,10 +53,6 @@ export class DogProfilePage {
     }
 
     _formatdate(){
-        if(this.dog == null)
-        {
-            return;
-        }
         let d = new Date(this.dog.date_birth);
         return moment(d).format('DD-MM-YYYY');
     }

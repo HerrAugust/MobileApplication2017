@@ -13,6 +13,7 @@ import {DictionaryModule} from '../modules/dictionary/dictionary.module'
 //Native Plugins
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
+import {GoogleMaps} from '@ionic-native/google-maps';
 
 //Providers
 import {DogProvider} from '../providers/dog.provider';
@@ -27,6 +28,8 @@ import {AddEditEventPageModule} from '../pages/add-edit-event/add-edit-event.mod
 import {CalendarPageModule} from '../pages/calendar/calendar.module';
 import {HomeModule} from '../pages/home/home.module';
 import {AgendaPageModule} from '../pages/agenda/agenda.module';
+import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registration.module';
+
 
 @NgModule({
     declarations: [
@@ -45,6 +48,7 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
         HomeModule,
         CalendarPageModule,
         AddEditEventPageModule,
+        DogRegistrationPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -53,6 +57,7 @@ import {AgendaPageModule} from '../pages/agenda/agenda.module';
     providers: [
         StatusBar,
         SplashScreen,
+        GoogleMaps,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AccountProvider,
         UserPersistanceProvider,

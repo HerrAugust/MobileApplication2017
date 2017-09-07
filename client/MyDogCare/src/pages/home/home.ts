@@ -12,6 +12,8 @@ import {Dog} from '../../models/dog.model';
 import { ViewChild } from "@angular/core";
 import { Content } from 'ionic-angular';
 
+import {DogRegistrationPage} from '../dog_registration/dog_registration';
+
 @IonicPage()
 @Component({
     selector: 'page-home',
@@ -48,5 +50,18 @@ export class HomePage {
         console.log(dog)
         this.navCtrl.push('AgendaPage', { 'from': 'home', 'collarid': dog.collarid });
     }
+
+
+    addDog() {
+        console.log("Home.addDog()");
+
+        this.navCtrl.push(DogRegistrationPage);   
+    }
+    
+
+    goDogSearch($event, dog: Dog) {
+        this.navCtrl.push('DogSearchPage', {'dog':dog});
+    }
+
 
 }
