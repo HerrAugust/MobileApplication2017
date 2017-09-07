@@ -22,30 +22,16 @@ page-agenda {
 }
 
 .list-avatar-page {
-  /*span.actions {
-    float: right;
-    margin-top: -35px;
-  }*/
+    ion-list-header {
+        margin-bottom: 0px;
+    }
 
-  ion-list-header {
-    margin-bottom: 0px;
-  }
+    .currentEvent {
+        background-color: #99ffff;
+    }
 
-  .currentEvent {
-      background-color: #99ffff;
-  }
-
- /* .item {
-      margin-left: 10px;
-      align-self: flex-start;
-  }*/
-
-  /*p {
-      align-self: flex-start;
-  }*/
-  
-}
-
-.hidden {
-    visibility: hidden;
+    .emptylist {
+        text-align: center;
+        margin-top: 15px;
+    }
 }

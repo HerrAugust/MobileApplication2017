@@ -1,7 +1,3 @@
-//export const USE_PROXY = false;
-
-//export const URL_BASE = USE_PROXY ? 'api/' : 'http://10.171.50.136:8080/mydogcare/api/';
-
 export const USE_PROXY = true;
 
 export const URL_BASE = USE_PROXY ? 'api/' : 'http://localhost/mydogcare/api/';
