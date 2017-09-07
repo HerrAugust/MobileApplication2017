@@ -85,8 +85,10 @@
     "ADDEDITEVENTPAGE_DATE_ERROR_SUB": "La data finale deve essere maggiore a quella iniziale",
 
     "AGENDAPAGE_TITLE": "Agenda",
+    "AGENDAPAGE_NOEVENTS": "Oops!! Ancora nessun evento, aggiungine uno!",
     "AGENDAPAGE_DELETE_EVENT": "Eliminare evento?",
     "HOMEPAGE_TITLE": "Home",
+    "HOMEPAGE_NODOGS": "Oops!! Ancora nessun cane, aggiungine uno!",
     "DOG_BIRTH": "Data compleanno",
     "DOG_BIRTH_ENTRY": "Dog Birth"
 

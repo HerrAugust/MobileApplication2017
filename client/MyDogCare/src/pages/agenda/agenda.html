@@ -11,6 +11,8 @@
 <ion-content class="list-avatar-page" [ngClass]="{'activeAnimate': bAnimate}" overflow-scroll="true">
 
     <ion-list *ngFor="let group of events">
+        <div class="emptylist" *ngIf="events.length == 0">{{ 'AGENDAPAGE_NOEVENTS' | dictionary }}</div>
+
         <ion-list-header light>{{ group.month }}</ion-list-header>
         <ion-item *ngFor="let event of group.events" [ngClass]="{'currentEvent': event.coloured, '': !event.coloured}" (click)="openDetails(event)">
             <ion-avatar item-start> 
