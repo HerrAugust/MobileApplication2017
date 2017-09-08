@@ -18,9 +18,7 @@ export class Dog {
     
     setObj(obj?: any) {
         if (obj) {
-            console.log(typeof obj.collarId === "number");
-            console.log(obj.collarId)
-            this.collarid = (typeof obj.collarId === "number") ? obj.collarId : this.collarid;
+            this.collarid = obj.collarId;
             this.age = obj.age || this.age;
             this.name = obj.name || this.name;
             this.gender = obj.gender || this.gender;
