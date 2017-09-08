@@ -1,6 +1,6 @@
-export const USE_PROXY = false;
+export const USE_PROXY = true;
 
-export const URL_BASE = USE_PROXY ? 'api/' : 'http://192.168.1.4:8081/mydogcare/api/';
+export const URL_BASE = USE_PROXY ? 'api/' : 'http://192.168.1.4:8080/mydogcare/api/';
 
 export const URL = {
     USERS: {

@@ -22,6 +22,7 @@ export class AgendaPage {
 
     events= []; // This is not precisely an Array<Event>, but an obj like [{"month": "July 2017", events:[{"code":"1", "note":"some note", "detailtimestamp":"2017-07-18 22:01:34.0"}]}], i.e. the events grouped by month
     public bAnimate: boolean = true;
+    collarid: number = -1;
     
     constructor(
         public navCtrl: NavController,
@@ -36,14 +37,14 @@ export class AgendaPage {
         console.log(this.navParam.data)
         let from : string = this.navParam.get("from");
         console.log(from)
-        let collarid  = this.navParam.get("collarid");
-        console.log(collarid)
+        this.collarid  = this.navParam.get("collarid");
+        console.log(this.collarid)
         let date = this.navParam.get("date");
         if(!date) date = null;
         console.log(date)
         let userid = this.navParam.get("userid");
 
-        this.sEvent.getEvents(from, collarid, date, userid)
+        this.sEvent.getEvents(from, this.collarid, date, userid)
             .then(events => {
                 this.events = events;
                 console.log(this.events);
@@ -106,7 +107,7 @@ export class AgendaPage {
         console.log("AgendaPage.addEvent()");
         e.stopPropagation();
 
-        this.navCtrl.push(AddEditEventPage, {'code': -1, 'actiontype': 'Save'});   
+        this.navCtrl.push(AddEditEventPage, {'code': -1, 'actiontype': 'Save', 'collarid': this.collarid});   
     }
     
     editEvent(e, event: Event) {
@@ -114,7 +115,7 @@ export class AgendaPage {
         console.log("event code="+event.code);
         e.stopPropagation();
 
-        this.navCtrl.push(AddEditEventPage, {'code': event.code, 'actiontype': 'Modify'});
+        this.navCtrl.push(AddEditEventPage, {'code': event.code, 'actiontype': 'Modify', 'collarid': this.collarid});
     }
     
     toggleStarEvent(e, event: Event) {

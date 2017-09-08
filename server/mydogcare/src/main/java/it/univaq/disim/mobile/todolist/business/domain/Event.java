@@ -48,6 +48,11 @@ public class Event implements java.io.Serializable {
     private Disease type;
     
     @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="dogid", nullable = false)
+    private Dog dog;
+    
+    @JsonIgnore
     @ManyToOne /* A user has many events; an event belongs to one user. So, many events belong to one user */
     @JoinColumn(name="userid", nullable = false)
     private User user;

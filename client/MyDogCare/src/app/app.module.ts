@@ -24,7 +24,7 @@ import {EventProvider} from '../providers/event.provider';
 import {DiseaseProvider} from '../providers/disease.provider';
 
 // Pages
-import {EventDetailPage} from '../pages/event-detail/event-detail';
+import {EventDetailPageModule} from '../pages/event-detail/event-detail.module';
 import {AddEditEventPageModule} from '../pages/add-edit-event/add-edit-event.module';
 import {CalendarPageModule} from '../pages/calendar/calendar.module';
 import {HomeModule} from '../pages/home/home.module';
@@ -35,7 +35,6 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
 @NgModule({
     declarations: [
         MyApp,
-        EventDetailPage,
     ],
     imports: [
         BrowserModule,
@@ -49,7 +48,8 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
         HomeModule,
         CalendarPageModule,
         AddEditEventPageModule,
-        DogRegistrationPageModule
+        DogRegistrationPageModule,
+        EventDetailPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

@@ -51,7 +51,7 @@ export class MyApp {
                 } else {
                     this.rootPage = 'LoginPage';
                 }
-                //this.rootPage = 'Page';
+                this.rootPage = 'LoginPage';
             });
 
             // Okay, so the platform is ready and our plugins are available.

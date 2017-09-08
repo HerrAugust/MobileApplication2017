@@ -24,8 +24,6 @@ public interface MyDogCareService {
     Event updateEvent(String token, Event Event);
 
     void deleteEvent(String token, Long id);
-
-    void updateOrderEvents(String token, List<Event> Events);
     
     List<Event> findEventsByDog(String token, Long collarid);
     

@@ -84,38 +84,31 @@ export class DogProvider {
     getDogs(): Promise<Array<Dog>> {
         console.log("DogProvider.getDogs()");
         return new Promise((resolve) => {
-            if (this._Dogs === null) {
-                this._Dogs = [];
+            this._Dogs = [];
 
+            //console.log(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token)
 
-                //console.log(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token)
+            this._http.get(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token).toPromise()
+                .then((res: Response) => 
+                {
+                    const json = res.json() as ResponseServer;
 
-                this._http.get(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token).toPromise()
-                    .then((res: Response) => 
+                    if (json.result) 
                     {
-                        const json = res.json() as ResponseServer;
-
-                        if (json.result) 
+                        const Dogs = json.data;
+                        for (let dog of Dogs) 
                         {
-                            const Dogs = json.data;
-                            for (let dog of Dogs) 
-                            {
-                                console.log(dog);
-                                this._Dogs.push(new Dog(dog));
-                            }
-                            resolve(this._Dogs);
-                        } 
-                        else 
-                        {
-                            resolve(this._Dogs);
+                            console.log(dog);
+                            this._Dogs.push(new Dog(dog));
                         }
-                    })
-                    .catch(() => resolve(this._Dogs));
-            } 
-            else 
-            {
-                resolve(this._Dogs);
-            }
+                        resolve(this._Dogs);
+                    } 
+                    else 
+                    {
+                        resolve(this._Dogs);
+                    }
+                })
+                .catch(() => resolve(this._Dogs));
         });
     }
 }
