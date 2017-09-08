@@ -41,8 +41,6 @@ export class DogProfilePage {
         this.user = this.sAccount.getUser();
         let dog = this.navParams.get("dog");
         this.dog = dog;
-        let splitted = this.dog.date_birth.split('-');
-        this.dog.date_birth = splitted[2] + '-' + splitted[1] + '-' + splitted[0];
 
         
         this.languages = this.sDictionary.getLanguages();

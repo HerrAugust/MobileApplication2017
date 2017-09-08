@@ -3,9 +3,6 @@ import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-//Interfaces
-import {DogRegistrationInterface} from '../interfaces/dog-registration.interface';
-
 //Providers
 import {AccountProvider} from './account.provider';
 
@@ -48,6 +45,35 @@ export class DogProvider {
                     }
                 })
                 .catch((err: Response) => reject(`Errore status: ${err.status}`));
+        });
+    }
+
+    public editDog(dog: Dog) {
+        console.log("DogProvider.editDog(). dog="+JSON.stringify(dog));
+        return new Promise((resolve, reject) => {
+            this._http.put(URL_BASE + URL.DOGS.EDIT + this._sAccount.getUser().token + "/" + dog.collarid, {
+                age: dog.age,
+                name: dog.name,
+                gender: dog.gender,
+                breedid: dog.breed.id,
+                date_birth: dog.date_birth,
+                src: dog.src
+            })
+                .toPromise()
+                .then((res: Response) => {
+                    const json = res.json() as ResponseServer;
+
+                    if (json.result) {
+                        event = json.data;
+                        // TODO notify
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                })
+                .catch(() => {
+                    reject();
+                });
         });
     }
 

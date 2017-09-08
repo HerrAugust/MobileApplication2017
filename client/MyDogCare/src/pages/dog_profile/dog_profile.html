@@ -27,17 +27,17 @@
 
             <ion-item>
                 <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
-                <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.date_birth"></ion-datetime>
+                <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.date_birth" [ngClass]="{'': editable, 'grey': !editable}"></ion-datetime>
             </ion-item>
 
             <ion-item>
                 <ion-label stacked>{{ 'COLLARID' | dictionary }}</ion-label>
-                <ion-input type="text" disabled="{{!editable}}" [(ngModel)]="dog.collarid"></ion-input>
+                <ion-input type="text" disabled="true" [(ngModel)]="dog.collarid"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label stacked>{{ 'GENDER' | dictionary }}</ion-label>
-                <ion-select [(ngModel)]="dog.gender">
+                <ion-select [(ngModel)]="dog.gender" [ngClass]="{'': editable, 'grey': !editable}">
                     <ion-option value="M">M</ion-option>
                     <ion-option value="F">F</ion-option>
                 </ion-select>
