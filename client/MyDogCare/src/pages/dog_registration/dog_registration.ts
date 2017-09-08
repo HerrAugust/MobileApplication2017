@@ -27,7 +27,11 @@ export class DogRegistrationPage {
     languages: Language[] = [];
     preferredLanguage: string = "";
 
-    gender : string = "M";
+    name : string = "";
+    age : number = -1;
+    gender : string = "Gender";
+    collarId: number = -1;
+    date_birth: string = null;
 
     constructor(    
         public app: App,
@@ -58,7 +62,6 @@ export class DogRegistrationPage {
         return moment(d).format('DD-MM-YYYY');
     }
     
-    
 
 
     dog_registration() {
@@ -67,9 +70,12 @@ export class DogRegistrationPage {
         
             const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
-
-            this.dog = new Dog({'gender': this.gender});
             
+            console.log(this.collarId)
+            this.dog = new Dog({gender: this.gender, name: this.name, age: this.age, collarid: this.collarId});
+            console.log(this.dog);
+            loading.dismiss();
+
             this.sDog.sendDog(this.dog)
                 .then(() => {
                     loading.dismiss().then(() => {

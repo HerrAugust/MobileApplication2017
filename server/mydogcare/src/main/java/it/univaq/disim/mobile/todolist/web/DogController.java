@@ -31,6 +31,7 @@ public class DogController {
     @PostMapping("/registration")
     public Response createDog(@RequestBody Dog dog) {
     	
+    	
     	dog.setDate_birth(null);
         boolean result = service.createDog(dog);
         
