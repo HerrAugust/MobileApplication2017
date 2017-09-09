@@ -11,8 +11,11 @@
 <ion-content padding>
     <ion-grid>
 
+      <div class="logo-container">
+          <img [src]="picture" (tap)="takePicture($event)"/>
+      </div>
+
       <ion-list no-lines>
-    
       
       <ion-item>
         <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>  
