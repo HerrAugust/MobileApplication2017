@@ -73,14 +73,7 @@ export class HomePage {
 
     addDog() {
         console.log("Home.addDog()");
-
         this.navCtrl.push(DogRegistrationPage);   
     }
-    
-
-    goDogSearch($event, dog: Dog) {
-        this.navCtrl.push('DogSearchPage', {'dog':dog});
-    }
-
 
 }

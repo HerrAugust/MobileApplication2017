@@ -45,7 +45,7 @@
     "CONFIRM_LOGUOT": "Are you sure you want to log out?",
     
     "TEXT_NEW_ACCOUNT": "Register a new account.",
-    "TEXT_SIGNUP_SUCCESS": "Signup successfully, login now.",
+    "TEXT_SIGNUP_SUCCESS": "Signup successfully, proceed with the dog's registration.",
     
     "WARNING_LOGIN_USERNAME_EMPTY": "Enter the username of your TodoList account.",
     "WARNING_LOGIN_PASSWORD_EMPTY": "Enter the password.",
