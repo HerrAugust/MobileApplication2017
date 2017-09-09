@@ -3,7 +3,7 @@
 
 export class Breed {
     
-    id: number = -1;
+    id: string = "";
     name: string = "";
     origin: string = "";
     

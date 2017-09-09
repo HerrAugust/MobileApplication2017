@@ -13,3 +13,4 @@ server/mydogcare/src/main/resources/application.properties
 client/MyDogCare/config.xml
 client/MyDogCare/package.json
 server/mydogcare/src/main/resources/application.properties
+client/TodoListApp/

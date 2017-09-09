@@ -13,19 +13,19 @@
 
       <ion-list no-lines>
     
-      
+       
       <ion-item>
         <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>  
         <ion-icon name="contact" item-start></ion-icon>
         <ion-label class="title" stacked></ion-label>
-        <ion-input type="text" placeholder="Dog Name" [(ngModel)]="name"></ion-input>
+        <ion-input type="text" placeholder="Name" [(ngModel)]="name"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>{{ 'COLLARID' | dictionary }}</ion-label> 
         <ion-icon name="create" item-start></ion-icon>
         <ion-label class="title" stacked></ion-label>
-        <ion-input type="number" placeholder="Collar Id" [(ngModel)]="collarId"></ion-input>
+        <ion-input type="number" placeholder="Name" [(ngModel)]="collarId"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -43,16 +43,6 @@
         </ion-select>
         <ion-icon name="md-information-circle" item-start></ion-icon>
       </ion-item>
-
-      
-      <ion-item>
-        <ion-label stacked>{{ 'BREED' | dictionary }}</ion-label>
-        <ion-select [(ngModel)]="breed">
-          <ion-option *ngFor="let breed of breeds" [value]="breed">{{breed.name}}</ion-option>
-        </ion-select>
-        <ion-icon name="md-information-circle" item-start></ion-icon>
-      </ion-item>
-      
 
       <ion-item>
         <ion-label class="title" stacked>{{ 'DOG_BIRTH_ENTRY' | dictionary }}</ion-label>

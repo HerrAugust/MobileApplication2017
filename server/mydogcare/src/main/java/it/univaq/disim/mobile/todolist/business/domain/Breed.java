@@ -14,58 +14,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+//(icdcode INT UNSIGNED PRIMARY KEY AUTOINCREMENT, name VARCHAR(64));
 @Entity
-@Table(name = "breed")
+@Table(name = "disease")
 public class Breed implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "icdcode")
+    private Long icdcode;
     
 	@Column(name = "name", nullable = false, length = 4000)
     private String name;
-	
-	@Column(name = "origin", nullable = false, length = 4000)
-    private String origin;
 
-	public Long getId() {
-		return id;
+    public Long getIcdcode() {
+		return icdcode;
 	}
 
-
-	public void setId(Long id) {
-		this.id = id;
+	public void setIcdcode(Long icdcode) {
+		this.icdcode = icdcode;
 	}
-
-
 
 	public String getName() {
 		return name;
 	}
 
-
-
 	public void setName(String name) {
 		this.name = name;
-	}
-
-
-
-	public String getOrigin() {
-		return origin;
-	}
-
-
-
-	public void setOrigin(String origin) {
-		this.origin = origin;
-	}  
+	}   
 	
 	@Override
 	public String toString() {
-		return "id: "+this.getId() + "; name: " + this.getName();
+		return "icdcode: "+this.getIcdcode() + "; name: " + this.getName();
 	}
 
 

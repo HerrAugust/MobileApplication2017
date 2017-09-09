@@ -14,6 +14,14 @@ page-profile {
             border-bottom: 1px solid #dedede !important;
             box-shadow: inset 0 -1px 0 0 #dedede !important;
         }
+
+        .grey {
+            color: grey;
+        }
+    }
+
+    .hidden {
+        display: none;
     }
     
 }

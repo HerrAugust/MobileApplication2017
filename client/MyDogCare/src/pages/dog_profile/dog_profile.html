@@ -2,7 +2,11 @@
     
     <ion-navbar color="primary">
         <ion-title>{{ 'DOG_PROFILE' | dictionary }}</ion-title>
-        
+        <ion-buttons right>
+            <button ion-button clear icon-only (click)="editDog()">
+                <ion-icon name="create"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
     
 </ion-header>
@@ -18,31 +22,13 @@
 
             <ion-item>
                 <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>
-                <ion-input type="text" disabled="true" [(ngModel)]="dog.name"></ion-input>
+                <ion-input type="text" disabled="{{!editable}}" [(ngModel)]="dog.name"></ion-input>
             </ion-item>
-
-            <!--    
-            <ion-item>
-                <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
-                <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.monthEnds"></ion-datetime>
-            </ion-item>
-            -->
 
             <ion-item>
                 <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
-                <ion-input type="text" disabled="true" [(ngModel)]="dog.date_birth"></ion-input>
+                <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.date_birth" [ngClass]="{'': editable, 'grey': !editable}"></ion-datetime>
             </ion-item>
-
-            <!--    
-                <ion-item>
-                <ion-label stacked>{{ 'DOG_BIRTH' | dictionary }}</ion-label>
-                </ion-item>
-                <ion-item>
-                <ion-col col-2><ion-icon name="md-calendar"></ion-icon></ion-col>
-                <ion-col col-5><ion-datetime class="date" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.monthEnds"></ion-datetime></ion-col>
-                
-                </ion-item>
-            -->    
 
             <ion-item>
                 <ion-label stacked>{{ 'COLLARID' | dictionary }}</ion-label>
@@ -51,13 +37,17 @@
 
             <ion-item>
                 <ion-label stacked>{{ 'GENDER' | dictionary }}</ion-label>
-                <!--<ion-input type="text" disabled="true" [(ngModel)]="dog.name"></ion-input>-->
-                <ion-input type="text" disabled="true" [(ngModel)]="dog.gender"></ion-input>
+                <ion-select [(ngModel)]="dog.gender" [ngClass]="{'': editable, 'grey': !editable}">
+                    <ion-option value="M">M</ion-option>
+                    <ion-option value="F">F</ion-option>
+                </ion-select>
             </ion-item>
-
 
         </ion-list>
 
+        <div padding>
+            <button ion-button color="primary" block (click)="saveDog()">{{ 'SAVE' | dictionary }}</button>
+        </div>
 
     </div>
 
