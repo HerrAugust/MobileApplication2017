@@ -11,9 +11,6 @@ Install dependencies:
 npm install ionic2-calendar --save
 npm install --save intl
 
-ionic cordova plugin add cordova-plugin-geolocation
-npm install @ionic-native/geolocation --save
-
 ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID=<YOUR KEY>
 npm install @ionic-native/google-maps --save
 

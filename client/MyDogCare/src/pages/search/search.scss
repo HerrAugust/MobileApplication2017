@@ -35,9 +35,9 @@ page-home {
     .portrait {
         float: left;
         img {
-            width: 150px;
-            height: 150px;
-            border-radius: 25px;
+            width: 100%;
+            max-width: 150px;
+            height: auto;
         }
     }
 
@@ -56,17 +56,10 @@ page-home {
 
     .text{
         float: left;
-        margin-top: 8px;
-        margin-left: -11px;
     }
 
     .button-row{
         display: inline-block;
-    }
-
-    .emptylist {
-        text-align: center;
-        margin-top: 15px;
     }
 
 }

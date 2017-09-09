@@ -42,6 +42,7 @@ export class DogProfilePage {
         let dog = this.navParams.get("dog");
         this.dog = dog;
 
+        this.dog.date_birth = this._formatdate();
         
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();
@@ -51,12 +52,13 @@ export class DogProfilePage {
         console.log('ionViewDidLoad Settings');
     }
 
-    editDog() {
-        this.editable = !this.editable;
-    }
-
-    saveDog() {
-
+    _formatdate(){
+        if(this.dog == null)
+        {
+            return;
+        }
+        let d = new Date(this.dog.date_birth);
+        return moment(d).format('DD-MM-YYYY');
     }
 
     onChangeLanguage() {

@@ -33,7 +33,6 @@ export class AddEditEventPage {
     timeEnds: '08:30'
   }
 
-  collarid: number = -1;
   code : number = -1; // default: new event
   place : string = "";
   starred : boolean = false;
@@ -51,7 +50,6 @@ export class AddEditEventPage {
 
     this.actiontype = sDictionary.get("ADDEDITEVENTPAGE_" + (<string> navParams.get("actiontype")).toUpperCase());
     this.code = navParams.get("code");
-    this.collarid = navParams.get("collarid");
 
     // Getting diseases
     this.sDisease.getDiseases()
@@ -155,7 +153,7 @@ export class AddEditEventPage {
     console.log(this.disease);
     var event : Event = new Event({code: this.code, type: this.event.vaccinevisit == 'vaccine' ? this.disease : null, detailtimestamp_end: dt_end, detailtimestamp: dt_start, note: this.comment, starred: this.starred, place: this.place, vaccinevisit: this.event.vaccinevisit});
     console.log("saving event="+JSON.stringify(event));
-    this.sEvent.saveEvent(event, this.collarid);
+    this.sEvent.saveEvent(event);
 
     this.navCtrl.pop();
   }

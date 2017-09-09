@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 @RestController
 @RequestMapping("/api/dogs")
 public class DogController {
@@ -28,12 +30,12 @@ public class DogController {
     	return response;
     }
     
-    @PostMapping("/registration")
-    public Response createDog(@RequestBody Dog dog) {
+    @PostMapping("/registration/{token}")
+    public Response createDog(@PathVariable(value = "token") String token, @RequestBody Dog dog) {
     	
+    	//System.out.println("qiuuosaidsalkndslkanlkasndka"+dog.getBreed().getId());
     	
-    	dog.setDate_birth(null);
-        boolean result = service.createDog(dog);
+        boolean result = service.createDog(dog,token);
         
         Response<Object> response = new Response<>();
         response.setMessage("Ok");

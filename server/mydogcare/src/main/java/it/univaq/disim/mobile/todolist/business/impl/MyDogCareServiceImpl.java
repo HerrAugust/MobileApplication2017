@@ -7,6 +7,7 @@ import it.univaq.disim.mobile.todolist.business.domain.Event;
 import it.univaq.disim.mobile.todolist.business.domain.Session;
 import it.univaq.disim.mobile.todolist.business.domain.Task;
 import it.univaq.disim.mobile.todolist.business.domain.User;
+import it.univaq.disim.mobile.todolist.business.domain.Breed;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,15 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     @Autowired
     private DogRepository dogRepository;
     
+    @Autowired
+    private BreedRepository breedRepository;
+    
     // EVENTS
     
     public List<Event> findEventsByDog(String token, Long collarid) {
     	Session session = sessionRepository.findByToken(token);
         if (session != null) {
-            return eventRepository.findByDogCollarIdOrderByDetailtimestampAsc(collarid);
+            return eventRepository.findByDogOrderByDetailtimestampAsc(collarid);
             
         } else {
             return new ArrayList<>();
@@ -150,6 +154,12 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     }
 
 	@Override
+	public void updateOrderEvents(String token, List<Event> Events) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void toggleStartEvent(String token, Long id) {
 		Session session = sessionRepository.findByToken(token);
 		if(session != null) {
@@ -168,6 +178,15 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 		return diseases;
 	}
 	
+	// BREEDS
+	
+		@Override
+		public List<Breed> findBreeds() {
+			List<Breed> breeds = breedRepository.findAll();
+			breeds.forEach(System.out::println);
+			return breeds;
+		}
+	
 	// DOGS
 
 	@Override
@@ -182,11 +201,25 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 	}
 	
 	@Override
-    public boolean createDog(Dog dog) {
-//		 Dog d = dogRepository.(dog);
-//	        if (u != null) {
-//	            return false;
-//	        }
+    public boolean createDog(Dog dog, String token) {
+//		User u = userRepository.findByUsername(user.getUsername());
+//        if (u != null) {
+//            return false;
+//        }
+		
+		Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+            dog.setUser(session.getUser());
+            
+//            Breed aux = new Breed();
+//            aux = dog.getBreed();
+//            dog.setBreed(aux);
+//            System.out.println(dog.getBreed());
+//            
+            
+            dogRepository.save(dog);
+            return true;
+        }
 	        dogRepository.save(dog);
 	        return true;
     }

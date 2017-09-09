@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -27,33 +28,55 @@ import java.util.Date;
 @Table(name = "dog")
 public class Dog implements java.io.Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "collarid")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "collarid", nullable = false)
     private Long collarId;
 
-    @Column(name = "age")
+	@Column(name = "age", nullable = false)
     private Long age;
-    
-    @Column(name = "name", nullable = false, length = 255)
+	
+	@Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    public Long getAge() {
+    @Column(name = "gender", nullable = false, length = 1)
+    private String gender;
+	
+	@Column(name = "src", nullable = false, length = 255)
+    private String src;
+    
+
+	@JsonIgnore
+    @ManyToOne
+	@JoinColumn(name = "breedid", nullable = false)
+    private Breed breed;
+    
+
+	@Column(name = "date_birth", nullable = false)
+    private String date_birth;
+
+	@JsonIgnore
+    @ManyToOne /* A user has many dogs; an event belongs to one user. So, many events belong to one user */
+    @JoinColumn(name="own", nullable = false)
+    private User user;
+  
+	
+
+	public Breed getBreed() {
+		return breed;
+	}
+
+	public void setBreed(Breed breed) {
+		this.breed = breed;
+	}
+
+	public Long getAge() {
 		return age;
 	}
 
 	public void setAge(Long age) {
 		this.age = age;
 	}
-
-	@Column(name = "gender", nullable = false, length = 1)
-    private String gender;
-	
-	@Column(name = "src", nullable = false, length = 255)
-    private String src;
-    
-    @Column(name = "date_birth", nullable = false)
-    private String date_birth;
     
     public String getDate_birth() {
 		return date_birth;
@@ -62,12 +85,7 @@ public class Dog implements java.io.Serializable {
 	public void setDate_birth(String date_birth) {
 		this.date_birth = date_birth;
 	}
-
-	@JsonIgnore
-    @ManyToOne /* A user has many dogs; an event belongs to one user. So, many events belong to one user */
-    @JoinColumn(name="own", nullable = false)
-    private User user;
-  
+	
     public User getUser() {
 		return user;
 	}
@@ -83,6 +101,8 @@ public class Dog implements java.io.Serializable {
     public void setCollarId(Long id) {
         this.collarId = id;
     }
+
+    
 
 	public String getName() {
         return name;

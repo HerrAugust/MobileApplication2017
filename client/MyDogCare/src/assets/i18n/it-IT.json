@@ -22,7 +22,7 @@
     "DATE_BIRTH": "Data del compleanno",
     "DOG_REGISTRATION": "Registrazione Cane",
     "DOG_AGE": "Età del cane",
-
+    "BREED": "Razza",
 
     
     "DELETE": "Elimina",
@@ -48,7 +48,7 @@
     "CONFIRM_LOGUOT": "Sei sicuro di voler effettuare il logout?",
     
     "TEXT_NEW_ACCOUNT": "Registra un nuovo account.",
-    "TEXT_SIGNUP_SUCCESS": "Registrazione avvenuta con successo, precedi alla registratione del cane.",
+    "TEXT_SIGNUP_SUCCESS": "Registrazione avvenuta con successo, ora effettua il login.",
     
     "WARNING_LOGIN_USERNAME_EMPTY": "Inserisci l'username del tuo account TodoList.",
     "WARNING_LOGIN_PASSWORD_EMPTY": "Inserisci la password.",

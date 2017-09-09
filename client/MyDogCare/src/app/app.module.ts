@@ -3,6 +3,7 @@ import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 
+
 import {HttpModule} from '@angular/http';
 import {IonicStorageModule} from '@ionic/storage';
 
@@ -21,9 +22,10 @@ import {AccountProvider} from '../providers/account.provider';
 import {UserPersistanceProvider} from '../providers/user-persistance.provider';
 import {EventProvider} from '../providers/event.provider';
 import {DiseaseProvider} from '../providers/disease.provider';
+import {BreedProvider} from '../providers/breed.provider';
 
 // Pages
-import {EventDetailPageModule} from '../pages/event-detail/event-detail.module';
+import {EventDetailPage} from '../pages/event-detail/event-detail';
 import {AddEditEventPageModule} from '../pages/add-edit-event/add-edit-event.module';
 import {CalendarPageModule} from '../pages/calendar/calendar.module';
 import {HomeModule} from '../pages/home/home.module';
@@ -34,6 +36,7 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
 @NgModule({
     declarations: [
         MyApp,
+        EventDetailPage,
     ],
     imports: [
         BrowserModule,
@@ -47,8 +50,7 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
         HomeModule,
         CalendarPageModule,
         AddEditEventPageModule,
-        DogRegistrationPageModule,
-        EventDetailPageModule
+        DogRegistrationPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -64,6 +66,7 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
         UserPersistanceProvider,
         EventProvider,
         DiseaseProvider,
+        BreedProvider,
         DogProvider
     ]
 })
