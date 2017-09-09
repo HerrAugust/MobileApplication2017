@@ -11,6 +11,7 @@ import {AccountProvider} from './account.provider';
 
 //Models 
 import {Dog} from '../models/dog.model';
+import {User} from '../models/user.model';
 
 //Constants
 import {URL_BASE, URL} from '../constants';
@@ -35,9 +36,11 @@ export class DogProvider {
     /**
      * Send data of dog towards the server.
      */
-    sendDog(dog: Dog): Promise<any> {
+    sendDog(dog: Dog, token: String): Promise<any> {
+        console.log("Sono qui");
+        console.log(token); 
         return new Promise((resolve, reject) => {
-            this._http.post(URL_BASE + URL.DOGS.DOGREGISTRATION, dog).toPromise()
+            this._http.post(URL_BASE + URL.DOGS.DOGREGISTRATION + this._sAccount.getUser().token, dog).toPromise()
                 .then((res: Response) => {
                     const json = res.json() as ResponseServer;
                     

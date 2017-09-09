@@ -5,11 +5,13 @@ import * as moment from 'moment';
 //Providers
 import {AccountProvider} from '../../providers/account.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
-import {DogProvider} from '../../providers/dog.provider'
+import {BreedProvider} from '../../providers/breed.provider';
+import {DogProvider} from '../../providers/dog.provider';
 
 //Models
 import {User} from '../../models/user.model';
 import {Dog} from '../../models/dog.model';
+import {Breed} from '../../models/breed.model';
 
 //interfaces
 import {DogRegistrationInterface} from '../../interfaces/dog-registration.interface';
@@ -31,6 +33,14 @@ export class DogRegistrationPage {
     preferredLanguage: string = "";
 
     gender : string = "M";
+    collarId : number = null;
+    age : number = null;
+    name: string = "";
+    date_birth : string = "";
+
+    breed_hidden : boolean = true;
+    breed : Breed = new Breed({id: -1, name: 'None', origin: 'None'});
+    breeds : Array<Breed> = [];
 
     constructor(    
         public app: App,
@@ -40,6 +50,7 @@ export class DogRegistrationPage {
         public loadingCtrl: LoadingController,
         public sAccount: AccountProvider,
         public sDictionary: DictionaryService,
+        public sBreed : BreedProvider,
         public sDog: DogProvider
     ) {
         this.user = this.sAccount.getUser();
@@ -50,6 +61,16 @@ export class DogRegistrationPage {
         
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();    
+
+
+        // Getting breeds
+        this.sBreed.getBreeds()
+        .then(breeds => {
+        this.breeds = breeds;
+        console.log("breeds:"+JSON.stringify(this.breeds));
+        this.breed = this.breeds[0];
+        });
+
     }
 
     ionViewDidLoad() {
@@ -65,15 +86,17 @@ export class DogRegistrationPage {
 
 
     dog_registration() {
-        console.log("alfonsino");
+        console.log("in dog registration");
         
         
             const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
+    
 
-            this.dog = new Dog({'gender': this.gender});
+            this.dog = new Dog({'name': this.name, 'gender': this.gender, 'age': this.age, 'date_birth': this.date_birth, 'breed': this.breed});
             
-            this.sDog.sendDog(this.dog)
+            
+            this.sDog.sendDog(this.dog, this.user.token)
                 .then(() => {
                     loading.dismiss().then(() => {
                         const alert = this.alertCtrl.create({
@@ -95,7 +118,7 @@ export class DogRegistrationPage {
                         buttons: [this.sDictionary.get("OK")]
                     }).present();
                 });
-        
+                
     }
     
    

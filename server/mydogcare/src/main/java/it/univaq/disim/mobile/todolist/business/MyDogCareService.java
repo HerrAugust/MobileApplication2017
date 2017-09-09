@@ -5,6 +5,7 @@ import it.univaq.disim.mobile.todolist.business.domain.Dog;
 import it.univaq.disim.mobile.todolist.business.domain.Event;
 import it.univaq.disim.mobile.todolist.business.domain.Session;
 import it.univaq.disim.mobile.todolist.business.domain.User;
+import it.univaq.disim.mobile.todolist.business.domain.Breed;
 import java.util.List;
 
 public interface MyDogCareService {
@@ -34,8 +35,10 @@ public interface MyDogCareService {
 	void toggleStartEvent(String token, Long id);
 
 	List<Disease> findDiseases();
+	
+	List<Breed> findBreeds();
 
-	boolean createDog(Dog dog);
+	boolean createDog(Dog dog, String token);
 	
 	List<Dog> findDogs(String token);
 	

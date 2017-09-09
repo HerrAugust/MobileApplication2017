@@ -21,6 +21,8 @@
     "GENDER": "Gender",
     "DATE_BIRTH": "Date of birth",
     "DOG_AGE": "Dog Age",
+    "BREED": "Breed",
+
 
     "DELETE": "Delete",
     "EDIT": "Edit",

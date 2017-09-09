@@ -13,14 +13,14 @@ export class Dog {
     
     
     constructor(obj?: any) {
-        this.setObj(obj);
+        this.setObj(obj); 
     }
     
     setObj(obj?: any) {
         if (obj) {
             console.log(typeof obj.collarId === "number");
             console.log(obj.collarId)
-            this.collarid = (typeof obj.collarId === "number") ? obj.collarId : this.collarid;
+            this.collarid = obj.collarId || this.collarid;
             this.age = obj.age || this.age;
             this.name = obj.name || this.name;
             this.gender = obj.gender || this.gender;

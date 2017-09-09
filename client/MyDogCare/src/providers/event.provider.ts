@@ -270,7 +270,7 @@ export class EventProvider {
             })
                 .toPromise()
                 .then((res: Response) => {
-                    const json = res.json() as ResponseServer;
+                    const json = res.json() as ResponseServer; 
 
                     if (json.result) {
                         newEvent.code = json.data.code;

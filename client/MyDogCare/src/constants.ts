@@ -29,6 +29,10 @@ export const URL = {
         GETALL: "diseases/"
     },
 
+    BREEDS: {
+        GETALL: "breeds/"
+    },
+
     TASKS: {
         TEST: "events/test",
         CREATE: "events/",

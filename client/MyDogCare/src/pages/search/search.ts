@@ -7,7 +7,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 
 //Providers
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
-import { PhotoLibrary, LibraryItem } from '@ionic-native/photo-library';
+//import { PhotoLibrary, LibraryItem } from '@ionic-native/photo-library';
 
 // Needed to select next event
 import { ViewChild } from "@angular/core";

@@ -22,6 +22,7 @@ import {AccountProvider} from '../providers/account.provider';
 import {UserPersistanceProvider} from '../providers/user-persistance.provider';
 import {EventProvider} from '../providers/event.provider';
 import {DiseaseProvider} from '../providers/disease.provider';
+import {BreedProvider} from '../providers/breed.provider';
 
 // Pages
 import {EventDetailPage} from '../pages/event-detail/event-detail';
@@ -65,6 +66,7 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
         UserPersistanceProvider,
         EventProvider,
         DiseaseProvider,
+        BreedProvider,
         DogProvider
     ]
 })
