@@ -28,16 +28,12 @@ page-home {
         padding-left: 10px;
     }
 
-    .name{
-        text-align: center;
-    }
-
     .portrait {
         float: left;
         img {
-            width: 100%;
-            max-width: 150px;
-            height: auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 25px;
         }
     }
 
@@ -62,6 +58,11 @@ page-home {
 
     .button-row{
         display: inline-block;
+    }
+
+    .emptylist {
+        text-align: center;
+        margin-top: 15px;
     }
 
 }

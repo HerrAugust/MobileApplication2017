@@ -13,19 +13,26 @@
 
       <ion-list no-lines>
     
-      
+       
       <ion-item>
         <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>  
         <ion-icon name="contact" item-start></ion-icon>
         <ion-label class="title" stacked></ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" placeholder="Name" [(ngModel)]="name"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>{{ 'COLLARID' | dictionary }}</ion-label> 
         <ion-icon name="create" item-start></ion-icon>
         <ion-label class="title" stacked></ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="number" placeholder="Name" [(ngModel)]="collarId"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{ 'DOG_AGE' | dictionary }}</ion-label> 
+        <ion-icon name="md-time" item-start></ion-icon>
+        <ion-label class="title" stacked></ion-label>
+        <ion-input type="number" placeholder="Age" [(ngModel)]="age"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -39,7 +46,7 @@
 
       <ion-item>
         <ion-label class="title" stacked>{{ 'DOG_BIRTH_ENTRY' | dictionary }}</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date_birth"></ion-datetime>
         <ion-icon name="md-calendar" item-start></ion-icon>
       </ion-item>     
             
@@ -64,7 +71,7 @@
     -->      
 
     <div padding>
-        <button ion-button color="primary" block (click)="saveEvent()">ADD</button>
+        <button ion-button color="primary" block (click)="dog_registration()">ADD</button>
     </div>
 
 

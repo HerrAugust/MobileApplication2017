@@ -37,7 +37,7 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     public List<Event> findEventsByDog(String token, Long collarid) {
     	Session session = sessionRepository.findByToken(token);
         if (session != null) {
-            return eventRepository.findByDogOrderByDetailtimestampAsc(collarid);
+            return eventRepository.findByDogCollarIdOrderByDetailtimestampAsc(collarid);
             
         } else {
             return new ArrayList<>();
@@ -150,12 +150,6 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     }
 
 	@Override
-	public void updateOrderEvents(String token, List<Event> Events) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void toggleStartEvent(String token, Long id) {
 		Session session = sessionRepository.findByToken(token);
 		if(session != null) {
@@ -186,5 +180,15 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 		}
 		return new ArrayList<>();
 	}
+	
+	@Override
+    public boolean createDog(Dog dog) {
+//		 Dog d = dogRepository.(dog);
+//	        if (u != null) {
+//	            return false;
+//	        }
+	        dogRepository.save(dog);
+	        return true;
+    }
 
 }

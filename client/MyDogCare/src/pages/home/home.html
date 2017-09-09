@@ -14,24 +14,21 @@
 </div>
 
 <ion-content class="list-avatar-page" [ngClass]="{'activeAnimate': bAnimate}" overflow-scroll="true">
+    <div class="emptylist" *ngIf="dogs.length == 0">{{ 'HOMEPAGE_NODOGS' | dictionary }}</div>
+
     <ion-item *ngFor="let dog of dogs">
 
         <div class = "main-element">
-
             <div class = "name">
-                     <h2>{{ dog.name }}</h2>
+                <h2>{{ dog.name }}</h2>
             </div>
             <br>
 
             <div class = "portrait">
-            
                 <img src="data:image/jpeg;base64,{{ dog.src }}" alt=""/>
-            
             </div>
 
             <div class = "buttons">
-
-                
                 <div class = "button-row">
                     <div class = "icon">
                         <img src="assets/images/syringe70x.png" alt="" />
@@ -43,7 +40,7 @@
                 
                 <div class = "button-row">
                     <div class = "icon">
-                            <img src="assets/images/syringe70x.png" alt="" />
+                        <img src="assets/images/syringe70x.png" alt="" />
                     </div>
                     <div class ="text">
                         <button ion-button block clear (click)="goDogProfile($event, dog)">{{ 'PROFILE' | dictionary }}</button>
@@ -52,10 +49,10 @@
 
                 <div class = "button-row">
                     <div class = "icon" (click)="goAgenda()">
-                            <img src="assets/images/syringe70x.png" alt="" />
+                        <img src="assets/images/syringe70x.png" alt="" />
                     </div>
                     <div class ="text">
-                            <button ion-button block clear (click)="goAgenda($event, dog)">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
+                        <button ion-button block clear (click)="goAgenda($event, dog)">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
                     </div>
                 </div>
 

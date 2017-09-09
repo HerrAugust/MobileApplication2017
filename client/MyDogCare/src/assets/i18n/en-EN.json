@@ -20,6 +20,7 @@
     "COLLARID": "Collarid",
     "GENDER": "Gender",
     "DATE_BIRTH": "Date of birth",
+    "DOG_AGE": "Dog Age",
 
     "DELETE": "Delete",
     "EDIT": "Edit",
@@ -81,8 +82,10 @@
     "ADDEDITEVENTPAGE_DATE_ERROR_SUB": "Ending date must be grater than starting date",
 
     "AGENDAPAGE_TITLE": "Agenda",
+    "AGENDAPAGE_NOEVENTS": "Oops!! No events here, add a new one!",
     "AGENDAPAGE_DELETE_EVENT": "Delete event?",
     "HOMEPAGE_TITLE": "Home",
+    "HOMEPAGE_NODOGS": "Oops!! No dogs here, add a new one!",
     "DOG_BIRTH": "Date birth",
     "DOG_REGISTRATION": "Dog Registration",
     "DOG_BIRTH_ENTRY": "Dog Birth"

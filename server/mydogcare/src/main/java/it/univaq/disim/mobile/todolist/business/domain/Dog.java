@@ -32,10 +32,21 @@ public class Dog implements java.io.Serializable {
     @Column(name = "collarid")
     private Long collarId;
 
+    @Column(name = "age")
+    private Long age;
+    
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "gender", nullable = false, length = 1)
+    public Long getAge() {
+		return age;
+	}
+
+	public void setAge(Long age) {
+		this.age = age;
+	}
+
+	@Column(name = "gender", nullable = false, length = 1)
     private String gender;
 	
 	@Column(name = "src", nullable = false, length = 255)
@@ -72,8 +83,6 @@ public class Dog implements java.io.Serializable {
     public void setCollarId(Long id) {
         this.collarId = id;
     }
-
-    
 
 	public String getName() {
         return name;

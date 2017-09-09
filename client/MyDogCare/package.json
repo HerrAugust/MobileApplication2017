@@ -78,9 +78,6 @@
                 "API_KEY_FOR_ANDROID": "AIzaSyC9I647oIr37xHz-VXhKBJPRXgKbcc536Y"
             },
             "cordova-plugin-geolocation": {},
-            "cordova-plugin-photo-library": {
-                "PHOTO_LIBRARY_USAGE_DESCRIPTION": "To choose photos"
-            },
             "cordova-plugin-inappbrowser": {}
         },
         "platforms": [
