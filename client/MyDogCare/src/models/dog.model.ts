@@ -7,7 +7,7 @@ export class Dog {
     public age: number = -1;
     public name: string = "";
     public gender: string = "";
-    public breed: Breed = null;
+    public breed: number = -1;
     public date_birth: string = null;
     public src: string = "";
     

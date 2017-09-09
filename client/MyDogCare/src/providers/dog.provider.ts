@@ -36,11 +36,11 @@ export class DogProvider {
     /**
      * Send data of dog towards the server.
      */
-    sendDog(dog: Dog, token: String): Promise<any> {
+    sendDog(dog: Dog, token: String, breed: number): Promise<any> {
         console.log("Sono qui");
         console.log(token); 
         return new Promise((resolve, reject) => {
-            this._http.post(URL_BASE + URL.DOGS.DOGREGISTRATION + this._sAccount.getUser().token, dog).toPromise()
+            this._http.post(URL_BASE + URL.DOGS.DOGREGISTRATION + this._sAccount.getUser().token+'/'+breed, dog).toPromise()
                 .then((res: Response) => {
                     const json = res.json() as ResponseServer;
                     

@@ -96,7 +96,7 @@ export class DogRegistrationPage {
             this.dog = new Dog({'name': this.name, 'gender': this.gender, 'age': this.age, 'date_birth': this.date_birth, 'breed': this.breed});
             
             
-            this.sDog.sendDog(this.dog, this.user.token)
+            this.sDog.sendDog(this.dog, this.user.token, this.breed.id)
                 .then(() => {
                     loading.dismiss().then(() => {
                         const alert = this.alertCtrl.create({

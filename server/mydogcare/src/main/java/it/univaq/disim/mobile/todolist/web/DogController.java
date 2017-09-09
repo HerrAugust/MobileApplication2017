@@ -1,6 +1,7 @@
 package it.univaq.disim.mobile.todolist.web;
 
 import it.univaq.disim.mobile.todolist.business.MyDogCareService;
+import it.univaq.disim.mobile.todolist.business.domain.Breed;
 import it.univaq.disim.mobile.todolist.business.domain.Dog;
 import it.univaq.disim.mobile.todolist.business.domain.User;
 
@@ -30,10 +31,14 @@ public class DogController {
     	return response;
     }
     
-    @PostMapping("/registration/{token}")
-    public Response createDog(@PathVariable(value = "token") String token, @RequestBody Dog dog) {
+    @PostMapping("/registration/{token}/{breed}")
+    public Response createDog(@PathVariable(value = "token") String token, @PathVariable(value = "breed") Long breed, @RequestBody Dog dog) {
     	
     	//System.out.println("qiuuosaidsalkndslkanlkasndka"+dog.getBreed().getId());
+    	
+    	Breed breedaux = new Breed();
+    	breedaux.setId(breed);
+    	dog.setBreed(breedaux);
     	
         boolean result = service.createDog(dog,token);
         
