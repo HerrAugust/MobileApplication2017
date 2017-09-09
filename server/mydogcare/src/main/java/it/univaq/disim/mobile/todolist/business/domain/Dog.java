@@ -121,10 +121,14 @@ public class Dog implements java.io.Serializable {
     }
 	
     public String getSrc() {
-    	File f =  new File(src);
+	    return this.src;
+    	/* Debug
+	File f =  new File(src);
         String encodstring = encodeFileToBase64Binary(f);
-    	return encodstring;}
+    	return encodstring;*/
+    }
    
+    /* Needed for debug
     private static String encodeFileToBase64Binary(File file){
     	String encodedfile = null;
     
@@ -143,7 +147,7 @@ public class Dog implements java.io.Serializable {
 
          System.out.println(encodedfile);
          return encodedfile;
-	}
+	}*/
 
 	public void setSrc(String src) {
 		this.src = src;
