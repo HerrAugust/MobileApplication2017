@@ -77,6 +77,7 @@ export class DogProvider {
                             const Dogs = json.data;
                             for (let dog of Dogs) 
                             {
+                                console.log("muori");
                                 console.log(dog);
                                 this._Dogs.push(new Dog(dog));
                             }

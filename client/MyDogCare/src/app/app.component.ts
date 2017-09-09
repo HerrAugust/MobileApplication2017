@@ -13,6 +13,11 @@ import {DictionaryService} from '../modules/dictionary/providers/dictionary.serv
 import {AgendaPage} from '../pages/agenda/agenda';
 import {HomePage} from '../pages/home/home';
 import {CalendarPage} from '../pages/calendar/calendar';
+
+//Map
+import {LatLng} from '@ionic-native/google-maps';
+import {Geolocation} from '@ionic-native/geolocation';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
  
 @Component({
     templateUrl: 'app.html',
@@ -22,16 +27,19 @@ export class MyApp {
     @ViewChild(Nav) nav: Nav; // needed for menu
     rootPage: any;
 
+    source = new LatLng(0, 0);
+    destination = new LatLng(0, 0);
     pages: Array<{title: string, component: any}>; // needed for menu
 
     constructor(
-        platform: Platform,
+        public platform: Platform,
         statusBar: StatusBar,
         splashScreen: SplashScreen,
         public sAccount: AccountProvider,
         public sDictionary: DictionaryService,
         public loadingCtrl: LoadingController,
         public alertCtrl: AlertController,
+        public geoloc: Geolocation,
         protected app: App
     ) {
         this.pages = [
@@ -51,7 +59,7 @@ export class MyApp {
                 } else {
                     this.rootPage = 'LoginPage';
                 }
-                //this.rootPage = 'Page';
+                //this.rootPage = 'DogSearchPage';
             });
 
             // Okay, so the platform is ready and our plugins are available.
@@ -90,6 +98,20 @@ export class MyApp {
                 }).present();
             });
         });
+    }
+
+    findVet()
+    {
+        this.geoloc.getCurrentPosition().then((resp) => {   
+            this.source = new LatLng(resp.coords.latitude, resp.coords.longitude);
+            this.destination.lat = this.source.lat-5;
+            this.destination.lng = this.source.lng+12;
+            this.platform.ready().then(() => {
+                let browser = new InAppBrowser();
+                browser.create("https://www.google.it/maps/search/veterinari/@"+this.source.lat+","+this.source.lng+"/data=!3m1!4b1");
+            });
+         });
+
     }
 
 }

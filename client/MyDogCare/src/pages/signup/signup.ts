@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController, LoadingController} from 'ionic-angular';
 
 //interfaces
+import {DogRegistrationPage} from '../dog_registration/dog_registration';
 import {UserSignupInterface} from '../../interfaces/user-signup.interface';
 
 //Providers
@@ -56,7 +57,7 @@ export class SignupPage {
                         });
                         alert.present();
                         alert.onDidDismiss(() => {
-                            this.navCtrl.pop();
+                            this.addDog();
                         });
                     });
                 })
@@ -70,7 +71,11 @@ export class SignupPage {
                 });
         }).catch(() => {});
     }
-    
+
+    addDog() {
+        console.log("Home.addDog()");
+        this.navCtrl.push(DogRegistrationPage);   
+    }
     
     
     private _validate() {
