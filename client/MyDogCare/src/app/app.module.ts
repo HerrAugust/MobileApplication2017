@@ -15,6 +15,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
+import { CameraPreview } from '@ionic-native/camera-preview';
+import {Diagnostic} from '@ionic-native/diagnostic';
 
 //Providers
 import {DogProvider} from '../providers/dog.provider';
@@ -31,7 +33,7 @@ import {CalendarPageModule} from '../pages/calendar/calendar.module';
 import {HomeModule} from '../pages/home/home.module';
 import {AgendaPageModule} from '../pages/agenda/agenda.module';
 import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registration.module';
-
+import {CameraPageModule} from '../pages/camera/camera.module';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,9 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
         HomeModule,
         CalendarPageModule,
         AddEditEventPageModule,
-        DogRegistrationPageModule
+        DogRegistrationPageModule,
+        EventDetailPageModule,
+        CameraPageModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -67,7 +71,9 @@ import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registrat
         EventProvider,
         DiseaseProvider,
         BreedProvider,
-        DogProvider
+        DogProvider,
+        CameraPreview,
+        Diagnostic,
     ]
 })
 export class AppModule {}
