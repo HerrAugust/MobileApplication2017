@@ -7,10 +7,10 @@ import { Globalization } from '@ionic-native/globalization';
 
 @NgModule({
     declarations: [
-        DictionaryPipe
+        DictionaryPipe,
     ],
     exports: [
-        DictionaryPipe
+        DictionaryPipe,
     ],
     providers: [
         DictionaryService,

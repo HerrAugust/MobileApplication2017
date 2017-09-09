@@ -3,7 +3,6 @@ import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 
-
 import {HttpModule} from '@angular/http';
 import {IonicStorageModule} from '@ionic/storage';
 

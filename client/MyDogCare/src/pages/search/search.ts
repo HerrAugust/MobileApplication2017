@@ -1,13 +1,13 @@
 import {Component, ElementRef} from '@angular/core';
-import {IonicPage, NavController, AlertController, LoadingController} from 'ionic-angular';
+import {IonicPage, NavController, AlertController, LoadingController, Platform} from 'ionic-angular';
 
 //google
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, CameraPosition, LatLng, Marker, MarkerIcon, MarkerOptions } from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 
 //Providers
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
-import { PhotoLibrary, LibraryItem } from '@ionic-native/photo-library';
 
 // Needed to select next event
 import { ViewChild } from "@angular/core";
@@ -19,60 +19,32 @@ import { Content } from 'ionic-angular';
     templateUrl: 'search.html'
 })
 export class DogSearchPage {
-    
-    @ViewChild('map') mapElement: ElementRef;
-    map: GoogleMap;
 
-    constructor(public navCtrl: NavController, private _googleMaps: GoogleMaps, private _Geoloc: Geolocation){
-
+    location = new LatLng(0, 0);
+    //constructor(public navCtrl: NavController, public google: GoogleMaps, public _Geoloc: Geolocation){}
+    constructor( public platform: Platform,public navCtrl: NavController, private geoloc: Geolocation) {
+        
     }
 
-    ngAfterViweInit(){
-        let loc: LatLng;
-        this.initMap();
-
-
-    this.map.one(GoogleMapsEvent.MAP_READY).then(() =>{
-        this.getLocation().then( res => {
-            
-            this.getLocation().then( res => {
-                loc = new LatLng(res.coords.latitude, res.coords.longitude);
-                this.moveCamera(loc);
-
-                this.createMarker(loc, "ciao").then((marker:Marker)=>{
-                    marker.showInfoWindow();
-                }).catch(err =>{console.log(err);});
-
-            }).catch( err =>{console.log(err);});
-        });
+loc()
+{
+    this.geoloc.getCurrentPosition().then((resp) => {   
+        this.location = new LatLng(resp.coords.latitude, resp.coords.longitude);
+        console.log(resp.coords.latitude);
+        console.log("separatore");
+        console.log(resp.coords.longitude);
     });
 
+    //Object { lat: 42.368686499999995, lng: 13.350678199999999 }
+    //return "ma vaffanculo!";
+}
 
-    }
-
-    getLocation(){
-        return this._Geoloc.getCurrentPosition();
-    }
-
-    initMap(){
-        let element = this.mapElement.nativeElement;
-        this.map = this._googleMaps.create(element)
-    }
-
-    createMarker(loc: LatLng, title: string){
-        let markerOptions: MarkerOptions = {
-            position: loc,
-            title: title
-        };
-        return this.map.addMarker(markerOptions);
-    }
-
-    moveCamera(loc: LatLng){
-        let options: CameraPosition<LatLng> = {
-            target:loc,
-            zoom: 15,
-            tilt: 10
+    openUrl() {
+        
+                this.platform.ready().then(() => {
+                    let browser = new InAppBrowser();
+                    browser.create("https://www.google.it/maps/dir/42.3690844,13.3576909/42.3735866,13.350009/@42.3677845,13.3517685,15z");
+                });
         }
-        this.map.moveCamera(options)
-    }
+
 }
