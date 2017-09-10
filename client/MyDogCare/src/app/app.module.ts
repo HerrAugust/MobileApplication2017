@@ -39,6 +39,7 @@ import {ProfileModule} from '../pages/profile/profile.module';
 @NgModule({
     declarations: [
         MyApp,
+        EventDetailPage,
    ],
     imports: [
         BrowserModule,
