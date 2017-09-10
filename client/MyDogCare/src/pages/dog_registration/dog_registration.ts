@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, App, NavController, NavParams, AlertController, LoadingController} from 'ionic-angular';
 import * as moment from 'moment';
 
+import {HomePage} from '../home/home';
+
 //Providers
 import {AccountProvider} from '../../providers/account.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
@@ -97,11 +99,9 @@ export class DogRegistrationPage {
             const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
     
-
-            this.dog = new Dog({'name': this.name, 'gender': this.gender, 'age': this.age, 'date_birth': this.date_birth, 'breed': this.breed, 'src': this.picture});
+            this.dog = new Dog({'name': this.name, 'gender': this.gender, 'age': this.age, 'date_birth': this.date_birth,'breed': this.breed, 'src': this.picture});
             
-            
-            this.sDog.sendDog(this.dog, this.user.token, this.breed.id)
+            this.sDog.sendDog(this.dog, this.user.token, this.collarId, this.breed.id)
                 .then(() => {
                     loading.dismiss().then(() => {
                         const alert = this.alertCtrl.create({
@@ -111,7 +111,8 @@ export class DogRegistrationPage {
                         });
                         alert.present();
                         alert.onDidDismiss(() => {
-                            this.navCtrl.pop();
+                            //this.navCtrl.pop();
+                            this.homeRedirection();
                         });
                     });
                 })
@@ -140,4 +141,8 @@ export class DogRegistrationPage {
         this.picture = eventData;
     }
 
+     homeRedirection() {
+        console.log("Redirection to home");
+        this.navCtrl.push(HomePage);   
+    }
 }

@@ -30,8 +30,11 @@ public class Dog implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+	
     @Column(name = "collarid", nullable = false)
-    private Long collarId;
+    private Long collarid;
 
 	@Column(name = "age", nullable = false)
     private Long age;
@@ -94,15 +97,21 @@ public class Dog implements java.io.Serializable {
 		this.user = user;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getCollarId() {
-        return collarId;
-    }
+		return collarid;
+	}
 
-    public void setCollarId(Long id) {
-        this.collarId = id;
-    }
-
-    
+	public void setCollarId(Long collarId) {
+		this.collarid = collarId;
+	}
 
 	public String getName() {
         return name;

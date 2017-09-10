@@ -53,7 +53,6 @@ import {CameraPageModule} from '../pages/camera/camera.module';
         CalendarPageModule,
         AddEditEventPageModule,
         DogRegistrationPageModule,
-        EventDetailPageModule,
         CameraPageModule,
     ],
     bootstrap: [IonicApp],
