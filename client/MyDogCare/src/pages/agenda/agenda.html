@@ -30,7 +30,7 @@
     </ion-list>
 
     <ion-fab right bottom>
-        <button ion-fab color="primary" (click)="addEvent($event)">+</button>
+        <button ion-fab color="primary" [disabled]="fromCalendar" (click)="addEvent($event)">+</button>
     </ion-fab>
 
 </ion-content>
