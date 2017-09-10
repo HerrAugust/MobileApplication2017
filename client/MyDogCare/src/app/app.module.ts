@@ -34,10 +34,12 @@ import {HomeModule} from '../pages/home/home.module';
 import {AgendaPageModule} from '../pages/agenda/agenda.module';
 import {DogRegistrationPageModule} from '../pages/dog_registration/dog_registration.module';
 import {CameraPageModule} from '../pages/camera/camera.module';
+import {ProfileModule} from '../pages/profile/profile.module';
 
 @NgModule({
     declarations: [
         MyApp,
+        EventDetailPage,
    ],
     imports: [
         BrowserModule,
@@ -49,6 +51,7 @@ import {CameraPageModule} from '../pages/camera/camera.module';
         IonicModule.forRoot(MyApp),
         AgendaPageModule,
         HomeModule,
+        ProfileModule,
         CalendarPageModule,
         AddEditEventPageModule,
         DogRegistrationPageModule,

@@ -13,7 +13,8 @@
         <ion-list>
 
             <ion-title text-center>
-                <ion-img width="180" height="180" src="data:image/jpeg;base64,{{ dog.src }}"></ion-img>    
+                <!--<ion-img width="180" height="180" src="data:image/jpeg;base64,{{ dog.src }}"></ion-img>-->
+                <img width="180" height="180" [src]="_DomSanitizer.bypassSecurityTrustUrl(dog.src)" />
             </ion-title>    
 
             <ion-item>
