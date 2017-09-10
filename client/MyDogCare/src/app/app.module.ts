@@ -27,7 +27,7 @@ import {DiseaseProvider} from '../providers/disease.provider';
 import {BreedProvider} from '../providers/breed.provider';
 
 // Pages
-import {EventDetailPage} from '../pages/event-detail/event-detail';
+import {EventDetailPageModule} from '../pages/event-detail/event-detail.module';
 import {AddEditEventPageModule} from '../pages/add-edit-event/add-edit-event.module';
 import {CalendarPageModule} from '../pages/calendar/calendar.module';
 import {HomeModule} from '../pages/home/home.module';
