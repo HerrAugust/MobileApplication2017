@@ -76,4 +76,9 @@ export class HomePage {
         this.navCtrl.push(DogRegistrationPage);   
     }
 
+    
+    goDogProfile($event, dog: Dog) {
+        this.navCtrl.push('DogProfilePage', {'dog':dog});
+    }
+
 }
