@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, App, NavController, NavParams, AlertController, LoadingController} from 'ionic-angular';
 import * as moment from 'moment';
 
+import {HomePage} from '../home/home';
+
 //Providers
 import {AccountProvider} from '../../providers/account.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
@@ -28,6 +30,14 @@ export class DogProfilePage {
     editable: boolean = false;
     languages: Language[] = [];
     preferredLanguage: string = "";
+    isDisabled : boolean = false;
+
+    gender : string = "M";
+    collarId : number = null;
+    age : number = null;
+    name: string = "";
+    date_birth : string = "";
+
     
     constructor(    
         public app: App,
@@ -44,10 +54,12 @@ export class DogProfilePage {
         let dog = this.navParams.get("dog");
         this.dog = dog;
 
-        this.dog.date_birth = this._formatdate();
-        
+        //this.dog.date_birth = this._formatdate();
+
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();
+
+        
     }
 
     ionViewDidLoad() {
@@ -63,65 +75,50 @@ export class DogProfilePage {
         return moment(d).format('DD-MM-YYYY');
     }
 
-    onChangeLanguage() {
-        const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-        loading.present();
+    dog_edit() {
+        console.log("in dog edit");
         
-        this.sDictionary.setPreferredLanguage(this.preferredLanguage)
-            .then(() => {
-                loading.dismiss().then(() => {
-                    this.app.getRootNav().setRoot('TabsPage');
-                });
-            })
-            .catch(() => {
-                console.log("Errore nel caricamento del dizionario");
-                loading.dismiss();
-            });
-    }
+            
+            const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+            loading.present();
     
-    save() {
-        const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-        loading.present();
-
-        this.sAccount.update()
-            .then(() => {
-                loading.dismiss().then(() => {
-                    this.editable = false;
-                });
-            })
-            .catch((msg) => {
-                loading.dismiss().then(() => {
+            this.dog = new Dog({'name': this.dog.name, 'gender': this.dog.gender, 'age': this.dog.age, 'date_birth': this.dog.date_birth});
+            
+            console.log(this.dog);
+            /*
+            this.sDog.editDog(this.dog, this.user.token, this.collarId)
+                .then(() => {
+                    loading.dismiss().then(() => {
+                        const alert = this.alertCtrl.create({
+                            title: this.sDictionary.get("APP_NAME"),
+                            message: this.sDictionary.get("TEXT_SIGNUP_SUCCESS"),
+                            buttons: [this.sDictionary.get("OK")]
+                        });
+                        alert.present();
+                        alert.onDidDismiss(() => {
+                        });
+                    });
+                })
+                .catch(msg => {
+                    loading.dismiss();
                     this.alertCtrl.create({
                         title: this.sDictionary.get("APP_NAME"),
                         message: msg,
-                        buttons: [this.sDictionary.get("OK")] 
+                        buttons: [this.sDictionary.get("OK")]
                     }).present();
+                    this.homeRedirection();
                 });
-            });
+              */  
+                
     }
 
-    logout() {
-        this.alertCtrl.create({
-            title: this.sDictionary.get("APP_NAME"),
-            message: this.sDictionary.get("CONFIRM_LOGUOT"),
-            buttons: [this.sDictionary.get("NO"), {
-                text: this.sDictionary.get("SI"),
-                handler: () => {
-                    const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
-                    loading.present();
-
-                    this.sAccount.logout()
-                        .then(() => {
-                            loading.dismiss().then(() => {
-                                this.app.getRootNav().setRoot('LoginPage');
-                            });
-                        })
-                        .catch(() => {
-
-                        });
-                }
-            }]
-        }).present();
+    homeRedirection() {
+        console.log("Redirection to home");
+        this.navCtrl.push(HomePage);   
     }
+    
+  
+
+    
 
 }
