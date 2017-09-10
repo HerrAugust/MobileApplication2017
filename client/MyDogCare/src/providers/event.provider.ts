@@ -198,10 +198,10 @@ export class EventProvider {
     /**
      * Saves an event into server
      */
-    saveEvent(event : Event): Promise<any> {
+    saveEvent(event : Event, dogid: number): Promise<any> {
         console.log("EventProvider.saveEvent()");
         if (event.code === -1) {
-            return this._createEvent(event);
+            return this._createEvent(event, dogid);
         } 
         
         return this._editEvent(event);
@@ -256,7 +256,7 @@ export class EventProvider {
 
     /* private functions */
 
-    private _createEvent(newEvent: Event) {
+    private _createEvent(newEvent: Event, dogid : number) {
         console.log("EventProvider._createEvent(). newEvent="+JSON.stringify(newEvent));
         return new Promise((resolve, reject) => {
             this._http.post(URL_BASE + URL.EVENTS.CREATE + this._sAccount.getUser().token, {
@@ -266,7 +266,8 @@ export class EventProvider {
                 detailtimestamp_end: newEvent.detailtimestamp_end,
                 vaccinevisit: newEvent.vaccinevisit,
                 place: newEvent.place,
-                type: newEvent.vaccinevisit == 'vaccine' ? newEvent.type : null
+                type: newEvent.vaccinevisit == 'vaccine' ? newEvent.type : null,
+                dogid: dogid
             })
                 .toPromise()
                 .then((res: Response) => {

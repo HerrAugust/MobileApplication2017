@@ -76,6 +76,7 @@ export class AgendaPage {
         // refresh this.events, since events have just been modified
         this.events = [];
         this.events = this.sEvent.groupEvents();
+        this.popevt.unsubscribe("event:create");
         console.log("Agenda._manageNewEvent() END");
     }
 
@@ -85,6 +86,7 @@ export class AgendaPage {
         // refresh this.events, since events have just been modified
         this.events = [];
         this.events = this.sEvent.groupEvents();
+        this.popevt.unsubscribe("event:deleted");
         console.log("Agenda._manageEventDeleted() END");
     }
 
@@ -94,6 +96,7 @@ export class AgendaPage {
         // refresh this.events, since events have just been modified
         this.events = [];
         this.events = this.sEvent.groupEvents();
+        this.popevt.unsubscribe("event:modified");
         console.log("Agenda._manageEventModified() END");
     }
 
@@ -110,7 +113,7 @@ export class AgendaPage {
         console.log("AgendaPage.addEvent()");
         e.stopPropagation();
 
-        this.navCtrl.push(AddEditEventPage, {'code': -1, 'actiontype': 'Save'});   
+        this.navCtrl.push(AddEditEventPage, {'code': -1, 'actiontype': 'Save', 'collarid':this.collarid});   
     }
     
     editEvent(e, event: Event) {

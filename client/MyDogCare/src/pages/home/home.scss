@@ -24,8 +24,13 @@ page-home {
         text-align: center;
     }
 
-    .main-element{
+    .main-element {
         padding-left: 10px;
+    }
+
+    div.name h2 {
+        font-size: 20px;
+        margin-left: 10px;
     }
 
     .portrait {
@@ -33,7 +38,7 @@ page-home {
         img {
             width: 150px;
             height: 150px;
-            border-radius: 25px;
+            border-radius: 100px;
         }
     }
 

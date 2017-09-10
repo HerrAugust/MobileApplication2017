@@ -3,6 +3,7 @@ import {Breed} from '../models/breed.model';
 
 export class Dog {
     
+    public id : number = -1;
     public collarid: number = -1;
     public age: number = -1;
     public name: string = "";
@@ -18,8 +19,8 @@ export class Dog {
     
     setObj(obj?: any) {
         if (obj) {
-            console.log(typeof obj.collarId === "number");
             console.log(obj.collarId)
+            this.id = obj.id || this.id;
             this.collarid = obj.collarId || this.collarid;
             this.age = obj.age || this.age;
             this.name = obj.name || this.name;

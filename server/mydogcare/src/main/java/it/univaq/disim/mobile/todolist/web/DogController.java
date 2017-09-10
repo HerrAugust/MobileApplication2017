@@ -34,8 +34,6 @@ public class DogController {
     @PostMapping("/registration/{token}/{breed}")
     public Response createDog(@PathVariable(value = "token") String token, @PathVariable(value = "breed") Long breed, @RequestBody Dog dog) {
     	
-    	//System.out.println("qiuuosaidsalkndslkanlkasndka"+dog.getBreed().getId());
-    	
     	Breed breedaux = new Breed();
     	breedaux.setId(breed);
     	dog.setBreed(breedaux);
