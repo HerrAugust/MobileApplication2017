@@ -16,7 +16,9 @@ import {Dog} from '../../models/dog.model';
 // Needed to select next event
 import { ViewChild } from "@angular/core";
 import { Content } from 'ionic-angular';
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 
+// Pages
 import {DogRegistrationPage} from '../dog_registration/dog_registration';
 
 @IonicPage()
@@ -38,7 +40,8 @@ export class HomePage {
         public sDog: DogProvider,
         public sDictionary: DictionaryService,
         public geoloc: Geolocation,
-        public platform: Platform
+        public platform: Platform,
+        private _DomSanitizer: DomSanitizer,
     ) {
         console.log("Home()");
         this.sDog.getDogs().then(dogs =>

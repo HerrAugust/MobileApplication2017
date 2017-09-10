@@ -18,8 +18,11 @@ import {EventProvider} from '../../providers/event.provider';
 })
 export class CalendarPage {
   
-  eventSource; // It is an array that contains JSON objects with at least title: string, startTime: Date, endTime: Date, allDay: bool
+   // It is an array that contains JSON objects with at least title: string, startTime: Date, endTime: Date, allDay: bool
+  eventSource;
   viewTitle;
+  // The used plugin has the problem that it doesn't distinguish between swipe and click, so this trick is used
+  lock : boolean = false;
 
   isToday:boolean;
   calendar = {
@@ -80,6 +83,8 @@ export class CalendarPage {
 
   onViewTitleChanged(title) {
       this.viewTitle = title;
+      this.lock = true;
+      console.log("lock is true");
   }
 
   onEventSelected(event) {
@@ -95,20 +100,27 @@ export class CalendarPage {
   }
 
   onTimeSelected(ev) {
+      console.log("CalendarPage.onTimeSelected()");
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
           (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+
+      if(this.lock) {
+          console.log("lock is false. return");
+          this.lock = false;
+          return;
+      }
+
+      if(!this.menuCtrl.isOpen()) {
+        this.navCtrl.push(AgendaPage, { 'from': 'CalendarPage', 'date': ev.selectedTime });
+      }
   }
 
   onCurrentDateChanged(event:Date) {
     console.log("CalendarPage.onCurrentDateChanged()");
-      /*var today = new Date();
+      var today = new Date();
       today.setHours(0, 0, 0, 0);
       event.setHours(0, 0, 0, 0);
-      this.isToday = today.getTime() === event.getTime();*/
-    
-    if(!this.menuCtrl.isOpen()) {
-        this.navCtrl.push(AgendaPage, { 'from': 'CalendarPage', 'date': event });
-    }
+      this.isToday = today.getTime() === event.getTime();
   }
 
   // debug function
