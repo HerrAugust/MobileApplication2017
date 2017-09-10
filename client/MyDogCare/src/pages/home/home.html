@@ -25,7 +25,7 @@
             <br>
 
             <div class = "portrait">
-                <img src="data:image/jpeg;base64,{{ dog.src }}" alt=""/>
+                <img [src]="_DomSanitizer.bypassSecurityTrustUrl(dog.src)" />
             </div>
 
             <div class = "buttons">
