@@ -22,6 +22,9 @@ export class AgendaPage {
 
     events= []; // This is not precisely an Array<Event>, but an obj like [{"month": "July 2017", events:[{"code":"1", "note":"some note", "detailtimestamp":"2017-07-18 22:01:34.0"}]}], i.e. the events grouped by month
     public bAnimate: boolean = true;
+    collarid: number = -1;
+
+    fromCalendar : boolean = false
     
     constructor(
         public navCtrl: NavController,
@@ -35,6 +38,7 @@ export class AgendaPage {
         console.log("AgendaPage()");
         console.log(this.navParam.data)
         let from : string = this.navParam.get("from");
+        this.fromCalendar = from == 'calendar' ? true : false;
         console.log(from)
         let collarid  = this.navParam.get("collarid");
         console.log(collarid)
