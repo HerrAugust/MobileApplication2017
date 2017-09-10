@@ -38,7 +38,7 @@ export class AgendaPage {
         console.log("AgendaPage()");
         console.log(this.navParam.data)
         let from : string = this.navParam.get("from");
-        this.fromCalendar = from == 'calendar' ? true : false;
+        this.fromCalendar = from == 'CalendarPage' ? true : false;
         console.log(from)
         let collarid  = this.navParam.get("collarid");
         console.log(collarid)
@@ -51,18 +51,21 @@ export class AgendaPage {
             .then(events => {
                 this.events = events;
                 console.log(this.events);
+                console.log("length: " + this.events.length);
             });
 
-        popevt.subscribe('event:created', (eventData) => {
-            // eventData is an array of parameters, so grab our first and only arg
-            this._manageNewEvent(eventData);
-        });
-        popevt.subscribe('event:modified', (eventData) => {
-            this._manageEventModified(eventData);
-        });
-        popevt.subscribe('event:deleted', (eventData) => {
-            this._manageEventDeleted(eventData);
-        });
+        if(from != 'CalendarPage') {
+            popevt.subscribe('event:created', (eventData) => {
+                // eventData is an array of parameters, so grab our first and only arg
+                this._manageNewEvent(eventData);
+            });
+            popevt.subscribe('event:modified', (eventData) => {
+                this._manageEventModified(eventData);
+            });
+            popevt.subscribe('event:deleted', (eventData) => {
+                this._manageEventDeleted(eventData);
+            });
+        }
     }
 
     // Selects the next event

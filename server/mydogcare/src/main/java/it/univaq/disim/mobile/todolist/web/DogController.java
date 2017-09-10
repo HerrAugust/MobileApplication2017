@@ -30,13 +30,15 @@ public class DogController {
 		response.setData(dogs);
     	return response;
     }
-    
-    @PostMapping("/registration/{token}/{breed}")
-    public Response createDog(@PathVariable(value = "token") String token, @PathVariable(value = "breed") Long breed, @RequestBody Dog dog) {
+
+    @PostMapping("/registration/{token}/{collarid}/{breed}")
+    public Response createDog(@PathVariable(value = "token") String token, @PathVariable(value = "collarid") Long collar, @PathVariable(value = "breed") Long breed, @RequestBody Dog dog) {
     	
+    	System.out.println("Collar of dog in server:"+ dog.getCollarId());
     	Breed breedaux = new Breed();
     	breedaux.setId(breed);
     	dog.setBreed(breedaux);
+    	dog.setCollarId(collar);
     	
         boolean result = service.createDog(dog,token);
         
