@@ -40,8 +40,8 @@ export class CameraPage {
 
     // picture options
     pictureOpts: CameraPreviewPictureOptions = {
-        width: 200,
-        height: 200,
+        width: 150,
+        height: 150,
         quality: 85
     }
     
