@@ -44,11 +44,15 @@ export class HomePage {
         private _DomSanitizer: DomSanitizer,
     ) {
         console.log("Home()");
+
+        const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
+        loading.present();
         this.sDog.getDogs().then(dogs =>
             {
                 this.dogs = dogs;
                 console.log("got the following dogs:");
                 console.log(this.dogs);
+                loading.dismiss();
             });
       }
 
