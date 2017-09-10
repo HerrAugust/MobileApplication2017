@@ -147,5 +147,13 @@ public class Event implements java.io.Serializable {
 		this.detailtimestamp = detailtimestamp;
 	}
 
+	public Dog getDog() {
+		return dog;
+	}
+
+	public void setDog(Dog dog) {
+		this.dog = dog;
+	}
+
 
 }

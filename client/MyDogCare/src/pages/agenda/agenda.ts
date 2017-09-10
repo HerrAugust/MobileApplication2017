@@ -22,7 +22,7 @@ export class AgendaPage {
 
     events= []; // This is not precisely an Array<Event>, but an obj like [{"month": "July 2017", events:[{"code":"1", "note":"some note", "detailtimestamp":"2017-07-18 22:01:34.0"}]}], i.e. the events grouped by month
     public bAnimate: boolean = true;
-    collarid: number = -1;
+    dogid: number = -1;
 
     fromCalendar : boolean = false
     
@@ -40,8 +40,8 @@ export class AgendaPage {
         let from : string = this.navParam.get("from");
         this.fromCalendar = from == 'CalendarPage' ? true : false;
         console.log(from)
-        let collarid  = this.navParam.get("collarid");
-        console.log(collarid)
+        this.dogid  = this.navParam.get("dogid");
+        console.log('dogid='+this.dogid);
         let date = this.navParam.get("date");
         if(!date) date = null;
         console.log(date)
@@ -49,7 +49,7 @@ export class AgendaPage {
 
         const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
         loading.present();
-        this.sEvent.getEvents(from, collarid, date, userid)
+        this.sEvent.getEvents(from, this.dogid, date, userid)
             .then(events => {
                 this.events = events;
                 console.log(this.events);
@@ -119,7 +119,8 @@ export class AgendaPage {
         console.log("AgendaPage.addEvent()");
         e.stopPropagation();
 
-        this.navCtrl.push(AddEditEventPage, {'code': -1, 'actiontype': 'Save', 'collarid':this.collarid});   
+        console.log("dogid="+this.dogid);
+        this.navCtrl.push(AddEditEventPage, {'code': -1, 'actiontype': 'Save', 'dogid': this.dogid});   
     }
     
     editEvent(e, event: Event) {

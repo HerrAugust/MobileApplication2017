@@ -86,24 +86,21 @@ export class EventProvider {
         let url = "";
         if(by_what == "by date") {
             // it is more convenient to show select them client-side
-            url = URL_BASE + URL.EVENTS.GETALL_BYDATE + '7272719208635713611';
+            url = URL_BASE + URL.EVENTS.GETALL_BYDATE + this._sAccount.getUser().token;
         }
         else if(by_what == 'all') {
-            url = URL_BASE + URL.EVENTS.GETALL + '7272719208635713611';
+            url = URL_BASE + URL.EVENTS.GETALL + this._sAccount.getUser().token;
         }
         else { // by dog
-            url = URL_BASE + URL.EVENTS.GETALL_BYDOG + '7272719208635713611/' + collarid;
+            url = URL_BASE + URL.EVENTS.GETALL_BYDOG + this._sAccount.getUser().token + '/' + collarid;
         }
 
         return new Promise((resolve) => {
             // Every time, all events are reloaded
-            if (this._Events === null) {
-                this._Events = [];
-            }
+            this._Events = [];
 
-            // TODO rimettere commentato
-            console.log(url /*+ this._sAccount.getUser().token*/)
-            this._http.get(url /*+ this._sAccount.getUser().token*/).toPromise()
+            console.log(url)
+            this._http.get(url).toPromise()
                 .then((res: Response) => {
                     const json = res.json() as ResponseServer;
 
@@ -118,6 +115,7 @@ export class EventProvider {
                                 continue;
                             }
                         }
+                        console.log("got events: " + JSON.stringify(this._Events));
                         this._GroupedEvents = this.groupEvents();
                         resolve(this._GroupedEvents);
                     } else {
@@ -257,17 +255,16 @@ export class EventProvider {
     /* private functions */
 
     private _createEvent(newEvent: Event, dogid : number) {
-        console.log("EventProvider._createEvent(). newEvent="+JSON.stringify(newEvent));
+        console.log("EventProvider._createEvent(). newEvent="+JSON.stringify(newEvent) + ". dogid="+dogid);
         return new Promise((resolve, reject) => {
-            this._http.post(URL_BASE + URL.EVENTS.CREATE + this._sAccount.getUser().token, {
+            this._http.post(URL_BASE + URL.EVENTS.CREATE + this._sAccount.getUser().token + '/' + dogid, {
                 note: newEvent.note,
                 starred: newEvent.starred,
                 detailtimestamp: newEvent.detailtimestamp_start,
                 detailtimestamp_end: newEvent.detailtimestamp_end,
                 vaccinevisit: newEvent.vaccinevisit,
                 place: newEvent.place,
-                type: newEvent.vaccinevisit == 'vaccine' ? newEvent.type : null,
-                dogid: dogid
+                type: newEvent.vaccinevisit == 'vaccine' ? newEvent.type : null
             })
                 .toPromise()
                 .then((res: Response) => {

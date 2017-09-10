@@ -1,6 +1,8 @@
 package it.univaq.disim.mobile.todolist.web;
 
 import it.univaq.disim.mobile.todolist.business.MyDogCareService;
+import it.univaq.disim.mobile.todolist.business.domain.Breed;
+import it.univaq.disim.mobile.todolist.business.domain.Dog;
 import it.univaq.disim.mobile.todolist.business.domain.Event;
 import it.univaq.disim.mobile.todolist.business.domain.Task;
 
@@ -24,9 +26,14 @@ public class EventController {
     @Autowired
     private MyDogCareService service;
 
-    @PostMapping("/{token}")
-    public Response createEvent(@PathVariable(value = "token") String token, @RequestBody Event event) {
+    @PostMapping("/{token}/{dogid}")
+    public Response createEvent(@PathVariable(value = "token") String token, @PathVariable(value = "dogid") Long dogid, @RequestBody Event event) {
     	System.out.println("event="+event.toString());
+    	
+    	Dog dogaux = new Dog();
+    	dogaux.setId(dogid);
+    	event.setDog(dogaux);
+    	
         service.createEvent(token, event);
         Response<Event> response = new Response<>(true, "event created!");
         response.setData(event);
@@ -44,9 +51,9 @@ public class EventController {
     	return response;
     }
 
-    @GetMapping("/dog/{token}/{collarid}")
-    public Response findAllEventsByDog(@PathVariable(value = "token") String token, @PathVariable(value = "collarid") Long collarid) {
-    	List<Event> events = service.findEventsByDog(token, collarid);
+    @GetMapping("/dog/{token}/{dogid}")
+    public Response findAllEventsByDog(@PathVariable(value = "token") String token, @PathVariable(value = "dogid") Long dogid) {
+    	List<Event> events = service.findEventsByDog(token, dogid);
         Response<List<Event>> response = new Response<>(true, "all events grouped by dog");
         response.setData(events);
     	return response;

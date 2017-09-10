@@ -74,7 +74,7 @@ export class HomePage {
 
     goAgenda($event, dog: Dog) {
         console.log(dog)
-        this.navCtrl.push('AgendaPage', { 'from': 'home', 'collarid': dog.collarid });
+        this.navCtrl.push('AgendaPage', { 'from': 'home', 'dogid': dog.id });
     }
 
 
