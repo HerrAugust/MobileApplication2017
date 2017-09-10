@@ -13,6 +13,7 @@ import {DictionaryService} from '../modules/dictionary/providers/dictionary.serv
 import {AgendaPage} from '../pages/agenda/agenda';
 import {HomePage} from '../pages/home/home';
 import {CalendarPage} from '../pages/calendar/calendar';
+import {ProfilePage} from '../pages/profile/profile';
 
 //Map
 import {LatLng} from '@ionic-native/google-maps';
@@ -45,7 +46,8 @@ export class MyApp {
         this.pages = [
             { title: 'Homepage', component: HomePage },
             { title: 'Celendar', component: CalendarPage },
-            { title: 'Agenda', component: AgendaPage }
+            { title: 'Agenda', component: AgendaPage },
+            { title: 'Profile', component: ProfilePage }
         ];
 
         platform.ready().then(() => {

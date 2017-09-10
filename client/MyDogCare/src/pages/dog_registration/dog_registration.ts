@@ -111,8 +111,6 @@ export class DogRegistrationPage {
                         });
                         alert.present();
                         alert.onDidDismiss(() => {
-                            //this.navCtrl.pop();
-                            this.homeRedirection();
                         });
                     });
                 })
@@ -123,6 +121,7 @@ export class DogRegistrationPage {
                         message: msg,
                         buttons: [this.sDictionary.get("OK")]
                     }).present();
+                    this.homeRedirection();
                 });
                 
     }

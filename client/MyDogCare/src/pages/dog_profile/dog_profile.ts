@@ -11,6 +11,7 @@ import {DogProvider} from '../../providers/dog.provider'
 import {User} from '../../models/user.model';
 import {Dog} from '../../models/dog.model';
 
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 
 import {Language} from '../../modules/dictionary/types';
 
@@ -36,7 +37,8 @@ export class DogProfilePage {
         public loadingCtrl: LoadingController,
         public sAccount: AccountProvider,
         public sDictionary: DictionaryService,
-        public sDog: DogProvider
+        public sDog: DogProvider,
+        private _DomSanitizer: DomSanitizer
     ) {
         this.user = this.sAccount.getUser();
         let dog = this.navParams.get("dog");
