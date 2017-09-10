@@ -30,7 +30,7 @@ public class DogController {
 		response.setData(dogs);
     	return response;
     }
-
+    
     @PostMapping("/registration/{token}/{collarid}/{breed}")
     public Response createDog(@PathVariable(value = "token") String token, @PathVariable(value = "collarid") Long collar, @PathVariable(value = "breed") Long breed, @RequestBody Dog dog) {
     	
@@ -44,12 +44,6 @@ public class DogController {
         
         Response<Object> response = new Response<>();
         response.setMessage("Ok");
-//        response.setResult(result);
-//        if (result) {
-//            response.setMessage("Ok");
-//        } else {
-//            response.setMessage("User already exist");
-//        }
         return response;
     }
 
