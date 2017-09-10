@@ -255,7 +255,7 @@ export class EventProvider {
     /* private functions */
 
     private _createEvent(newEvent: Event, dogid : number) {
-        console.log("EventProvider._createEvent(). newEvent="+JSON.stringify(newEvent) + ". collarid="+dogid);
+        console.log("EventProvider._createEvent(). newEvent="+JSON.stringify(newEvent) + ". dogid="+dogid);
         return new Promise((resolve, reject) => {
             this._http.post(URL_BASE + URL.EVENTS.CREATE + this._sAccount.getUser().token + '/' + dogid, {
                 note: newEvent.note,
@@ -264,8 +264,7 @@ export class EventProvider {
                 detailtimestamp_end: newEvent.detailtimestamp_end,
                 vaccinevisit: newEvent.vaccinevisit,
                 place: newEvent.place,
-                type: newEvent.vaccinevisit == 'vaccine' ? newEvent.type : null,
-                dogid: dogid
+                type: newEvent.vaccinevisit == 'vaccine' ? newEvent.type : null
             })
                 .toPromise()
                 .then((res: Response) => {

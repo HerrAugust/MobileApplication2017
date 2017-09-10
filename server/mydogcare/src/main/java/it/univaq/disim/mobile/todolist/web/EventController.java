@@ -26,12 +26,12 @@ public class EventController {
     @Autowired
     private MyDogCareService service;
 
-    @PostMapping("/{token}/{collarid}")
-    public Response createEvent(@PathVariable(value = "token") String token, @PathVariable(value = "collarid") Long collarid, @RequestBody Event event) {
+    @PostMapping("/{token}/{dogid}")
+    public Response createEvent(@PathVariable(value = "token") String token, @PathVariable(value = "dogid") Long dogid, @RequestBody Event event) {
     	System.out.println("event="+event.toString());
     	
     	Dog dogaux = new Dog();
-    	dogaux.setId(collarid);
+    	dogaux.setId(dogid);
     	event.setDog(dogaux);
     	
         service.createEvent(token, event);
