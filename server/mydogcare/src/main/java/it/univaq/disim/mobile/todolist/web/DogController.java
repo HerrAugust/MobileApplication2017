@@ -44,12 +44,6 @@ public class DogController {
         
         Response<Object> response = new Response<>();
         response.setMessage("Ok");
-//        response.setResult(result);
-//        if (result) {
-//            response.setMessage("Ok");
-//        } else {
-//            response.setMessage("User already exist");
-//        }
         return response;
     }
 

@@ -52,6 +52,11 @@ public class Event implements java.io.Serializable {
     @JoinColumn(name="userid", nullable = false)
     private User user;
     
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name="dogid", nullable = false)
+    private Dog dog;
+    
     @Override
     public String toString() {
     	String res = "{";

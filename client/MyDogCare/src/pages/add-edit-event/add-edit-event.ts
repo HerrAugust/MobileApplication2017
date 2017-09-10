@@ -42,6 +42,8 @@ export class AddEditEventPage {
   disease : Disease = new Disease({icdcode: -1, name: 'None'});
   diseases : Array<Disease> = [];
 
+  collarid: number = -1;
+
   actiontype : string = "Save";
   title : string = "New Event";
 
@@ -50,6 +52,8 @@ export class AddEditEventPage {
 
     this.actiontype = sDictionary.get("ADDEDITEVENTPAGE_" + (<string> navParams.get("actiontype")).toUpperCase());
     this.code = navParams.get("code");
+
+    this.collarid = navParams.get("collarid");
 
     // Getting diseases
     this.sDisease.getDiseases()
@@ -153,7 +157,7 @@ export class AddEditEventPage {
     console.log(this.disease);
     var event : Event = new Event({code: this.code, type: this.event.vaccinevisit == 'vaccine' ? this.disease : null, detailtimestamp_end: dt_end, detailtimestamp: dt_start, note: this.comment, starred: this.starred, place: this.place, vaccinevisit: this.event.vaccinevisit});
     console.log("saving event="+JSON.stringify(event));
-    this.sEvent.saveEvent(event);
+    this.sEvent.saveEvent(event, this.collarid);
 
     this.navCtrl.pop();
   }
