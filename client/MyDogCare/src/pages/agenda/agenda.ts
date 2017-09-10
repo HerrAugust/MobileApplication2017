@@ -33,7 +33,7 @@ export class AgendaPage {
         public loadingCtrl: LoadingController,
         public popevt: Events,
         public sEvent: EventProvider,
-        public sDictionary: DictionaryService
+        public sDictionary: DictionaryService,
     ) {
         console.log("AgendaPage()");
         console.log(this.navParam.data)
@@ -47,11 +47,14 @@ export class AgendaPage {
         console.log(date)
         let userid = this.navParam.get("userid");
 
+        const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
+        loading.present();
         this.sEvent.getEvents(from, collarid, date, userid)
             .then(events => {
                 this.events = events;
                 console.log(this.events);
                 console.log("length: " + this.events.length);
+                loading.dismiss();
             });
 
         if(from != 'CalendarPage') {
