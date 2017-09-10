@@ -38,10 +38,10 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     
     // EVENTS
     
-    public List<Event> findEventsByDog(String token, Long collarid) {
+    public List<Event> findEventsByDog(String token, Long dogid) {
     	Session session = sessionRepository.findByToken(token);
         if (session != null) {
-            return eventRepository.findByDogOrderByDetailtimestampAsc(collarid);
+            return eventRepository.findByDogIdOrderByDetailtimestampAsc(dogid);
             
         } else {
             return new ArrayList<>();
