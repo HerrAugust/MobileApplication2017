@@ -81,7 +81,7 @@ export class EventProvider {
      */
     getEvents(by_what: string, collarid: number = -1, date: Date = null, userid: number = -1): Promise<Array<any>> {
         console.log("EventProvider.getEvents()");
-        console.log("collarid = "+collarid + "; userid = "+userid + "; date = " + (date ? date.toDateString() : "null"));
+        console.log("by_what = " + by_what + "; collarid = "+collarid + "; userid = "+userid + "; date = " + (date ? date.toDateString() : "null"));
 
         let url = "";
         if(by_what == "by date") {

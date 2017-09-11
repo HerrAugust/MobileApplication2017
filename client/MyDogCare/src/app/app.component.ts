@@ -61,6 +61,7 @@ export class MyApp {
                 } else {
                     this.rootPage = 'LoginPage';
                 }
+                //debug:
                 //this.rootPage = 'DogSearchPage';
             });
 
