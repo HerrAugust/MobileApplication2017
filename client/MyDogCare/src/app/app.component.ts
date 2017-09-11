@@ -1,5 +1,5 @@
 import {Component, ViewChild } from '@angular/core';
-import {Platform, Nav, LoadingController, AlertController, App} from 'ionic-angular';
+import {Platform, Nav, LoadingController, AlertController, App, MenuController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import { Pipe, PipeTransform } from '@angular/core'
@@ -34,6 +34,7 @@ export class MyApp {
 
     constructor(
         public platform: Platform,
+        public menuCtrl: MenuController,
         statusBar: StatusBar,
         splashScreen: SplashScreen,
         public sAccount: AccountProvider,
@@ -61,6 +62,7 @@ export class MyApp {
                 } else {
                     this.rootPage = 'LoginPage';
                 }
+                //debug:
                 //this.rootPage = 'DogSearchPage';
             });
 
@@ -86,6 +88,7 @@ export class MyApp {
 
             loading.dismiss().then(() => {
                 this.app.getRootNav().setRoot('LoginPage');
+                this.menuCtrl.close();
             });
         })
         .catch((msg) => {

@@ -4,7 +4,6 @@ import it.univaq.disim.mobile.todolist.business.MyDogCareService;
 import it.univaq.disim.mobile.todolist.business.domain.Breed;
 import it.univaq.disim.mobile.todolist.business.domain.Dog;
 import it.univaq.disim.mobile.todolist.business.domain.Event;
-import it.univaq.disim.mobile.todolist.business.domain.Task;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -63,6 +62,14 @@ public class EventController {
     public Response findAllEventsByUser(@PathVariable(value = "token") String token) {
     	List<Event> events = service.findEventsByUser(token);
         Response<List<Event>> response = new Response<>(true, "all events grouped by user");
+        response.setData(events);
+    	return response;
+    }
+    
+    @GetMapping("/date/{token}/{date}")
+    public Response findEventsByCode(@PathVariable(value = "token") String token, @PathVariable(value = "date") String date) {
+    	List<Event> events = service.findEventsByDate(token, date);
+        Response<List<Event>> response = new Response<>(true, "all events grouped by date");
         response.setData(events);
     	return response;
     }

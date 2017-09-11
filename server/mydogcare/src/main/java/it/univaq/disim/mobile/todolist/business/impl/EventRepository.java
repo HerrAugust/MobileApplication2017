@@ -1,8 +1,8 @@
 package it.univaq.disim.mobile.todolist.business.impl;
 
 import it.univaq.disim.mobile.todolist.business.domain.Event;
-import it.univaq.disim.mobile.todolist.business.domain.Task;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +14,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 	List<Event> findByDogIdOrderByDetailtimestampAsc(@Param("dogid") Long dogid);
 	
 	List<Event> findByUserIdOrderByDetailtimestampAsc(@Param("userid") Long userid);
+	
+	@Query(value = "select * from events where userid=:userid and DATE(detailtimestamp_start) =:detailtimestamp order by detailtimestamp_start asc", nativeQuery = true)
+	List<Event> findByUserIdAndDetailtimestampOrderByDetailtimestampAsc(@Param("userid") Long userid, @Param("detailtimestamp") String detailtimestamp);
 	
 	Event findByCode(@Param("code") Long code);
 }

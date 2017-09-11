@@ -36,16 +36,27 @@ export class AgendaPage {
         public sDictionary: DictionaryService,
     ) {
         console.log("AgendaPage()");
-        console.log(this.navParam.data)
-        let from : string = this.navParam.get("from");
-        this.fromCalendar = from == 'CalendarPage' ? true : false;
-        console.log(from)
         this.dogid  = this.navParam.get("dogid");
         console.log('dogid='+this.dogid);
         let date = this.navParam.get("date");
         if(!date) date = null;
-        console.log(date)
+        console.log("date="+date)
         let userid = this.navParam.get("userid");
+        let from : string = this.navParam.get("from");
+        this.fromCalendar = from == 'CalendarPage' ? true : false;
+        // the function this.sEvent.getEvents() expects all, by dog or by date as param, thus:
+        switch(String(from)) {
+            case 'CalendarPage':
+                from = 'by date';
+                break;
+            case 'undefined': // Agenda clicked in menu
+                from = 'all';
+                break;
+            case 'HomePage':
+                from = 'by dog';
+                break;
+        }
+        console.log("from="+from)
 
         const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
         loading.present();

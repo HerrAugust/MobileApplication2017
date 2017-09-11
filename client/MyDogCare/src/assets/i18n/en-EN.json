@@ -48,14 +48,15 @@
     
     "TEXT_NEW_ACCOUNT": "Register a new account.",
     "TEXT_SIGNUP_SUCCESS": "Signup successfully, login now.",
-    "DOG_UPDATE_SUCCESS": "Update successfully",
+    "DOG_UPDATE_SUCCESS": "Update successfully",          "TEXT_UPDATE": "Update Complete.",
+
     
     "WARNING_LOGIN_USERNAME_EMPTY": "Enter the username of your TodoList account.",
     "WARNING_LOGIN_PASSWORD_EMPTY": "Enter the password.",
     "WARNING_SIGNUP_FIELD_EMPTY" : "Please enter all fields.",
     "WARNING_SIGNUP_PASSWORD_WRONG": "The two passwords are incorrect.",
     
-    "ERROR_LOGIN_USERNAME_PASSWORD": "Incorrect username or passord",
+    "ERROR_LOGIN_USERNAME_PASSWORD": "Incorrect username or password",
     "ERROR_PROFILE_SAVE": "You could not save your profile.",
 
     "SEARCH": "Find it!",

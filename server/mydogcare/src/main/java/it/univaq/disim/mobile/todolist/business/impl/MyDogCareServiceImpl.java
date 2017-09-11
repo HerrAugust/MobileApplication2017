@@ -5,10 +5,12 @@ import it.univaq.disim.mobile.todolist.business.domain.Disease;
 import it.univaq.disim.mobile.todolist.business.domain.Dog;
 import it.univaq.disim.mobile.todolist.business.domain.Event;
 import it.univaq.disim.mobile.todolist.business.domain.Session;
-import it.univaq.disim.mobile.todolist.business.domain.Task;
 import it.univaq.disim.mobile.todolist.business.domain.User;
 import it.univaq.disim.mobile.todolist.business.domain.Breed;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +54,24 @@ public class MyDogCareServiceImpl implements MyDogCareService {
     	Session session = sessionRepository.findByToken(token);
         if (session != null) {
             return eventRepository.findByUserIdOrderByDetailtimestampAsc(session.getUser().getId());
+            
+        } else {
+            return new ArrayList<>();
+        }
+    }
+    
+    // date = "12-03-2017"
+    public List<Event> findEventsByDate(String token, String date) {
+    	Session session = sessionRepository.findByToken(token);
+        if (session != null) {
+        	String[] s = date.split("-");
+        	String day = s[2];
+        	day = day.length() == 1 ? '0' + day : day;
+        	String month = s[1];
+        	month = month.length() == 1 ? '0' + month : month;
+        	String year = s[0];
+        	String mydate = String.format("%s-%s-%s", year, month, day);
+            return eventRepository.findByUserIdAndDetailtimestampOrderByDetailtimestampAsc(session.getUser().getId(), mydate);
             
         } else {
             return new ArrayList<>();
@@ -152,12 +172,6 @@ public class MyDogCareServiceImpl implements MyDogCareService {
         }
 
     }
-
-	@Override
-	public void updateOrderEvents(String token, List<Event> Events) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void toggleStartEvent(String token, Long id) {
