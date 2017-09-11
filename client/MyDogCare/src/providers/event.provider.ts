@@ -46,7 +46,7 @@ export class EventProvider {
             .then(nullvar => {
                 // Adjust events as required by the Calendar Module
                 resolve(this._groupEventsCalendar()); 
-            })
+            });
         });
     }
 
@@ -112,17 +112,11 @@ export class EventProvider {
 
                     if (json.result) {
                         const Events = json.data;
+                        console.log("received events: ");
+                        console.log(Events);
                         for (let event of Events) {
                             console.log(event);
                             this._Events.push(new Event(event));
-                            // if you want events by date (i.e., you come from calendar) then remove all events that do not match the desired date
-                            console.log("SADSADSA");
-                            console.log(date.toString())
-                            console.log(this._Events[this._Events.length].detailtimestamp_start)
-                            if(by_what == 'by date' && this._Events[this._Events.length].detailtimestamp_start != date.toString()) {
-                                this._Events.pop();
-                                continue;
-                            }
                         }
                         console.log("got events: " + JSON.stringify(this._Events));
                         this._GroupedEvents = this.groupEvents();
