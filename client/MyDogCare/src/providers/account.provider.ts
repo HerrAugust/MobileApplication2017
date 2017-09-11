@@ -97,7 +97,7 @@ export class AccountProvider {
         });
     }
     
-    update(): Promise<any> {
+    update(_user): Promise<any> {
         return new Promise((resolve, reject) => {
             this._http.put(URL_BASE + URL.USERS.UPDATE + this._user.token, this._user).toPromise()
                 .then((res: Response) => {
