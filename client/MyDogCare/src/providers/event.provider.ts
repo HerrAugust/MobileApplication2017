@@ -38,13 +38,15 @@ export class EventProvider {
     /**
      * Retrieves Events in the form required by the Calendar Module
      */
-    getEvents_calendar(userid: number) : Promise<Array<Event>> {
+    getEvents_calendar() : Promise<Array<Event>> {
         console.log("EventProvider.getEvents_calendar()");
         return new Promise((resolve) => {
             // Set events in general
-            this.getEvents('all', -1, null, userid);
-            // Adjust events as required by the Calendar Module
-            resolve(this._groupEventsCalendar()); 
+            this.getEvents('all', -1, null, -1)
+            .then(nullvar => {
+                // Adjust events as required by the Calendar Module
+                resolve(this._groupEventsCalendar()); 
+            })
         });
     }
 
@@ -60,10 +62,11 @@ export class EventProvider {
         if(this._Events == null)
             return [];
 
+        console.log("this._Events.length:" + this._Events.length);
         for(let event of this._Events) {
             groupedEvents.push(
                 {
-                title: event.type.name + ';' + event.note,
+                title: (event.type != null ? event.type.name : "") + ';' + event.note,
                 startTime: new Date(event.detailtimestamp_start),
                 endTime: new Date(event.detailtimestamp_end),
                 allDay: false
@@ -85,8 +88,11 @@ export class EventProvider {
 
         let url = "";
         if(by_what == "by date") {
+            let day = date.getDate();
+            let month = date.getMonth()+1;
+            let year = date.getFullYear();
             // it is more convenient to show select them client-side
-            url = URL_BASE + URL.EVENTS.GETALL_BYDATE + this._sAccount.getUser().token;
+            url = URL_BASE + URL.EVENTS.GETALL_BYDATE + this._sAccount.getUser().token + `/${year}-${month}-${day}`;
         }
         else if(by_what == 'all') {
             url = URL_BASE + URL.EVENTS.GETALL + this._sAccount.getUser().token;
@@ -110,6 +116,9 @@ export class EventProvider {
                             console.log(event);
                             this._Events.push(new Event(event));
                             // if you want events by date (i.e., you come from calendar) then remove all events that do not match the desired date
+                            console.log("SADSADSA");
+                            console.log(date.toString())
+                            console.log(this._Events[this._Events.length].detailtimestamp_start)
                             if(by_what == 'by date' && this._Events[this._Events.length].detailtimestamp_start != date.toString()) {
                                 this._Events.pop();
                                 continue;

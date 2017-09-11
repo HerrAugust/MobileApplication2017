@@ -18,7 +18,7 @@ import {EventProvider} from '../../providers/event.provider';
 })
 export class CalendarPage {
   
-   // It is an array that contains JSON objects with at least title: string, startTime: Date, endTime: Date, allDay: bool
+  // It is an array that contains JSON objects with at least title: string, startTime: Date, endTime: Date, allDay: bool
   eventSource;
   viewTitle;
   // The used plugin has the problem that it doesn't distinguish between swipe and click, so this trick is used
@@ -65,19 +65,21 @@ export class CalendarPage {
       public menuCtrl: MenuController
     )
   {
-        let userid = this.navParams.get("userid");
-        this.loadEvents(userid);
+        this.loadEvents();
   }
  
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarPage');
   }
 
-  loadEvents(userid: number) {
+  loadEvents() {
+      //debug:
       //this.eventSource = this.createRandomEvents();
-      this.sEvent.getEvents_calendar(userid)
+
+      this.sEvent.getEvents_calendar()
       .then(events => {
           this.eventSource = events;
+          console.log("CalendarPage.loadEvents(). events: "+JSON.stringify)
       });
   }
 

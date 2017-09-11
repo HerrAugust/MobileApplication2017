@@ -44,6 +44,7 @@ export class AccountProvider {
             this._sUserPersistance.get()
                 .then(user => {
                     this._user = user;
+                    console.log('got user from persistance: ' + user);
                     resolve();
                 })
                 .catch(() => resolve());

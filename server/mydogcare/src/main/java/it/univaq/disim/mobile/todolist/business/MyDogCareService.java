@@ -25,12 +25,12 @@ public interface MyDogCareService {
     Event updateEvent(String token, Event Event);
 
     void deleteEvent(String token, Long id);
-
-    void updateOrderEvents(String token, List<Event> Events);
     
     List<Event> findEventsByDog(String token, Long collarid);
     
     List<Event> findEventsByUser(String token);
+    
+    List<Event> findEventsByDate(String token, String date);
     
 	void toggleStartEvent(String token, Long id);
 

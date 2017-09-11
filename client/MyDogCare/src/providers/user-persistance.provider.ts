@@ -18,6 +18,7 @@ export class UserPersistanceProvider implements UserPersistanceInterface {
     }
     
     save(user: User): Promise<any> {
+        console.log('UserPersistanceProvider.save(). user='+user);
         return new Promise((resolve, reject) => {
             this._storage.set(STORAGE_KEYS.USER, user)
                 .then(() => {

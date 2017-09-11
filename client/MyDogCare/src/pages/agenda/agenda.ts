@@ -45,7 +45,17 @@ export class AgendaPage {
         let from : string = this.navParam.get("from");
         this.fromCalendar = from == 'CalendarPage' ? true : false;
         // the function this.sEvent.getEvents() expects all, by dog or by date as param, thus:
-        from = from == 'CalendarPage' ? 'by date' : from;
+        switch(String(from)) {
+            case 'CalendarPage':
+                from = 'by date';
+                break;
+            case 'undefined': // Agenda clicked in menu
+                from = 'all';
+                break;
+            case 'HomePage':
+                from = 'by dog';
+                break;
+        }
         console.log("from="+from)
 
         const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
