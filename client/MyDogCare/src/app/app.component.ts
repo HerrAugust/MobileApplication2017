@@ -45,7 +45,7 @@ export class MyApp {
     ) {
         this.pages = [
             { title: 'Homepage', component: HomePage },
-            { title: 'Celendar', component: CalendarPage },
+            { title: 'Calendar', component: CalendarPage },
             { title: 'Agenda', component: AgendaPage },
             { title: 'Profile', component: ProfilePage }
         ];

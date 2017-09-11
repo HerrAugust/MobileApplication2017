@@ -9,56 +9,53 @@
 
 <ion-content padding>
     <div class="container-form">
-
+        
         <ion-list>
 
             <ion-title text-center>
                 <!--<ion-img width="180" height="180" src="data:image/jpeg;base64,{{ dog.src }}"></ion-img>-->
                 <img width="180" height="180" [src]="_DomSanitizer.bypassSecurityTrustUrl(dog.src)" />
-            </ion-title>    
-
-            <ion-item>
-                <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>
-                <ion-input type="text" disabled="true" [(ngModel)]="dog.name"></ion-input>
-            </ion-item>
-
-            <!--    
-            <ion-item>
-                <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
-                <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.monthEnds"></ion-datetime>
-            </ion-item>
-            -->
-
-            <ion-item>
-                <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
-                <ion-input type="text" disabled="true" [(ngModel)]="dog.date_birth"></ion-input>
-            </ion-item>
-
-            <!--    
-                <ion-item>
-                <ion-label stacked>{{ 'DOG_BIRTH' | dictionary }}</ion-label>
-                </ion-item>
-                <ion-item>
-                <ion-col col-2><ion-icon name="md-calendar"></ion-icon></ion-col>
-                <ion-col col-5><ion-datetime class="date" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dog.monthEnds"></ion-datetime></ion-col>
-                
-                </ion-item>
-            -->    
+            </ion-title>   
 
             <ion-item>
                 <ion-label stacked>{{ 'COLLARID' | dictionary }}</ion-label>
-                <ion-input type="text" disabled="true" [(ngModel)]="dog.collarid"></ion-input>
+                <ion-input type="number" disabled="{{!isDisabled}}" [(ngModel)]="dog.collarid"></ion-input>
+            </ion-item> 
+
+            <ion-item>
+                <ion-label stacked>{{ 'NAME' | dictionary }}</ion-label>
+                <ion-input type="text" disabled="{{isDisabled}}" [(ngModel)]="dog.name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'DOG_AGE' | dictionary }}</ion-label>
+                <ion-input type="number" disabled="{{isDisabled}}" [(ngModel)]="dog.age"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label stacked>{{ 'GENDER' | dictionary }}</ion-label>
                 <!--<ion-input type="text" disabled="true" [(ngModel)]="dog.name"></ion-input>-->
-                <ion-input type="text" disabled="true" [(ngModel)]="dog.gender"></ion-input>
+                <ion-select [(ngModel)]="dog.gender">
+                <ion-option value="M">Male</ion-option>
+                <ion-option value="F">Female</ion-option>
+                </ion-select>
+                <!--<ion-icon name="md-information-circle" item-start></ion-icon>-->
+                <!--<ion-input type="text" disabled="{{isDisabled}}" [(ngModel)]="dog.gender"></ion-input>-->
             </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'DATE_BIRTH' | dictionary }}</ion-label>
+                <!--<ion-input type="date" disabled="{{isDisabled}}" [(ngModel)]="dog.date_birth"></ion-input>-->
+                <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="dog.date_birth"></ion-datetime>
+            </ion-item>  
+
 
 
         </ion-list>
 
+            <div padding>
+            <button ion-button color="primary" block (click)="dog_edit()">EDIT</button>
+            </div>
 
     </div>
 
