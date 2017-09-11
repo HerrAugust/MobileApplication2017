@@ -1,5 +1,15 @@
 page-dogregistration { 
     
+    .logo-container {
+        width: 150px;
+        height: 150px;
+        margin: auto;
+
+        img {
+            border-radius: 100px;
+        }
+    }
+
     ion-item {
         &:last-child {
             border-bottom: 1px solid #dedede !important;
@@ -8,12 +18,6 @@ page-dogregistration {
                 border-bottom: none !important;
                 box-shadow: none !important;
             }
-        }
-
-        .logo-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 100px;
         }
         
         .item-inner {

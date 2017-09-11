@@ -71,6 +71,7 @@ public class MyDogCareServiceImpl implements MyDogCareService {
         	month = month.length() == 1 ? '0' + month : month;
         	String year = s[0];
         	String mydate = String.format("%s-%s-%s", year, month, day);
+        	System.out.println("mydate="+mydate);
             return eventRepository.findByUserIdAndDetailtimestampOrderByDetailtimestampAsc(session.getUser().getId(), mydate);
             
         } else {

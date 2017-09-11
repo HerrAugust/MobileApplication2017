@@ -37,8 +37,7 @@ export class DogProvider {
      * Send data of dog towards the server.
      */
     sendDog(dog: Dog, token: String, collarid: number, breed: number): Promise<any> {
-        console.log("Sono qui");
-        console.log(token); 
+        console.log("DogProvider.sendDog()"); 
         return new Promise((resolve, reject) => {
             this._http.post(URL_BASE + URL.DOGS.DOGREGISTRATION + this._sAccount.getUser().token+'/'+collarid+'/'+breed, dog).toPromise()
                 .then((res: Response) => {

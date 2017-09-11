@@ -15,12 +15,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.annotations.Type;
 
 import java.util.Date;
 
@@ -45,7 +47,9 @@ public class Dog implements java.io.Serializable {
     @Column(name = "gender", nullable = false, length = 1)
     private String gender;
 	
-	@Column(name = "src", nullable = false, length = 255)
+    @Lob
+	@Column(name = "src", nullable = false, length = 50000)
+    @Type(type="text")
     private String src;
     
 
