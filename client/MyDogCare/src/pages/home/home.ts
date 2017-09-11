@@ -1,9 +1,18 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, AlertController, LoadingController, Platform} from 'ionic-angular';
 
+
+import {EventDetailPage} from '../event-detail/event-detail';
+import {AddEditEventPage} from '../add-edit-event/add-edit-event';
+
+//Models
+import {Event} from '../../models/event.model';
+import { Events } from 'ionic-angular'; // needed for pop from AddEditEventPage
+
 //Providers
 import {DogProvider} from '../../providers/dog.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
+import {EventProvider} from '../../providers/event.provider';
 
 //Map
 import {LatLng} from '@ionic-native/google-maps';
@@ -37,6 +46,7 @@ export class HomePage {
         public navCtrl: NavController,
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController,
+        public popevt: Events,
         public sDog: DogProvider,
         public sDictionary: DictionaryService,
         public geoloc: Geolocation,
@@ -45,6 +55,28 @@ export class HomePage {
     ) {
         console.log("Home()");
 
+        /*
+        popevt.subscribe('dog:created', (eventData) => {
+            // eventData is an array of parameters, so grab our first and only arg
+            this._manageNewDog();
+        });
+        */    
+
+        this.loaddogs();
+      }
+
+    /*  
+    _manageNewDog()
+    {
+        this.loaddogs();
+    }  
+    */
+
+    ionViewDidLoad() {
+    };
+
+    loaddogs()
+    {
         const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
         loading.present();
         this.sDog.getDogs().then(dogs =>
@@ -54,10 +86,7 @@ export class HomePage {
                 console.log(this.dogs);
                 loading.dismiss();
             });
-      }
-
-    ionViewDidLoad() {
-    };
+    }
 
     searchDog($event, dog: Dog) 
     {   

@@ -78,24 +78,24 @@ export class DogProfilePage {
     dog_edit() {
         console.log("in dog edit");
         
-            
+            var collar = this.dog.collarid;
             const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
     
-            this.dog = new Dog({'name': this.dog.name, 'gender': this.dog.gender, 'age': this.dog.age, 'date_birth': this.dog.date_birth});
+            this.dog = new Dog({'name': this.dog.name, 'gender': this.dog.gender, 'age': this.dog.age, 'date_birth': this.dog.date_birth, 'id': this.dog.id, 'collarid': this.dog.collarid});
             
-            console.log(this.dog);
-            /*
-            this.sDog.editDog(this.dog, this.user.token, this.collarId)
+            this.sDog.editDog(this.dog, this.user.token, collar)
                 .then(() => {
                     loading.dismiss().then(() => {
                         const alert = this.alertCtrl.create({
                             title: this.sDictionary.get("APP_NAME"),
-                            message: this.sDictionary.get("TEXT_SIGNUP_SUCCESS"),
+                            message: this.sDictionary.get("DOG_UPDATE_SUCCESS"),
                             buttons: [this.sDictionary.get("OK")]
                         });
                         alert.present();
+                        this.navCtrl.pop();
                         alert.onDidDismiss(() => {
+                        //this.navCtrl.pop();
                         });
                     });
                 })
@@ -108,7 +108,7 @@ export class DogProfilePage {
                     }).present();
                     this.homeRedirection();
                 });
-              */  
+               
                 
     }
 
