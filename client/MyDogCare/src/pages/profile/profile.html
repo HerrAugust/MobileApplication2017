@@ -1,15 +1,10 @@
 <ion-header>
 
-    <ion-navbar color="secondary">
+    <ion-navbar color="primary">
         <ion-title>{{ 'PROFILE' | dictionary }}</ion-title>
-
-        <ion-buttons end>
-            <button ion-button icon-only (click)="editable = true" [hidden]="editable"><ion-icon name="md-create"></ion-icon></button>
-
-            <button ion-button icon-only (click)="logout()" [hidden]="editable"><ion-icon name="md-power"></ion-icon></button>
-
-            <button ion-button icon-only (click)="save()" [hidden]="!editable">{{ 'SAVE' | dictionary }}</button>
-        </ion-buttons>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
     </ion-navbar>
 
 
@@ -23,22 +18,22 @@
         <ion-list>
             <ion-item>
                 <ion-label stacked>{{ 'USERNAME' | dictionary }}</ion-label>
-                <ion-input type="email" disabled="true" [(ngModel)]="user.username"></ion-input>
+                <ion-input type="text" [disabled]="!editable" [(ngModel)]="user.username"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label stacked>{{ 'EMAIL' | dictionary }}</ion-label>
-                <ion-input type="text" [disabled]="!editable" [(ngModel)]="user.email"></ion-input>
+                <ion-input type="text" [disabled]="editable" [(ngModel)]="user.email"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label stacked>{{ 'FIRSTNAME' | dictionary }}</ion-label>
-                <ion-input type="text" [disabled]="!editable" [(ngModel)]="user.firstname"></ion-input>
+                <ion-input type="text" [disabled]="editable" [(ngModel)]="user.firstname"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label stacked>{{ 'LASTNAME' | dictionary }}</ion-label>
-                <ion-input type="text" [disabled]="!editable" [(ngModel)]="user.lastname"></ion-input>
+                <ion-input type="text" [disabled]="editable" [(ngModel)]="user.lastname"></ion-input>
             </ion-item>
         </ion-list>
 
