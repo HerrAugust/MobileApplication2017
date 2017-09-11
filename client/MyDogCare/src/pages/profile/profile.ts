@@ -7,7 +7,7 @@ import {DictionaryService} from '../../modules/dictionary/providers/dictionary.s
 
 //Models
 import {User} from '../../models/user.model';
-
+import {HomePage} from '../home/home';
 
 import {Language} from '../../modules/dictionary/types';
 
@@ -58,49 +58,41 @@ export class ProfilePage {
             });
     }
     
-    save() {
-        const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-        loading.present();
+    profile_edit() {
 
-        this.sAccount.update()
-            .then(() => {
-                loading.dismiss().then(() => {
-                    this.editable = false;
-                });
-            })
-            .catch((msg) => {
-                loading.dismiss().then(() => {
+            const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+            loading.present();
+    
+            this.user = new User({'username': this.user.username, 'firstname': this.user.firstname, 'lastname': this.user.lastname, 'email': this.user.email});
+
+            this.sAccount.update(this.user)
+                .then(() => {
+                    loading.dismiss().then(() => {
+                        const alert = this.alertCtrl.create({
+                            title: this.sDictionary.get("APP_NAME"),
+                            message: this.sDictionary.get("TEXT_SIGNUP_SUCCESS"),
+                            buttons: [this.sDictionary.get("OK")]
+                        });
+                        alert.present();
+                        alert.onDidDismiss(() => {
+                        });
+                    });
+                })
+                .catch(msg => {
+                    loading.dismiss();
                     this.alertCtrl.create({
                         title: this.sDictionary.get("APP_NAME"),
                         message: msg,
-                        buttons: [this.sDictionary.get("OK")] 
+                        buttons: [this.sDictionary.get("OK")]
                     }).present();
+                    this.homeRedirection();
                 });
-            });
-    }
+            }
 
-    logout() {
-        this.alertCtrl.create({
-            title: this.sDictionary.get("APP_NAME"),
-            message: this.sDictionary.get("CONFIRM_LOGUOT"),
-            buttons: [this.sDictionary.get("NO"), {
-                text: this.sDictionary.get("SI"),
-                handler: () => {
-                    const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING")});
-                    loading.present();
-
-                    this.sAccount.logout()
-                        .then(() => {
-                            loading.dismiss().then(() => {
-                                this.app.getRootNav().setRoot('LoginPage');
-                            });
-                        })
-                        .catch(() => {
-
-                        });
-                }
-            }]
-        }).present();
+    homeRedirection() 
+    {
+        console.log("Redirection to home");
+        this.navCtrl.push(HomePage);   
     }
 
 }
