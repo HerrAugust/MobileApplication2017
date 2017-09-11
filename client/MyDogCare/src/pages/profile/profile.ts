@@ -70,7 +70,7 @@ export class ProfilePage {
                     loading.dismiss().then(() => {
                         const alert = this.alertCtrl.create({
                             title: this.sDictionary.get("APP_NAME"),
-                            message: this.sDictionary.get("TEXT_SIGNUP_SUCCESS"),
+                            message: this.sDictionary.get("TEXT_UPDATE"),
                             buttons: [this.sDictionary.get("OK")]
                         });
                         alert.present();
