@@ -39,7 +39,6 @@ import {ProfileModule} from '../pages/profile/profile.module';
 @NgModule({
     declarations: [
         MyApp,
-        //EventDetailPage,
    ],
     imports: [
         BrowserModule,
@@ -55,7 +54,6 @@ import {ProfileModule} from '../pages/profile/profile.module';
         CalendarPageModule,
         AddEditEventPageModule,
         DogRegistrationPageModule,
-        EventDetailPageModule,
         EventDetailPageModule,
         CameraPageModule,
     ],
