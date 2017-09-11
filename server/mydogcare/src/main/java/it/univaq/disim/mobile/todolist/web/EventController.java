@@ -67,7 +67,7 @@ public class EventController {
     }
     
     @GetMapping("/date/{token}/{date}")
-    public Response findEventsByCode(@PathVariable(value = "token") String token, @PathVariable(value = "date") String date) {
+    public Response findEventsByDate(@PathVariable(value = "token") String token, @PathVariable(value = "date") String date) {
     	List<Event> events = service.findEventsByDate(token, date);
         Response<List<Event>> response = new Response<>(true, "all events grouped by date");
         response.setData(events);

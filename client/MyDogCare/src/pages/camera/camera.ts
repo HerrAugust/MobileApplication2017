@@ -6,9 +6,6 @@ import {CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camera
 import {DogProvider} from '../../providers/dog.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
-//Models
-import {Dog} from '../../models/dog.model';
-
 // Needed to select next event
 import { ViewChild } from "@angular/core";
 import { Content } from 'ionic-angular';
@@ -58,6 +55,7 @@ export class CameraPage {
         console.log("Home()");
        // this.checkPermissions();
        this.initializePreview();
+       this.cameraPreview.setPreviewSize(this.pictureOpts);
       }
 
     ionViewDidLoad() {
