@@ -96,33 +96,38 @@ export class DogRegistrationPage {
         console.log("in dog registration");
         
         
-            const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-            loading.present();
     
-            this.dog = new Dog({'name': this.name, 'gender': this.gender, 'age': this.age, 'date_birth': this.date_birth,'breed': this.breed, 'src': this.picture});
+            this.dog = new Dog({'name': this.name, 'collarId': this.collarId, 'gender': this.gender, 'age': this.age, 'date_birth': this.date_birth,'breed': this.breed, 'src': this.picture});
             
-            this.sDog.sendDog(this.dog, this.user.token, this.collarId, this.breed.id)
-                .then(() => {
-                    loading.dismiss().then(() => {
-                        const alert = this.alertCtrl.create({
-                            title: this.sDictionary.get("APP_NAME"),
-                            message: this.sDictionary.get("TEXT_SIGNUP_SUCCESS"),
-                            buttons: [this.sDictionary.get("OK")]
+            this._validateForm().then(() => {
+
+                    const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+                    loading.present();
+
+                    this.sDog.sendDog(this.dog, this.user.token, this.collarId, this.breed.id)
+                        .then(() => {
+                            loading.dismiss().then(() => {
+                                const alert = this.alertCtrl.create({
+                                    title: this.sDictionary.get("APP_NAME"),
+                                    message: this.sDictionary.get("TEXT_SIGNUP_SUCCESS"),
+                                    buttons: [this.sDictionary.get("OK")]
+                                });
+                                
+                                alert.present();
+                                alert.onDidDismiss(() => {
+                                });
+                            });
+                        })
+                        .catch(msg => {
+                            loading.dismiss();
+                            this.alertCtrl.create({
+                                title: this.sDictionary.get("APP_NAME"),
+                                message: msg,
+                                buttons: [this.sDictionary.get("OK")]
+                            }).present();
+                            this.homeRedirection();
                         });
-                        alert.present();
-                        alert.onDidDismiss(() => {
-                        });
-                    });
-                })
-                .catch(msg => {
-                    loading.dismiss();
-                    this.alertCtrl.create({
-                        title: this.sDictionary.get("APP_NAME"),
-                        message: msg,
-                        buttons: [this.sDictionary.get("OK")]
-                    }).present();
-                    this.homeRedirection();
-                });
+            }).catch(() => {});            
                 
     }
     
@@ -142,6 +147,40 @@ export class DogRegistrationPage {
 
      homeRedirection() {
         console.log("Redirection to home");
-        this.navCtrl.push(HomePage);   
+        this.popevt.publish('dog:created', null);
+        this.navCtrl.setRoot(HomePage);
+        //this.navCtrl.pop();   
+    }
+
+    private _validateForm() {
+        return new Promise((resolve, reject) => {
+            let msg = "";
+            let MESSAGE = "WARNING_SIGNUP_FIELD_EMPTY";
+            if (this.dog.name.trim() === "") {
+                msg = this.sDictionary.get(MESSAGE);
+            }
+
+            console.log(this.dog.age);
+            if (this.dog.age === -1) {
+                msg = this.sDictionary.get(MESSAGE);
+            } 
+
+            console.log(this.dog.collarid);
+            if (this.dog.collarid === -1) {
+                msg = this.sDictionary.get(MESSAGE);
+            } 
+
+            if (msg !== "") {
+                this.alertCtrl.create({
+                    title: this.sDictionary.get("APP_NAME"),
+                    message: msg,
+                    buttons: [this.sDictionary.get("OK")]
+                }).present();
+                
+                reject();
+            } else {
+                resolve();
+            }
+        });
     }
 }

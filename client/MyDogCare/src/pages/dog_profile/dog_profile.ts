@@ -78,14 +78,12 @@ export class DogProfilePage {
     dog_edit() {
         console.log("in dog edit");
         
-            console.log("Il mio cane: "+ this.dog.collarid);
             var collar = this.dog.collarid;
             const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
     
             this.dog = new Dog({'name': this.dog.name, 'gender': this.dog.gender, 'age': this.dog.age, 'date_birth': this.dog.date_birth, 'id': this.dog.id, 'collarid': this.dog.collarid});
             
-            console.log("Nuovamente: "+ this.dog.id);
             this.sDog.editDog(this.dog, this.user.token, collar)
                 .then(() => {
                     loading.dismiss().then(() => {
@@ -95,7 +93,9 @@ export class DogProfilePage {
                             buttons: [this.sDictionary.get("OK")]
                         });
                         alert.present();
+                        this.navCtrl.pop();
                         alert.onDidDismiss(() => {
+                        //this.navCtrl.pop();
                         });
                     });
                 })
