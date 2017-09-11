@@ -77,7 +77,6 @@ export class DogProvider {
                             const Dogs = json.data;
                             for (let dog of Dogs) 
                             {
-                                console.log("muori");
                                 console.log(dog);
                                 this._Dogs.push(new Dog(dog));
                             }
@@ -96,4 +95,28 @@ export class DogProvider {
             }
         });
     }
+
+    /**
+     * Send data of dog towards the server (Update profile).
+     */
+    editDog(dog: Dog, token: String, collarid: number): Promise<any> {
+        console.log("Sono dentro la edit:" + collarid);
+
+        
+        return new Promise((resolve, reject) => {
+            this._http.put(URL_BASE + URL.DOGS.DOGEDIT + this._sAccount.getUser().token+'/'+collarid, dog).toPromise()
+                .then((res: Response) => {
+                    const json = res.json() as ResponseServer;
+                    
+                    if (json.result) {
+                        resolve();
+                    } else {
+                        reject(json.message);
+                    }
+                })
+                .catch((err: Response) => reject(`Errore status: ${err.status}`));
+        });
+        
+    }
+
 }

@@ -49,6 +49,7 @@
     
     "TEXT_NEW_ACCOUNT": "Registra un nuovo account.",
     "TEXT_SIGNUP_SUCCESS": "Registrazione avvenuta con successo, ora effettua il login.",
+    "DOG_UPDATE_SUCCESS": "Modifica avvenuta con successo",
     
     "WARNING_LOGIN_USERNAME_EMPTY": "Inserisci l'username del tuo account TodoList.",
     "WARNING_LOGIN_PASSWORD_EMPTY": "Inserisci la password.",

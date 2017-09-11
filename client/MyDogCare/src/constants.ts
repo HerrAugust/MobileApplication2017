@@ -12,6 +12,7 @@ export const URL = {
     DOGS: {
         ALL: "dogs/all/",
         DOGREGISTRATION: "dogs/registration/",
+        DOGEDIT: "dogs/edit/"
     },
     EVENTS: {
         TEST: "events/test",

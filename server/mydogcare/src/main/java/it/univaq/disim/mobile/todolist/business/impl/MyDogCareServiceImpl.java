@@ -223,5 +223,21 @@ public class MyDogCareServiceImpl implements MyDogCareService {
 	        dogRepository.save(dog);
 	        return true;
     }
+	
+	
+	@Override
+	public Dog updateDog(String token, Dog dog, Long collar) {
+		Session session = sessionRepository.findByToken(token);
+        
+		Dog newDog = dogRepository.findOne(dog.getId());
+		
+        newDog.setName(dog.getName());
+        newDog.setAge(dog.getAge());
+        newDog.setDate_birth(dog.getDate_birth());
+        newDog.setGender(dog.getGender());
+            
+        return newDog;
+           
+        }
 
 }

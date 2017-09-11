@@ -42,5 +42,7 @@ public interface MyDogCareService {
 	
 	List<Dog> findDogs(String token);
 	
+	Dog updateDog(String token, Dog dog, Long collar);
+	
 
 }
