@@ -13,6 +13,7 @@ import {DictionaryModule} from '../modules/dictionary/dictionary.module'
 //Native Plugins
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
+import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import {CameraPreview} from '@ionic-native/camera-preview';
 import {Diagnostic} from '@ionic-native/diagnostic';
@@ -63,6 +64,7 @@ import {ProfileModule} from '../pages/profile/profile.module';
     providers: [
         StatusBar,
         SplashScreen,
+        GoogleMaps,
         Geolocation,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AccountProvider,
