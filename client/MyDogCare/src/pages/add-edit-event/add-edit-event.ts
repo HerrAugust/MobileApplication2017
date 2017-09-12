@@ -86,6 +86,7 @@ export class AddEditEventPage {
       this.title = this.sDictionary.get('ADDEDITEVENTPAGE_TITLE_NEWEVENT');
     }
     else { //edit clicked
+      // set date start
       var curevent            = sEvent.getEvent(this.code);
       var date                = new Date(curevent.detailtimestamp_start);
       var date_end            = new Date(curevent.detailtimestamp_end);
@@ -93,13 +94,24 @@ export class AddEditEventPage {
       var curmonth            = (date.getMonth()+1).toString();
       if(curmonth.length == 1)
         curmonth              = "0"+curmonth;
-      var curday              = date.getDate().toString();
+      var curday              = curevent.detailtimestamp_start.split(' ')[0].split('-')[2];
       if(curday.length == 1)
         curday                = "0"+curday;
       var month               = `${curyear}-${curmonth}-${curday}`;
       this.event.monthStarts  = month;
-      this.event.monthEnds    = month;
 
+      //set date end
+      var curyear_end             = date_end.getFullYear();
+      var curmonth_end            = (date_end.getMonth()+1).toString();
+      if(curmonth_end.length == 1)
+        curmonth_end              = "0"+curmonth_end;
+      var curday_end              = curevent.detailtimestamp_end.split(' ')[0].split('-')[2];
+      if(curday_end.length == 1)
+        curday_end                = "0"+curday_end;
+      var month_end               = `${curyear_end}-${curmonth_end}-${curday_end}`;
+      this.event.monthEnds    = month_end;
+
+      //set times
       var curtime_start       = date.getHours().toString();
       if(curtime_start.length == 1)
         curtime_start         = "0"+curtime_start;
