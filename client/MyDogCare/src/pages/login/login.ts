@@ -8,9 +8,6 @@ import {User} from '../../models/user.model';
 import {AccountProvider} from '../../providers/account.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
-//Constants
-import {URL_BASE} from '../../constants';
-
 @IonicPage()
 @Component({
     selector: 'page-login',
@@ -20,7 +17,7 @@ export class LoginPage {
     
     username: string = "";
     password: string = "";
-    ip_address: string = "";
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -42,11 +39,6 @@ export class LoginPage {
     }
 
     login() {
-        console.log(this.ip_address);
-        if(this.ip_address !== "")
-        {
-            URL_BASE.replace("localhost", this.ip_address);
-        }
 
         this._validate().then(() => {
 
@@ -54,7 +46,7 @@ export class LoginPage {
             loading.present();
             
             this.sAccount.login(this.username, this.password)
-                .then((user: User) => {
+                .then((user: User) => { 
                     console.log("logged: ", user);
 
                     loading.dismiss().then(() => {
