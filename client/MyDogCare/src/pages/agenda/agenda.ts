@@ -66,7 +66,8 @@ export class AgendaPage {
                 console.log(this.events);
                 console.log("length: " + this.events.length);
                 loading.dismiss();
-            });
+            })
+            .catch((err:Response) => {loading.dismiss();});
 
         if(from != 'CalendarPage') {
             popevt.subscribe('event:created', (eventData) => {
