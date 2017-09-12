@@ -55,7 +55,7 @@ import {ProfileModule} from '../pages/profile/profile.module';
         AddEditEventPageModule,
         DogRegistrationPageModule,
         EventDetailPageModule,
-        CameraPageModule,
+        CameraPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

@@ -8,6 +8,9 @@ import {User} from '../../models/user.model';
 import {AccountProvider} from '../../providers/account.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
+//Constants
+import {URL_BASE, URL} from '../../constants';
+
 @IonicPage()
 @Component({
     selector: 'page-login',
@@ -17,6 +20,7 @@ export class LoginPage {
     
     username: string = "";
     password: string = "";
+    ip_address: string = "";
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -25,6 +29,8 @@ export class LoginPage {
         public loadingCtrl: LoadingController,
         public sDictionary: DictionaryService
     ) {
+
+        
     }
 
     ionViewDidLoad() {
@@ -37,6 +43,13 @@ export class LoginPage {
 
     login() {
         this._validate().then(() => {
+
+            console.log(this.ip_address);
+            if(this.ip_address !== "")
+            {
+                URL_BASE.replace("localhost", this.ip_address);
+            }
+
             const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
             

@@ -39,4 +39,3 @@ INSERT INTO Dog (collarid, age, name, gender, own, breedid, date_birth, src) VAL
 
 /* To test calendar part */
 INSERT INTO Events (note, type, userid, detailtimestamp_start, detailtimestamp_end, place) VALUES ('Dr.Strange, bring with a new collar', 1, 1, '2017-07-18 22:01:34', '2017-07-18 22:01:34', 'Wall Street')
-

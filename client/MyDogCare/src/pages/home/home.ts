@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, AlertController, LoadingController, Platform} from 'ionic-angular';
 
 
+
 import {EventDetailPage} from '../event-detail/event-detail';
 import {AddEditEventPage} from '../add-edit-event/add-edit-event';
 
@@ -54,6 +55,8 @@ export class HomePage {
         private _DomSanitizer: DomSanitizer,
     ) {
         console.log("Home()");
+
+
 
         /*
         popevt.subscribe('dog:created', (eventData) => {
