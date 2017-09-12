@@ -49,11 +49,11 @@ export class ProfilePage {
         this.sDictionary.setPreferredLanguage(this.preferredLanguage)
             .then(() => {
                 loading.dismiss().then(() => {
-                    this.app.getRootNav().setRoot('TabsPage');
+                    this.app.getRootNav().setRoot('HomePage');
                 });
             })
             .catch(() => {
-                console.log("Errore nel caricamento del dizionario");
+                console.log("Error loading dictionary");
                 loading.dismiss();
             });
     }

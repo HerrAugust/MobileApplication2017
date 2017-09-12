@@ -15,9 +15,6 @@ import {User} from '../../models/user.model';
 import {Dog} from '../../models/dog.model';
 import {Breed} from '../../models/breed.model';
 
-//interfaces
-import {DogRegistrationInterface} from '../../interfaces/dog-registration.interface';
-
 import {Language} from '../../modules/dictionary/types';
 import { Events } from 'ionic-angular'; // needed for pop from CameraPage
 
@@ -48,7 +45,7 @@ export class DogRegistrationPage {
     breed : Breed = new Breed({id: -1, name: 'None', origin: 'None'});
     breeds : Array<Breed> = [];
   
-    picture: any = 'assets/images/germanflag.jpg';//DEFAULT_IMAGE; // in this app, a base64 image
+    picture: any = DEFAULT_IMAGE; // in this app, a base64 image
 
     constructor(    
         public app: App,

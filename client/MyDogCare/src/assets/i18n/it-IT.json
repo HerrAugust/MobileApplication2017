@@ -18,6 +18,7 @@
     "LASTNAME": "Cognome",
     "LANGUAGE": "Lingua",
 
+    "ERROR_GET_DOGS": "Errore ottenimento cani",
     "DOG_PROFILE": "Profilo del cane",
     "NAME": "Name",
     "COLLARID": "Collarid",

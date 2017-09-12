@@ -20,14 +20,14 @@ export class BreedProvider {
     constructor(
         private _http: Http
     ) {
-        console.log('Hello Disease Provider');
+        console.log('Hello BreedProvider');
     }
 
     /**
      * Gets breeds from server.
      */
     getBreeds(): Promise<Array<Breed>> {
-        console.log("sono in getBreeds");
+        console.log("BreedProvider.getBreeds()");
         return new Promise((resolve) => {
             if (this._breeds === null) {
                 this._breeds = [];

@@ -63,7 +63,6 @@ export class LoginPage {
                 })
                 .catch((msg) => {
                     msg = this.sDictionary.get("ERROR_LOGIN_USERNAME_PASSWORD");
-                    console.log("errore login: non mi sono riuscito a loggare");
 
                     loading.dismiss().then(() => {
                         this.alertCtrl.create({

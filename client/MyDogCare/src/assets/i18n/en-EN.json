@@ -17,6 +17,7 @@
     "LASTNAME": "Lastname",
     "LANGUAGE": "Language",
     
+    "ERROR_GET_DOGS": "Error getting dogs",
     "DOG_PROFILE": "Dog Profile",
     "NAME": "Name",
     "COLLARID": "Collarid",

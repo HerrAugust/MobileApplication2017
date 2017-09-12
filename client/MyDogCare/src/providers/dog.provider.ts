@@ -3,9 +3,6 @@ import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-//Interfaces
-import {DogRegistrationInterface} from '../interfaces/dog-registration.interface';
-
 //Providers
 import {AccountProvider} from './account.provider';
 
@@ -19,6 +16,8 @@ import {URL_BASE, URL} from '../constants';
 //Types
 import {ResponseServer} from '../types';
 
+import {DictionaryService} from '../modules/dictionary/providers/dictionary.service';
+
 @Injectable()
 export class DogProvider {
 
@@ -26,7 +25,8 @@ export class DogProvider {
 
     constructor(
         private _http: Http,
-        private _sAccount: AccountProvider
+        private _sAccount: AccountProvider,
+        private _sDict: DictionaryService,
     )
     {
         console.log('Hello Dog Provider'); 
@@ -49,7 +49,7 @@ export class DogProvider {
                         reject(json.message);
                     }
                 })
-                .catch((err: Response) => reject(`Errore status: ${err.status}`));
+                .catch((err: Response) => reject(`Error status: ${err.status}`));
         });
     }
 
@@ -60,38 +60,29 @@ export class DogProvider {
     getDogs(): Promise<Array<Dog>> {
         console.log("DogProvider.getDogs()");
         return new Promise((resolve) => {
-            if (this._Dogs === null) {
-                this._Dogs = [];
+            this._Dogs = [];
 
+            this._http.get(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token).toPromise()
+                .then((res: Response) => 
+                {
+                    const json = res.json() as ResponseServer;
 
-                //console.log(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token)
-
-                this._http.get(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token).toPromise()
-                    .then((res: Response) => 
+                    if (json.result) 
                     {
-                        const json = res.json() as ResponseServer;
-
-                        if (json.result) 
+                        const Dogs = json.data;
+                        for (let dog of Dogs) 
                         {
-                            const Dogs = json.data;
-                            for (let dog of Dogs) 
-                            {
-                                console.log(dog);
-                                this._Dogs.push(new Dog(dog));
-                            }
-                            resolve(this._Dogs);
-                        } 
-                        else 
-                        {
-                            resolve(this._Dogs);
+                            console.log(dog);
+                            this._Dogs.push(new Dog(dog));
                         }
-                    })
-                    .catch(() => resolve(this._Dogs));
-            } 
-            else 
-            {
-                resolve(this._Dogs);
-            }
+                        resolve(this._Dogs);
+                    } 
+                    else 
+                    {
+                        Promise.reject(this._sDict.get("ERROR_GET_DOGS"));
+                    }
+                })
+                .catch((err: Response) => Promise.reject(`Errore status: ${err.status}`));
         });
     }
 
