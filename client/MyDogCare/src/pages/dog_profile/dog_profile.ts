@@ -26,6 +26,7 @@ export class DogProfilePage {
 
     user: User;
     dog: Dog;
+    dog1: Dog;
     dogss = [];    
     editable: boolean = false;
     languages: Language[] = [];
@@ -53,6 +54,7 @@ export class DogProfilePage {
         this.user = this.sAccount.getUser();
         let dog = this.navParams.get("dog");
         this.dog = dog;
+        this.dog1 = dog;
 
         //this.dog.date_birth = this._formatdate();
 
@@ -79,35 +81,41 @@ export class DogProfilePage {
         console.log("in dog edit");
         
             var collar = this.dog.collarid;
-            const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-            loading.present();
-    
-            this.dog = new Dog({'name': this.dog.name, 'gender': this.dog.gender, 'age': this.dog.age, 'date_birth': this.dog.date_birth, 'id': this.dog.id, 'collarid': this.dog.collarid});
+            //const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+            //loading.present();
             
-            this.sDog.editDog(this.dog, this.user.token, collar)
-                .then(() => {
-                    loading.dismiss().then(() => {
-                        const alert = this.alertCtrl.create({
-                            title: this.sDictionary.get("APP_NAME"),
-                            message: this.sDictionary.get("DOG_UPDATE_SUCCESS"),
-                            buttons: [this.sDictionary.get("OK")]
+            this.dog1 = new Dog({'name': this.dog.name, 'gender': this.dog.gender, 'age': this.dog.age, 'date_birth': this.dog.date_birth, 'id': this.dog.id, 'collarid': collar});
+            
+            this._validateForm().then(() => {
+
+                    const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
+                    loading.present();
+
+                    this.sDog.editDog(this.dog1, this.user.token, collar)
+                        .then(() => {
+                            loading.dismiss().then(() => {
+                                const alert = this.alertCtrl.create({
+                                    title: this.sDictionary.get("APP_NAME"),
+                                    message: this.sDictionary.get("DOG_UPDATE_SUCCESS"),
+                                    buttons: [this.sDictionary.get("OK")]
+                                });
+                                alert.present();
+                                this.navCtrl.pop();
+                                alert.onDidDismiss(() => {
+                                //this.navCtrl.pop();
+                                });
+                            });
+                        })
+                        .catch(msg => {
+                            loading.dismiss();
+                            this.alertCtrl.create({
+                                title: this.sDictionary.get("APP_NAME"),
+                                message: msg,
+                                buttons: [this.sDictionary.get("OK")]
+                            }).present();
+                            this.homeRedirection();
                         });
-                        alert.present();
-                        this.navCtrl.pop();
-                        alert.onDidDismiss(() => {
-                        //this.navCtrl.pop();
-                        });
-                    });
-                })
-                .catch(msg => {
-                    loading.dismiss();
-                    this.alertCtrl.create({
-                        title: this.sDictionary.get("APP_NAME"),
-                        message: msg,
-                        buttons: [this.sDictionary.get("OK")]
-                    }).present();
-                    this.homeRedirection();
-                });
+                }).catch(() => {});          
                
                 
     }
@@ -118,7 +126,33 @@ export class DogProfilePage {
     }
     
   
+    private _validateForm() {
+        return new Promise((resolve, reject) => {
+            let msg = "";
+            let MESSAGE = "WARNING_SIGNUP_FIELD_EMPTY";
+            if (this.dog1.name.trim() === "") {
+                msg = this.sDictionary.get(MESSAGE);
+            }
 
+            if (this.dog1.age === -1) {
+                msg = this.sDictionary.get(MESSAGE);
+            } 
+   
+            if (msg !== "") {
+                this.alertCtrl.create({
+                    title: this.sDictionary.get("APP_NAME"),
+                    message: msg,
+                    buttons: [this.sDictionary.get("OK")]
+                }).present();
+                
+                reject();
+                return false;
+            } else {
+                resolve();
+                return true;
+            }
+        });
+    }
     
 
 }

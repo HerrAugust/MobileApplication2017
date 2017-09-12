@@ -136,9 +136,10 @@ export class DogRegistrationPage {
 
      homeRedirection() {
         console.log("Redirection to home");
-        this.popevt.publish('dog:created', null);
-        this.navCtrl.setRoot(HomePage);
-        //this.navCtrl.pop();   
+        this.popevt.publish('dog:created', this.dog);
+        
+        //this.navCtrl.setRoot(HomePage);
+        this.navCtrl.pop();  
     }
 
     private _validateForm() {
@@ -149,16 +150,14 @@ export class DogRegistrationPage {
                 msg = this.sDictionary.get(MESSAGE);
             }
 
-            console.log(this.dog.age);
             if (this.dog.age === -1) {
                 msg = this.sDictionary.get(MESSAGE);
             } 
 
-            console.log(this.dog.collarid);
             if (this.dog.collarid === -1) {
                 msg = this.sDictionary.get(MESSAGE);
             } 
-
+              
             if (msg !== "") {
                 this.alertCtrl.create({
                     title: this.sDictionary.get("APP_NAME"),
