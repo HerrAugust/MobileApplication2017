@@ -3,4 +3,4 @@ With My Dog Care you can track the position of your dog and find near veterinari
 
 # Screenshots
 ## Login
-![login page](screenshots/login)
+![login page](screenshots/login.jpg)
