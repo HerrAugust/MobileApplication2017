@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, AlertController, LoadingController, Platform} from 'ionic-angular';
 
-
-
 import {EventDetailPage} from '../event-detail/event-detail';
 import {AddEditEventPage} from '../add-edit-event/add-edit-event';
 
@@ -54,26 +52,10 @@ export class HomePage {
         public platform: Platform,
         private _DomSanitizer: DomSanitizer,
     ) {
-        console.log("Home()");
-
-
-
-        /*
-        popevt.subscribe('dog:created', (eventData) => {
-            // eventData is an array of parameters, so grab our first and only arg
-            this._manageNewDog();
-        });
-        */    
+        console.log("Home()");  
 
         this.loaddogs();
       }
-
-    /*  
-    _manageNewDog()
-    {
-        this.loaddogs();
-    }  
-    */
 
     ionViewDidLoad() {
     };

@@ -20,6 +20,9 @@ npm install @ionic-native/geolocation --save
 ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID=<YOUR KEY>
 npm install @ionic-native/google-maps --save
 
+ionic cordova plugin add cordova-plugin-camera-preview
+npm install @ionic-native/camera-preview --save
+
 Launch app in browser with:
 ionic serve --lab
 (update all proposed packages)

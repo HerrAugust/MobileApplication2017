@@ -15,7 +15,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
-import { CameraPreview } from '@ionic-native/camera-preview';
+import {CameraPreview} from '@ionic-native/camera-preview';
 import {Diagnostic} from '@ionic-native/diagnostic';
 
 //Providers
