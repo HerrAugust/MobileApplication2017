@@ -27,11 +27,17 @@
                     <ion-item>
                             <input type="password" placeholder="{{ 'PASSWORD' | dictionary }}" [(ngModel)]="password"/>
                     </ion-item>
+
+                    <ion-item>
+                        <ion-input type="text" placeholder="{{ 'IP_ADDRESS' | dictionary }}" [(ngModel)]="ip_address"></ion-input>
+                    </ion-item>
+                
             </ion-list>
             
             <div class="buttons-container">
                 <button ion-button block round color="primary" (click)="login()">{{ 'LOGIN' | dictionary }}</button>
             </div>
+
             <div class="button-signup">
                 <button ion-button block clear (click)="goSignup()">{{ 'TEXT_NEW_ACCOUNT' | dictionary }}</button>
             </div>

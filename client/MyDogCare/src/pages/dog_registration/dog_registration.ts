@@ -141,8 +141,8 @@ export class DogRegistrationPage {
         console.log("Redirection to home");
         this.popevt.publish('dog:created', this.dog);
         
-        //this.navCtrl.setRoot(HomePage);
-        this.navCtrl.pop();  
+        this.navCtrl.setRoot(HomePage);
+        //this.navCtrl.pop();  
     }
 
     private _validateForm() {

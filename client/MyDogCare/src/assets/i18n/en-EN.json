@@ -5,6 +5,8 @@
     "SI": "yes",
     "NO": "no",
     
+    "IP_ADDRESS": "IP Address",
+
     "HOME": "Home",
     "PROFILE": "Profile",
     "USERNAME": "Username",

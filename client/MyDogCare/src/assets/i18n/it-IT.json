@@ -4,6 +4,9 @@
     "OK": "ok",
     "SI": "si",
     "NO": "no",
+
+    "IP_ADDRESS": "Indirizzo IP",
+    
     
     "HOME": "Home",
     "PROFILE": "Profilo",

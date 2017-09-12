@@ -35,6 +35,8 @@ export class SignupPage {
             lastname: "",
             email: ""
         };
+        
+        
     }
 
     ionViewDidLoad() {
@@ -45,6 +47,8 @@ export class SignupPage {
         console.log(this.user);
         
         this._validate().then(() => {
+
+
             const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
             
