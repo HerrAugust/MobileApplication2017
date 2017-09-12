@@ -55,7 +55,7 @@
     "DOG_REGISTRATION_SUCCESS": "Dog successfully created.",
 
     
-    "WARNING_LOGIN_USERNAME_EMPTY": "Enter the username of your TodoList account.",
+    "WARNING_LOGIN_USERNAME_EMPTY": "Enter the username of your My Dog Care account.",
     "WARNING_LOGIN_PASSWORD_EMPTY": "Enter the password.",
     "WARNING_SIGNUP_FIELD_EMPTY" : "Please enter all fields.",
     "WARNING_SIGNUP_PASSWORD_WRONG": "The two passwords are incorrect.",
