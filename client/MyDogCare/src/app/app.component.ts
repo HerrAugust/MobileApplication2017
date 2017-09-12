@@ -63,7 +63,7 @@ export class MyApp {
                     this.rootPage = 'LoginPage';
                 }
                 //debug:
-                this.rootPage = 'LoginPage';
+                //this.rootPage = 'LoginPage';
             });
 
             // Okay, so the platform is ready and our plugins are available.

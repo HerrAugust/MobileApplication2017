@@ -56,8 +56,6 @@ export class DogProfilePage {
         this.dog = dog;
         this.dog1 = dog;
 
-        //this.dog.date_birth = this._formatdate();
-
         this.languages = this.sDictionary.getLanguages();
         this.preferredLanguage = this.sDictionary.getPreferredLanguage();
 
@@ -66,15 +64,6 @@ export class DogProfilePage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad Settings');
-    }
-
-    _formatdate(){
-        if(this.dog == null)
-        {
-            return;
-        }
-        let d = new Date(this.dog.date_birth);
-        return moment(d).format('DD-MM-YYYY');
     }
 
     dog_edit() {

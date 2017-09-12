@@ -53,37 +53,12 @@ export class CameraPage {
         public cameraPreview: CameraPreview,
     ) {
         console.log("Home()");
-       // this.checkPermissions();
        this.initializePreview();
        this.cameraPreview.setPreviewSize(this.pictureOpts);
       }
 
     ionViewDidLoad() {
         // Default
-    }
-
-    checkPermissions() {
-        this.diagnostic.isCameraAuthorized().then((authorized) => {
-            if(authorized)
-                this.initializePreview();
-            else {
-                this.diagnostic.requestCameraAuthorization().then((status) => {
-                    if(status == this.diagnostic.permissionStatus.GRANTED)
-                        this.initializePreview();
-                    else {
-                        // Permissions not granted
-                        // Therefore, create and present toast
-                        this.toastCtrl.create(
-                            {
-                                message: "Cannot access camera", 
-                                position: "bottom",
-                                duration: 5000
-                            }
-                        ).present();
-                    }
-                });
-            }
-        });
     }
 
     // Called when you have given authorization to camera.
