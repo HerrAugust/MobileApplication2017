@@ -64,7 +64,7 @@ export class AgendaPage {
             .then(events => {
                 this.events = events;
                 console.log(this.events);
-                console.log("length: " + this.events.length);
+                //console.log("length: " + this.events.length);
                 loading.dismiss();
             });
 
