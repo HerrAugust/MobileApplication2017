@@ -9,9 +9,6 @@
     
 </ion-header>
 
-<div class = "main-title">
-    <h3>hoooome</h3>
-</div>
 
 <ion-content class="list-avatar-page" [ngClass]="{'activeAnimate': bAnimate}" overflow-scroll="true">
     <div class="emptylist" *ngIf="dogs.length == 0">{{ 'HOMEPAGE_NODOGS' | dictionary }}</div>
@@ -34,7 +31,7 @@
                         <img src="assets/images/find_icon.png" alt="" />
                     </div>
                     <div class ="text">
-                        <button ion-button block clear (click)="searchDog($event, dog)">{{ 'SEARCH' | dictionary }}</button>
+                        <button ion-button block clear (click)="searchDog($event, dog)"><span class="withlink">{{ 'SEARCH' | dictionary }}</span></button>
                     </div>
                 </div>
                 
@@ -43,7 +40,7 @@
                         <img src="assets/images/profile_icon.png" alt="" />
                     </div>
                     <div class ="text">
-                        <button ion-button block clear (click)="goDogProfile($event, dog)">{{ 'PROFILE' | dictionary }}</button>
+                        <button ion-button block clear (click)="goDogProfile($event, dog)"><span class="withlink">{{ 'PROFILE' | dictionary }}</span></button>
                     </div>
                 </div>
 
@@ -52,7 +49,7 @@
                         <img src="assets/images/calendar_icon.png" alt="" />
                     </div>
                     <div class ="text">
-                        <button ion-button block clear (click)="goAgenda($event, dog)">{{ 'AGENDAPAGE_TITLE' | dictionary }}</button>
+                        <button ion-button block clear (click)="goAgenda($event, dog)"><span class="withlink">{{ 'AGENDAPAGE_TITLE' | dictionary }}</span></button>
                     </div>
                 </div>
 
