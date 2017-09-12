@@ -77,12 +77,6 @@ export class SignupPage {
                 });
         }).catch(() => {});
     }
-
-    /*addDog() {
-        console.log("Home.addDog()");
-        this.navCtrl.push(DogRegistrationPage);   
-    }*/
-    
     
     private _validate() {
         return new Promise((resolve, reject) => {
