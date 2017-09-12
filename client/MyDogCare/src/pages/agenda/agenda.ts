@@ -43,7 +43,7 @@ export class AgendaPage {
         console.log("date="+date)
         let userid = this.navParam.get("userid");
         let from : string = this.navParam.get("from");
-        this.fromCalendar = from == 'CalendarPage' ? true : false;
+        this.fromCalendar = from == 'CalendarPage' || from == undefined ? true : false;
         // the function this.sEvent.getEvents() expects all, by dog or by date as param, thus:
         switch(String(from)) {
             case 'CalendarPage':
