@@ -15,9 +15,6 @@ import {User} from '../../models/user.model';
 import {Dog} from '../../models/dog.model';
 import {Breed} from '../../models/breed.model';
 
-//interfaces
-import {DogRegistrationInterface} from '../../interfaces/dog-registration.interface';
-
 import {Language} from '../../modules/dictionary/types';
 import { Events } from 'ionic-angular'; // needed for pop from CameraPage
 
