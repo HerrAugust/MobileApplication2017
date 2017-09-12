@@ -84,13 +84,9 @@ export class DogRegistrationPage {
         console.log("in dog registration");
         
         const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
-        loading.present();
-    
         this.dog = new Dog({'name': this.name, 'collarId': this.collarId, 'gender': this.gender, 'age': this.age, 'date_birth': this.date_birth,'breed': this.breed, 'src': this.picture});
         
         this._validateForm().then(() => {
-
-                const loading = this.loadingCtrl.create({content: this.sDictionary.get("LOADING_WAITING") });
                 loading.present();
 
                 this.sDog.sendDog(this.dog, this.user.token, this.collarId, this.breed.id)
@@ -109,6 +105,7 @@ export class DogRegistrationPage {
                             message: msg,
                             buttons: [this.sDictionary.get("OK")]
                         }).present();
+                        loading.dismiss();
                         this.homeRedirection();
                     });
         }).catch(() => {});

@@ -9,7 +9,7 @@ import {AccountProvider} from '../../providers/account.provider';
 import {DictionaryService} from '../../modules/dictionary/providers/dictionary.service';
 
 //Constants
-import {URL_BASE, URL} from '../../constants';
+import {URL_BASE} from '../../constants';
 
 @IonicPage()
 @Component({
@@ -42,13 +42,13 @@ export class LoginPage {
     }
 
     login() {
-        this._validate().then(() => {
+        console.log(this.ip_address);
+        if(this.ip_address !== "")
+        {
+            URL_BASE.replace("localhost", this.ip_address);
+        }
 
-            console.log(this.ip_address);
-            if(this.ip_address !== "")
-            {
-                URL_BASE.replace("localhost", this.ip_address);
-            }
+        this._validate().then(() => {
 
             const loading = this.loadingCtrl.create({ content: this.sDictionary.get("LOADING_WAITING") });
             loading.present();
