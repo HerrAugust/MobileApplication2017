@@ -3,9 +3,6 @@ import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-//Interfaces
-import {DogRegistrationInterface} from '../interfaces/dog-registration.interface';
-
 //Providers
 import {AccountProvider} from './account.provider';
 
