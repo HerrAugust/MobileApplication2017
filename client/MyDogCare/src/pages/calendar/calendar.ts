@@ -3,7 +3,6 @@
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController, MenuController  } from 'ionic-angular';
-//import * as moment from 'moment';
 
 //Pages
 import {AgendaPage} from '../agenda/agenda';
@@ -73,8 +72,6 @@ export class CalendarPage {
   }
 
   loadEvents() {
-      //debug:
-      //this.eventSource = this.createRandomEvents();
 
       this.sEvent.getEvents_calendar()
       .then(events => {
