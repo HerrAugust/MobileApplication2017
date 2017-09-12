@@ -89,7 +89,6 @@ export class AddEditEventPage {
       // set date start
       var curevent            = sEvent.getEvent(this.code);
       var date                = new Date(curevent.detailtimestamp_start);
-      var date_end            = new Date(curevent.detailtimestamp_end);
       var curyear             = date.getFullYear();
       var curmonth            = (date.getMonth()+1).toString();
       if(curmonth.length == 1)
@@ -101,6 +100,7 @@ export class AddEditEventPage {
       this.event.monthStarts  = month;
 
       //set date end
+      var date_end            = new Date(curevent.detailtimestamp_end);
       var curyear_end             = date_end.getFullYear();
       var curmonth_end            = (date_end.getMonth()+1).toString();
       if(curmonth_end.length == 1)
