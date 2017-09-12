@@ -101,14 +101,9 @@ export class DogRegistrationPage {
                                 message: this.sDictionary.get("DOG_REGISTRATION_SUCCESS"),
                                 buttons: [this.sDictionary.get("OK")]
                             });
-                            
-                            alert.present();
-                            alert.onDidDismiss(() => {
-                            });
                         });
                     })
                     .catch(msg => {
-                        loading.dismiss();
                         this.alertCtrl.create({
                             title: this.sDictionary.get("APP_NAME"),
                             message: msg,

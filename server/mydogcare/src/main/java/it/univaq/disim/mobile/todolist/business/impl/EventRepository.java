@@ -15,7 +15,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 	
 	List<Event> findByUserIdOrderByDetailtimestampAsc(@Param("userid") Long userid);
 	
-	@Query(value = "select * from events where userid=:userid and (:detailtimestamp BETWEEN DATE(detailtimestamp_start) AND DATE(detailtimestamp_end)) order by detailtimestamp_start asc", nativeQuery = true)
+	@Query(value = "select * from events where userid=:userid and (:detailtimestamp BETWEEN DATE(detailtimestamp_start) AND DATE(detailtimestamp_end)) OR DATE(detailtimestamp_start)=:detailtimestamp OR DATE(detailtimestamp_end)=:detailtimestamp order by detailtimestamp_start asc", nativeQuery = true)
 	List<Event> findByUserIdAndDetailtimestampOrderByDetailtimestampAsc(@Param("userid") Long userid, @Param("detailtimestamp") String detailtimestamp);
 	
 	Event findByCode(@Param("code") Long code);
