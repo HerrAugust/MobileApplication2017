@@ -53,7 +53,7 @@ export class ProfilePage {
                 });
             })
             .catch(() => {
-                console.log("Errore nel caricamento del dizionario");
+                console.log("Error loading dictionary");
                 loading.dismiss();
             });
     }

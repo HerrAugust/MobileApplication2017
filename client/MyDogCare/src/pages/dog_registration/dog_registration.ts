@@ -45,7 +45,7 @@ export class DogRegistrationPage {
     breed : Breed = new Breed({id: -1, name: 'None', origin: 'None'});
     breeds : Array<Breed> = [];
   
-    picture: any = 'assets/images/germanflag.jpg';//DEFAULT_IMAGE; // in this app, a base64 image
+    picture: any = DEFAULT_IMAGE; // in this app, a base64 image
 
     constructor(    
         public app: App,

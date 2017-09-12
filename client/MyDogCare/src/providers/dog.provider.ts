@@ -49,7 +49,7 @@ export class DogProvider {
                         reject(json.message);
                     }
                 })
-                .catch((err: Response) => reject(`Errore status: ${err.status}`));
+                .catch((err: Response) => reject(`Error status: ${err.status}`));
         });
     }
 
@@ -61,8 +61,6 @@ export class DogProvider {
         console.log("DogProvider.getDogs()");
         return new Promise((resolve) => {
             this._Dogs = [];
-
-            //console.log(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token)
 
             this._http.get(URL_BASE + URL.DOGS.ALL + this._sAccount.getUser().token).toPromise()
                 .then((res: Response) => 
