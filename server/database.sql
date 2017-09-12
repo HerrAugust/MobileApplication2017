@@ -30,7 +30,7 @@ ALTER TABLE EventsVeterinary ADD FOREIGN KEY (veterinary) REFERENCES Veterinary(
 ALTER TABLE Events ADD FOREIGN KEY (type) REFERENCES Disease(icdcode);
 ALTER TABLE Events ADD FOREIGN KEY (userid) REFERENCES Users(userid);
 
-INSERT INTO Breed (name, origin) VALUES ('Akita', 'Japan'), ('Rottweiler', 'Germany'), ('Bolognese', 'Italy');
+INSERT INTO Breed (name, origin) VALUES ('Akita', 'Japan'), ('Rottweiler', 'Germany'), ('Bolognese', 'Italy'), ('Other', 'Other');
 INSERT INTO Users (username, password, firstname, lastname, phone, email) VALUES ('agoneri', 'agoneri', 'Agostino', 'Neri', 'agostino.neri@email.org');
 INSERT INTO Veterinary (name, lastname, city) VALUES ('John', 'Smith', 'Split'), ('Mark', 'Rossi', 'Prague');
 INSERT INTO Disease (icdcode, name) VALUES (1, 'Rabies'), (2, 'Typhus fever'), (3, 'Other');
