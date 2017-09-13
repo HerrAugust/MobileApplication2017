@@ -20,9 +20,9 @@
 
     "ERROR_GET_DOGS": "Errore ottenimento cani",
     "DOG_PROFILE": "Profilo del cane",
-    "NAME": "Name",
-    "COLLARID": "Collarid",
-    "GENDER": "Gender",
+    "NAME": "Nome",
+    "COLLARID": "ID Collare",
+    "GENDER": "Sesso",
     "DATE_BIRTH": "Data del compleanno",
     "DOG_REGISTRATION": "Registrazione Cane",
     "DOG_AGE": "Età del cane",
@@ -56,7 +56,7 @@
     "DOG_UPDATE_SUCCESS": "Modifica avvenuta con successo",
     "DOG_REGISTRATION_SUCCESS": "Cane aggiunto correttamente.",
     
-    "WARNING_LOGIN_USERNAME_EMPTY": "Inserisci l'username del tuo account My Dog Care.",
+    "WARNING_LOGIN_USERNAME_EMPTY": "Inserisci lo username del tuo account My Dog Care.",
     "WARNING_LOGIN_PASSWORD_EMPTY": "Inserisci la password.",
     "WARNING_SIGNUP_FIELD_EMPTY" : "Per favore riempi tutti i campi.",
     "WARNING_SIGNUP_PASSWORD_WRONG": "Le due passwords sono errate.",
