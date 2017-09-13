@@ -2,6 +2,12 @@ page-signup {
     
     ion-content {
         background-color: white !important;
+
+        input {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid grey;
+        }
     }
 
     .logo-container {
