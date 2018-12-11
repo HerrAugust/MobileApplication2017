@@ -8,10 +8,10 @@ With My Dog Care you can track the position of your dog and find near veterinari
 2. Veterinaries are not fully integrated (see the Data Model in the documentation: the relation of Veterinary with Dog and Event is not fully integrated in the project)
 
 # Screenshots
-<img src="screenshots/login.jpg" width="300" alt="login page" />
-<img src="screenshots/home.jpg" width="300" alt="Homepage" />
-<img src="screenshots/profile.jpg" width="300" alt="Profile" />
-<img src="screenshots/agenda.jpg" width="300" alt="Agenda" />
-<img src="screenshots/dogregistration.jpg" width="300" alt="Dog registration" />
-<img src="screenshots/searchdog.jpg" width="300" alt="Search dog" />
-<img src="screenshots/veterinaries.jpg" width="300" alt="Near veterinaries" />
+<img src="screenshots/login.jpg" width="300" alt="login page" height="400" />
+<img src="screenshots/home.jpg" width="300" alt="Homepage" height="400" />
+<img src="screenshots/profile.jpg" width="300" alt="Profile" height="400" />
+<img src="screenshots/agenda.jpg" width="300" alt="Agenda" height="400" />
+<img src="screenshots/dogregistration.jpg" width="300" alt="Dog registration" height="400" />
+<img src="screenshots/searchdog.jpg" width="300" alt="Search dog" height="400" />
+<img src="screenshots/veterinaries.jpg" width="300" alt="Near veterinaries" height="400" />
